@@ -1,0 +1,39 @@
+:root{
+    --mainfont :  "Modak", system-ui;
+    --textfont :"Mada", sans-serif;
+    --maincolor : #CBFFBF;
+    --textcolor : #660505;
+  
+}
+
+
+.infoprofil{
+
+    background-color: whitesmoke;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    gap: 50px;
+    
+}
+
+.infoprofil img{
+
+    height: 200px;
+}
+
+.infos{
+
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.3rem;
+    font-family: var(--mainfont);
+    font-weight: 100;
+    color: var(--textcolor);
+}
+
+.btnprofil{
+    display: flex;
+    gap: 20px;
+}
+

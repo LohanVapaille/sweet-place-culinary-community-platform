@@ -1,0 +1,45 @@
+:root{
+    --mainfont :  "Modak", system-ui;
+    --textfont :"Mada", sans-serif;
+    --maincolor : #CBFFBF;
+    --textcolor : #660505;
+  
+}
+
+header{
+
+    display: flex;
+    background-color: var(--maincolor);
+    margin: 0;
+    font-family: var(--mainfont);
+    height: 110px;
+    font-size: 1.5rem;
+    color: var(--textcolor);
+}
+
+header nav{
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 100%;
+    
+}
+
+header nav ul{
+    padding: 0px;
+}
+
+header nav ul a{
+
+    text-decoration: none;
+    color: var(--textcolor);
+}
+
+header nav ul a:hover{
+
+    text-decoration: underline;
+    
+}

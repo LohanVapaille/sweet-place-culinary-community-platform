@@ -1,0 +1,70 @@
+.h1{
+    
+    display:flex;
+    
+}h1{
+
+    margin: auto;
+}
+
+
+.cards-container{
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.card{
+
+    flex-direction: row;
+    text-align: left;
+    width: 70%;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.card img{
+
+    height: 100px;
+}
+
+.item-info{
+
+    width: 50%;
+}
+
+.actions{
+    display: flex;
+    gap: 20px;
+}
+
+.qty-control{
+
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.qty-control button {
+
+    font-size: 1.4rem;
+    background-color: white;
+    border: none;
+}
+
+.qty-control button:hover {
+
+    cursor: pointer;
+
+}
+
+.remove{
+    padding:6px 10px;
+    border-radius:6px;
+    cursor:pointer;
+    background-color: white;
+    border: none;
+
+}

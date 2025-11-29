@@ -1,0 +1,114 @@
+:root{
+    --mainfont :  "Modak", system-ui;
+    --textfont :"Mada", sans-serif;
+    --maincolor : #CBFFBF;
+    --textcolor : #660505;
+  
+}
+
+.creer{
+
+    background-color: whitesmoke;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.creer .content{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.connect{
+
+    margin-bottom: 20px;
+}
+
+.left, .right{
+
+    padding: 20px;
+}
+
+.left{
+    width: 40%;
+     border: #660505 solid 2px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.right{
+    width: 40%;
+    border: #660505 solid 2px;
+    border-radius: 20px;
+    
+}
+
+.right form{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+label{
+
+    font-family: var(--mainfont);
+    font-size: 1.3rem;
+}
+
+.right form input{
+
+    width: 60%;
+}
+
+.right .row {
+    display: flex;
+    gap: 20px;
+}
+
+.label-el{
+
+    display: flex;
+    flex-direction: column;
+}
+
+.right form select{
+
+    background-color: var(--textcolor);
+    color: whitesmoke;
+    border-radius: 10px;
+    padding: 10px;
+    font-family: var(--textfont);
+    font-size: 1.2rem;
+    font-weight: 100;
+}
+
+        input {
+
+            border: 2px solid #660505;
+            border-radius: 30px;
+            width: 564px;
+            height: 58px;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            padding: 15px;
+        }
+
+        input[type="submit"] {
+    width: fit-content;
+    padding-top: 0px;
+    padding-bottom: 0px;
+ margin-left: auto;
+ font-family: "Modak", system-ui;
+ font-weight: 100 !important;
+}
