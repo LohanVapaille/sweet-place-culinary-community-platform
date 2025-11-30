@@ -128,6 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input class="btn" type="submit" value="M'inscrire">
         </form>
     </div>
+    <script src="js/header.js"></script>
 </body>
 
 </html>

@@ -162,6 +162,7 @@ $donuts = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 </div>
 
 <script src="js/like.js"></script>
+<script src="js/header.js"></script>
 
 
 </body>

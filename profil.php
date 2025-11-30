@@ -177,6 +177,7 @@ document.querySelectorAll('.subscribe-btn').forEach(btn => {
 </script>
 
 <script src="js/like.js"></script>
+<script src="js/header.js"></script>
 
 
 </body>

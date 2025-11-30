@@ -89,3 +89,5 @@ try {
     echo json_encode(['success' => false, 'message' => 'Erreur base de données']);
     exit;
 }
+
+<script src="js/header.js"></script>

@@ -125,4 +125,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 </body>
 
+<script src="js/header.js"></script>
+
 </html>

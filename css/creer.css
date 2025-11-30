@@ -74,6 +74,8 @@ label{
 .right .row {
     display: flex;
     gap: 20px;
+    justify-content: space-between;
+    width: 90%;
 }
 
 .label-el{
@@ -86,7 +88,7 @@ label{
 
     background-color: var(--textcolor);
     color: whitesmoke;
-    border-radius: 10px;
+   
     padding: 10px;
     font-family: var(--textfont);
     font-size: 1.2rem;

@@ -251,6 +251,7 @@ foreach ($rows as $r) {
   });
 })();
 </script>
+<script src="js/header.js"></script>
 
 </body>
 </html>
