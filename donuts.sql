@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : sam. 29 nov. 2025 à 12:54
+-- Généré le : lun. 01 déc. 2025 à 13:29
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -74,10 +74,8 @@ CREATE TABLE IF NOT EXISTS `compositions_donuts` (
 --
 
 INSERT INTO `compositions_donuts` (`id_composition`, `donut_name`, `id_beignet`, `id_fourrage`, `id_glacage`, `id_topping`, `id_createur`, `image`, `description`, `type`) VALUES
-(51, 'Police', 2, 2, 2, 1, 2, '', 'Un gout de zal', 'sucré'),
-(52, 'PAULOTONITO', 1, 1, 2, 1, 3, '', 'DNZQDHUKZQD HIZQ', 'sucré'),
-(53, 'test', 2, 1, 1, 1, 3, '', 'Un gout de zal', 'sucré'),
-(55, 'All Jejna', 2, 2, 1, 1, 3, '', 'Un gout de chocolat asdzjdz, dqd uzdqu dzudnqzudn qd', 'sucré');
+(51, 'Akhi\'nut', 2, 2, 2, 1, 2, '', 'Un bon donuts à la vanille et au café, le tout sur un beignet plein.', 'sucré'),
+(52, 'Chocolinito', 1, 1, 1, 1, 3, '', 'Donuts tout choco topping M&M\'s', 'sucré');
 
 -- --------------------------------------------------------
 
@@ -93,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `fk_follow` (
   PRIMARY KEY (`id`),
   KEY `id_user_qui_follow` (`id_user_qui_follow`),
   KEY `id_user_suivit` (`id_user_suivit`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `fk_follow`
@@ -101,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `fk_follow` (
 
 INSERT INTO `fk_follow` (`id`, `id_user_suivit`, `id_user_qui_follow`) VALUES
 (6, 3, 2),
-(7, 2, 3);
+(8, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -117,20 +115,16 @@ CREATE TABLE IF NOT EXISTS `fk_like` (
   PRIMARY KEY (`id_like`),
   KEY `fk_compo1` (`id_compositions_donuts`),
   KEY `fk_users` (`id_users`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `fk_like`
 --
 
 INSERT INTO `fk_like` (`id_like`, `id_compositions_donuts`, `id_users`) VALUES
-(28, 53, 2),
-(30, 55, 2),
 (31, 51, 2),
-(32, 52, 2),
-(38, 52, 3),
-(40, 55, 3),
-(41, 53, 3);
+(46, 51, 3),
+(47, 52, 2);
 
 -- --------------------------------------------------------
 
@@ -148,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `fk_like_base` (
   KEY `id_donuts_de_base` (`id_donuts_de_base`),
   KEY `id_users` (`id_users`),
   KEY `idx_base` (`id_donuts_de_base`,`id_users`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `fk_like_base`
@@ -162,10 +156,8 @@ INSERT INTO `fk_like_base` (`id_like`, `id_donuts_de_base`, `id_users`, `created
 (12, 50, 2, '2025-11-28 14:59:42'),
 (14, 49, 2, '2025-11-28 15:02:09'),
 (15, 48, 2, '2025-11-28 15:02:13'),
-(18, 50, 3, '2025-11-28 15:04:08'),
 (19, 48, 3, '2025-11-28 15:11:17'),
 (20, 46, 3, '2025-11-28 15:11:19'),
-(21, 49, 3, '2025-11-28 20:24:07'),
 (22, 40, 3, '2025-11-28 20:28:29'),
 (23, 7, 3, '2025-11-28 20:34:52'),
 (24, 33, 3, '2025-11-28 20:34:53'),
@@ -176,7 +168,12 @@ INSERT INTO `fk_like_base` (`id_like`, `id_donuts_de_base`, `id_users`, `created
 (30, 12, 3, '2025-11-28 20:38:16'),
 (31, 28, 3, '2025-11-28 20:38:17'),
 (32, 15, 3, '2025-11-28 20:38:18'),
-(33, 14, 3, '2025-11-29 12:53:24');
+(33, 14, 3, '2025-11-29 12:53:24'),
+(34, 17, 3, '2025-11-29 13:10:12'),
+(35, 9, 3, '2025-12-01 09:39:56'),
+(36, 50, 3, '2025-12-01 09:41:08'),
+(37, 29, 2, '2025-12-01 09:43:22'),
+(38, 49, 3, '2025-12-01 13:19:46');
 
 -- --------------------------------------------------------
 
@@ -196,7 +193,7 @@ CREATE TABLE IF NOT EXISTS `fk_panier` (
   KEY `fk_compo` (`id_compositions_donuts`),
   KEY `fk_users1` (`id_users`),
   KEY `idx_fkpanier_source_user` (`source_table`,`source_id`,`id_users`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `fk_panier`
@@ -204,12 +201,9 @@ CREATE TABLE IF NOT EXISTS `fk_panier` (
 
 INSERT INTO `fk_panier` (`id_fk_panier`, `id_compositions_donuts`, `source_table`, `source_id`, `id_users`, `quantite`) VALUES
 (9, NULL, 'nos_donuts', 6, 2, 2),
-(10, 52, 'compositions_donuts', 52, 2, 1),
-(13, NULL, 'nos_donuts', 49, 3, 1),
-(14, 53, 'compositions_donuts', 53, 3, 1),
-(15, NULL, 'nos_donuts', 18, 3, 1),
-(16, NULL, 'nos_donuts', 43, 3, 1),
-(17, 55, 'compositions_donuts', 55, 3, 1);
+(18, NULL, 'nos_donuts', 10, 3, 2),
+(20, NULL, 'nos_donuts', 50, 3, 3),
+(21, NULL, 'nos_donuts', 43, 3, 1);
 
 -- --------------------------------------------------------
 
