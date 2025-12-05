@@ -1,116 +1,125 @@
-:root{
-    --mainfont :  "Modak", system-ui;
-    --textfont :"Mada", sans-serif;
-    --maincolor : #CBFFBF;
-    --textcolor : #660505;
-  
+:root {
+  --mainfont: "Modak", system-ui;
+  --textfont: "Mada", sans-serif;
+  --maincolor: #cbffbf;
+  --textcolor: #660505;
 }
 
-.creer{
-
-    background-color: whitesmoke;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+.creer {
+  background-color: whitesmoke;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-.creer .content{
-
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 10px;
-    width: 100%;
-    margin-bottom: 20px;
+.creer .content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
-.connect{
-
-    margin-bottom: 20px;
+.connect {
+  margin-bottom: 20px;
 }
 
-.left, .right{
-
-    padding: 20px;
+.left,
+.right {
+  padding: 20px;
 }
 
-.left{
-    width: 40%;
-     border: #660505 solid 2px;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
+.left {
+  width: 40%;
+  border: #660505 solid 2px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.right{
-    width: 40%;
-    border: #660505 solid 2px;
-    border-radius: 20px;
-    
+.right {
+  width: 40%;
+  border: #660505 solid 2px;
+  border-radius: 20px;
 }
 
-.right form{
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+.right form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
-label{
-
-    font-family: var(--mainfont);
-    font-size: 1.3rem;
+label {
+  font-family: var(--mainfont);
+  font-size: 1.3rem;
 }
 
-.right form input{
-
-    width: 60%;
+.right form input {
+  width: 60%;
 }
 
 .right .row {
-    display: flex;
-    gap: 20px;
-    justify-content: space-between;
-    width: 90%;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  width: 90%;
 }
 
-.label-el{
-
-    display: flex;
-    flex-direction: column;
+.label-el {
+  display: flex;
+  flex-direction: column;
 }
 
-.right form select{
+.right form select {
+  appearance: none; /* retire la flèche native */
+  -webkit-appearance: none;
+  -moz-appearance: none;
 
-    background-color: var(--textcolor);
-    color: whitesmoke;
-   
-    padding: 10px;
-    font-family: var(--textfont);
-    font-size: 1.2rem;
-    font-weight: 100;
+  background-color: var(--textcolor); /* ton fond blanc */
+  color: rgb(255, 255, 255); /* ou la couleur de ton texte */
+  padding: 10px 40px 10px 15px; /* espace pour la nouvelle flèche */
+  border-radius: 20px;
+  font-family: var(--textfont);
+  font-size: 1.2rem;
+  font-weight: 100;
+
+  /* Chevron blanc personnalisé */
+  background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'>\
+<polygon points='0,0 14,0 7,8' fill='white'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px;
 }
 
-        input {
+/* Pour IE/Edge */
+.right form select::-ms-expand {
+  display: none;
+}
 
-            border: 2px solid #660505;
-            border-radius: 30px;
-            width: 564px;
-            height: 58px;
-            margin-bottom: 20px;
-            font-size: 1.4rem;
-            padding: 15px;
-        }
+.right form select:hover {
+  border-radius: 20px;
+}
 
-        input[type="submit"] {
-    width: fit-content;
-    padding-top: 0px;
-    padding-bottom: 0px;
- margin-left: auto;
- font-family: "Modak", system-ui;
- font-weight: 100 !important;
+input {
+  border: 2px solid #660505;
+  border-radius: 300px;
+  width: 564px;
+  height: 58px;
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  padding: 15px;
+}
+
+input[type="submit"] {
+  width: fit-content;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-left: auto;
+  font-family: "Modak", system-ui;
+  font-weight: 100 !important;
 }

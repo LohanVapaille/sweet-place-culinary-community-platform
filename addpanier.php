@@ -58,7 +58,7 @@ $existing = $check->fetch(PDO::FETCH_ASSOC);
 
 if ($existing) {
     // incrémenter la quantité
-    $newQty = (int)$existing['quantite'] + 1;
+    $newQty = (int) $existing['quantite'] + 1;
     $upd = $pdo->prepare("UPDATE fk_panier SET quantite = :q WHERE id_fk_panier = :id_fk_panier AND id_users = :id_user");
     $upd->execute([
         ':q' => $newQty,

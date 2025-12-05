@@ -3,7 +3,7 @@
 
 // Paramètres de connexion
 $host = 'localhost';
-$dbname = 'donuts';
+$dbname = 'donuts2';
 $username = 'root';      // souvent 'root' en local
 $password = '';          // vide par défaut sur XAMPP/WAMP
 

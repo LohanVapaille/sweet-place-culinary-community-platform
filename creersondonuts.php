@@ -3,7 +3,7 @@ session_start();
 require 'config.php'; // doit définir $pdo (instance PDO)
 
 
-$creator_id = isset($_SESSION['id']) ? (int)$_SESSION['id'] : null;
+$creator_id = isset($_SESSION['id']) ? (int) $_SESSION['id'] : null;
 
 // Messages
 $success = '';
@@ -13,19 +13,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Nettoyage / récupération des champs POST
     $type = $_POST['sucresale'];
-    $donut_name   = trim($_POST['name'] ?? '');
-    $id_beignet   = !empty($_POST['beignet']) ? (int)$_POST['beignet'] : null;
-    $id_fourrage  = !empty($_POST['fourrage']) ? (int)$_POST['fourrage'] : null;
-    $id_glacage   = !empty($_POST['glacage']) ? (int)$_POST['glacage'] : null;
-    $id_topping   = !empty($_POST['topping']) ? (int)$_POST['topping'] : null;
-    $image_url    = trim($_POST['image'] ?? '');
-    $description  = trim($_POST['description'] ?? '');
+    $donut_name = trim($_POST['name'] ?? '');
+    $id_beignet = !empty($_POST['beignet']) ? (int) $_POST['beignet'] : null;
+    $id_fourrage = !empty($_POST['fourrage']) ? (int) $_POST['fourrage'] : null;
+    $id_glacage = !empty($_POST['glacage']) ? (int) $_POST['glacage'] : null;
+    $id_topping = !empty($_POST['topping']) ? (int) $_POST['topping'] : null;
+    $image_url = trim($_POST['image'] ?? '');
+    $description = trim($_POST['description'] ?? '');
 
     if ($creator_id === null) {
         $error = "Vous devez être connecté pour créer un donut.";
     } else {
         try {
-        
+
 
             // Prépare la requête d'insertion
             // J'utilise la table "compositions" et les champs que tu as fournis.
@@ -47,30 +47,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute();
 
             $success = "Composition ajoutée avec succès ! ";
-           header("Location: profil.php?id=" . $_SESSION['id']);
-exit();
+            header("Location: profil.php?id=" . $_SESSION['id']);
+            exit();
 
-            
+
         } catch (PDOException $e) {
             $error = "Erreur lors de l'ajout : " . $e->getMessage();
         }
-    }}
+    }
+}
 
 
 // ------------- Récupération des listes pour les selects -------------
 
-    // Remplace les noms de tables si nécessaire
-    $beignets_stmt  = $pdo->query("SELECT id_beignet AS id, name_beignet AS label FROM beignets s");
-    $fourrages_stmt = $pdo->query("SELECT id_fourrage AS id, name_fourrage AS label FROM fourrages ");
-    $glacages_stmt  = $pdo->query("SELECT id_glacage AS id, name_glacage AS label FROM glacages");
-    $toppings_stmt  = $pdo->query("SELECT id_topping AS id, name_topping AS label FROM topping ");
+// Remplace les noms de tables si nécessaire
+$beignets_stmt = $pdo->query("SELECT id_beignet AS id, name_beignet AS label FROM beignets s");
+$fourrages_stmt = $pdo->query("SELECT id_fourrage AS id, name_fourrage AS label FROM fourrages ");
+$glacages_stmt = $pdo->query("SELECT id_glacage AS id, name_glacage AS label FROM glacages");
+$toppings_stmt = $pdo->query("SELECT id_topping AS id, name_topping AS label FROM topping ");
 
 
-    $beignets  = $beignets_stmt->fetchAll(PDO::FETCH_ASSOC);
-    $fourrages = $fourrages_stmt->fetchAll(PDO::FETCH_ASSOC);
-    $glacages  = $glacages_stmt->fetchAll(PDO::FETCH_ASSOC);
-    $toppings  = $toppings_stmt->fetchAll(PDO::FETCH_ASSOC);
-  
+$beignets = $beignets_stmt->fetchAll(PDO::FETCH_ASSOC);
+$fourrages = $fourrages_stmt->fetchAll(PDO::FETCH_ASSOC);
+$glacages = $glacages_stmt->fetchAll(PDO::FETCH_ASSOC);
+$toppings = $toppings_stmt->fetchAll(PDO::FETCH_ASSOC);
+
 
 
 ?>
@@ -100,7 +101,8 @@ exit();
         <?php endif; ?>
 
         <p class='connect'>
-            Vous êtes connecté en tant que <?php echo isset($_SESSION['login']) ? htmlspecialchars($_SESSION['login']) : 'Invité'; ?>
+            Vous êtes connecté en tant que
+            <?php echo isset($_SESSION['login']) ? htmlspecialchars($_SESSION['login']) : 'Invité'; ?>
         </p>
 
         <div class="content">
@@ -127,7 +129,7 @@ exit();
                             <select name="beignet" id="beignet">
                                 <option value="">Séléctionne un beignet</option>
                                 <?php foreach ($beignets as $b): ?>
-                                    <option value="<?= (int)$b['id'] ?>" <?= (isset($_POST['beignet']) && $_POST['beignet'] == $b['id']) ? 'selected' : '' ?>>
+                                    <option value="<?= (int) $b['id'] ?>" <?= (isset($_POST['beignet']) && $_POST['beignet'] == $b['id']) ? 'selected' : '' ?>>
                                         <?= htmlspecialchars($b['label']) ?>
                                     </option>
                                 <?php endforeach; ?>
@@ -141,7 +143,7 @@ exit();
                             <select name="fourrage" id="fourrage">
                                 <option value="">Séléctionne un fourrage</option>
                                 <?php foreach ($fourrages as $f): ?>
-                                    <option value="<?= (int)$f['id'] ?>" <?= (isset($_POST['fourrage']) && $_POST['fourrage'] == $f['id']) ? 'selected' : '' ?>>
+                                    <option value="<?= (int) $f['id'] ?>" <?= (isset($_POST['fourrage']) && $_POST['fourrage'] == $f['id']) ? 'selected' : '' ?>>
                                         <?= htmlspecialchars($f['label']) ?>
                                     </option>
                                 <?php endforeach; ?>
@@ -153,7 +155,7 @@ exit();
                             <select name="glacage" id="glacage">
                                 <option value="">Séléctionne un glaçage</option>
                                 <?php foreach ($glacages as $g): ?>
-                                    <option value="<?= (int)$g['id'] ?>" <?= (isset($_POST['glacage']) && $_POST['glacage'] == $g['id']) ? 'selected' : '' ?>>
+                                    <option value="<?= (int) $g['id'] ?>" <?= (isset($_POST['glacage']) && $_POST['glacage'] == $g['id']) ? 'selected' : '' ?>>
                                         <?= htmlspecialchars($g['label']) ?>
                                     </option>
                                 <?php endforeach; ?>
@@ -167,7 +169,7 @@ exit();
                             <select name="topping" id="topping">
                                 <option value="">Séléctionne un topping</option>
                                 <?php foreach ($toppings as $t): ?>
-                                    <option value="<?= (int)$t['id'] ?>" <?= (isset($_POST['topping']) && $_POST['topping'] == $t['id']) ? 'selected' : '' ?>>
+                                    <option value="<?= (int) $t['id'] ?>" <?= (isset($_POST['topping']) && $_POST['topping'] == $t['id']) ? 'selected' : '' ?>>
                                         <?= htmlspecialchars($t['label']) ?>
                                     </option>
                                 <?php endforeach; ?>
@@ -178,24 +180,27 @@ exit();
                             <label for="taille">Choisir une taille</label>
                             <select name="taille" id="taille">
                                 <option value="">Séléctionne une taille</option>
-                                <?php foreach ($tailles as $s): ?>
-                                    <option value="<?= (int)$s['id'] ?>" <?= (isset($_POST['taille']) && $_POST['taille'] == $s['id']) ? 'selected' : '' ?>>
-                                        <?= htmlspecialchars($s['label']) ?>
-                                    </option>
-                                <?php endforeach; ?>
+                                <option value="normal">Normal</option>
+                                <option value="big">Gros</option>
+                                <option value="mini">Mini</option>
+
+
                             </select>
                         </div>
                     </div>
 
                     <br><br>
                     <label for="name">Choisir un nom</label>
-                    <input id="name" name="name" type="text" value="<?= isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '' ?>">
+                    <input id="name" name="name" type="text"
+                        value="<?= isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '' ?>">
 
                     <label for="description">Décrit ton beignet</label>
-                    <input id="description" name="description" type="text" value="<?= isset($_POST['description']) ? htmlspecialchars($_POST['description']) : '' ?>">
+                    <input id="description" name="description" type="text"
+                        value="<?= isset($_POST['description']) ? htmlspecialchars($_POST['description']) : '' ?>">
 
                     <label for="image">URL de l'image (optionnel)</label>
-                    <input id="image" name="image" type="text" value="<?= isset($_POST['image']) ? htmlspecialchars($_POST['image']) : '' ?>">
+                    <input id="image" name="image" type="text"
+                        value="<?= isset($_POST['image']) ? htmlspecialchars($_POST['image']) : '' ?>">
 
                     <input class="btn" type="submit" value="Ajouter">
                 </form>
