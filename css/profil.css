@@ -48,6 +48,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
 
 .liked-donuts-container {
@@ -55,6 +56,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 8px;
+  justify-items: center;
 }
 
 .donut-card {
@@ -71,6 +73,13 @@
   justify-content: center;
 }
 
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
 .donut-card img {
   max-height: 70%;
   border-radius: 8px;
@@ -78,4 +87,28 @@
 
 .donut-card h3 {
   font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .infoprofil {
+    gap: 15px;
+  }
+  .infoprofil img {
+    width: 90px;
+    height: auto;
+  }
+
+  .infoprofil .right .infos,
+  .btnprofil .btn,
+  .infoprofil {
+    font-size: 0.7rem;
+  }
+
+  .onlydesk {
+    display: none;
+  }
+
+  .btnprofil .btn {
+    padding: 5px;
+  }
 }

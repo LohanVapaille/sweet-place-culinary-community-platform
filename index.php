@@ -30,7 +30,7 @@ $donutsUsers = getDonutsUsers($pdo, $userId, 6, true);
 <body>
     <div class="welcome">
         <div class="content">
-            <h1>BIENVENUE SUR SWEET PLACE</h1>
+            <h1><span class="onlydesk">BIENVENUE SUR</span> SWEET PLACE</h1>
             <p class='slogan'>L’endroit où la douceur prend forme</p>
             <a href="creersondonuts.php" class="btncta">Publie ta compo préférée</a>
             <p class="phrase_accroche">Découvre les compositions les plus folles faites par les créateurs, tu peux aussi

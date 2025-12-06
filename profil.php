@@ -78,14 +78,17 @@ $likedDonuts = getLikedCompositions($pdo, $creator_id);
 
 
     <div class="infoprofil">
-        <img src="images/design/profil.webp" alt="photo profil">
+        <div class="left">
+            <img src="images/design/profil.webp" alt="photo profil">
+            <p class="onlyphone"><?= htmlspecialchars($user['login'], ENT_QUOTES) ?></p>
+        </div>
 
         <div class="right">
             <div class="infos">
-                <p><?= htmlspecialchars($user['login'], ENT_QUOTES) ?></p>
-                <p>Followers : <?= $total_follow ?></p>
-                <p>Compo : <?= count($compositions) ?></p>
-                <p>Likes obtenus : <?= $total_likes ?></p>
+                <p class='onlydesk'><?= htmlspecialchars($user['login'], ENT_QUOTES) ?></p>
+                <p><span class="green">Followers : </span><?= $total_follow ?></p>
+                <p><span class="green">Compo : </span><?= count($compositions) ?></p>
+                <p><span class="green">Likes obtenus : </span><?= $total_likes ?></p>
             </div>
 
             <div class="btnprofil">

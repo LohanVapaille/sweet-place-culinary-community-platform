@@ -199,3 +199,13 @@ i:hover {
   transition: 0.2s ease; /* optionnel mais propre */
   margin-bottom: 15px;
 }
+
+@media (max-width: 789px) {
+  .onlydesk {
+    display: none;
+  }
+
+  h1 {
+    text-align: center;
+  }
+}
