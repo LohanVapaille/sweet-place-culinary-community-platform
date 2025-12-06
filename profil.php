@@ -1,6 +1,7 @@
-<?php 
+<?php
 session_start();
 require 'config.php'; // doit définir $pdo (instance PDO)
+require 'models/stats.php';    // la fonction getTotalLikesForUser
 
 // Vérifier param id
 if (!isset($_GET['id'])) {
@@ -12,9 +13,11 @@ $creator_id = (int) $_GET['id'];
 $user_id = isset($_SESSION['id']) ? (int) $_SESSION['id'] : null;
 
 // Récupérer les infos de l'utilisateur (UNE seule requête)
-$stmt_user = $pdo->prepare("SELECT * FROM users WHERE id_user = ?");
-$stmt_user->execute([$creator_id]);
-$user = $stmt_user->fetch(PDO::FETCH_ASSOC);
+$user = getInfosUser($pdo, $creator_id);
+
+$total_follow = getTotalFollowers($pdo, $creator_id);
+
+$total_likes = getTotalLikesForUser($pdo, $creator_id);
 
 // Si utilisateur inconnu -> 404 simple / redirection
 if (!$user) {
@@ -28,7 +31,7 @@ $is_following = false;
 if ($user_id && $user_id !== $creator_id) {
     $stmt_follow = $pdo->prepare("SELECT COUNT(*) FROM fk_follow WHERE id_user_suivit = ? AND id_user_qui_follow = ?");
     $stmt_follow->execute([$creator_id, $user_id]);
-    $is_following = (int)$stmt_follow->fetchColumn() > 0;
+    $is_following = (int) $stmt_follow->fetchColumn() > 0;
 }
 
 // Récupérer les compositions de donuts créées par l'utilisateur
@@ -53,20 +56,13 @@ $stmt_compo = $pdo->prepare($sql_compo);
 $stmt_compo->execute([':currentUser' => $user_id ?? 0, ':creator' => $creator_id]);
 $compositions = $stmt_compo->fetchAll(PDO::FETCH_ASSOC);
 
-// Calculer le nombre total de likes de l'utilisateur
-$stmt_likes = $pdo->prepare("
-    SELECT COUNT(*) AS total_likes
-    FROM fk_like l
-    JOIN compositions_donuts c ON l.id_compositions_donuts = c.id_composition
-    WHERE c.id_createur = ?
-");
-$stmt_likes->execute([$creator_id]);
-$total_likes = (int)$stmt_likes->fetchColumn();
+
 ?>
 
 <!DOCTYPE html>
 
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -74,111 +70,91 @@ $total_likes = (int)$stmt_likes->fetchColumn();
     <?php include 'css/links.php'; ?>
     <link rel="stylesheet" href="css/profil.css">
 </head>
+
 <body>
     <?php include 'header/header.php'; ?>
 
 
-<div class="infoprofil">
-    <img src="images/design/profil.webp" alt="photo profil">
+    <div class="infoprofil">
+        <img src="images/design/profil.webp" alt="photo profil">
 
-    <div class="right">
-        <div class="infos">
-            <p><?= htmlspecialchars($user['login'], ENT_QUOTES) ?></p>
-            <p>Followers : <!-- tu peux calculer les followers ici si tu veux --></p>
-            <p>Compo : <?= count($compositions) ?></p>
-            <p>Likes : <?= $total_likes ?></p>
-        </div>
+        <div class="right">
+            <div class="infos">
+                <p><?= htmlspecialchars($user['login'], ENT_QUOTES) ?></p>
+                <p>Followers : <?= $total_follow ?></p>
+                <p>Compo : <?= count($compositions) ?></p>
+                <p>Likes : <?= $total_likes ?></p>
+            </div>
 
-        <div class="btnprofil">
-            <?php if ($user_id === $creator_id): ?>
-                <button class="btn edit-profile">Modifier le profil</button>
-            <?php else: ?>
-                <button class="btn subscribe-btn <?= $is_following ? 'following' : '' ?>" 
+            <div class="btnprofil">
+                <?php if ($user_id === $creator_id): ?>
+                    <button class="btn edit-profile">Modifier le profil</button>
+                <?php else: ?>
+                    <button class="btn follow subscribe-btn <?= $is_following ? 'following' : '' ?>"
                         data-user="<?= $creator_id ?>">
-                    <?= $is_following ? 'Abonné' : "S'abonner" ?>
-                </button>
-            <?php endif; ?>
+                        <?= $is_following ? 'Suivit' : "Suivre" ?>
+                    </button>
+                <?php endif; ?>
+            </div>
+
+            <p>Salut les zouzous, j’espère que mes donuts vous plairont, n’hésitez pas à vous abonner</p>
         </div>
-
-        <p>Salut les zouzous, j’espère que mes donuts vous plairont, n’hésitez pas à vous abonner</p>
     </div>
-</div>
 
-<div class='tendances'>
-    <h2>Compositions de <?= htmlspecialchars($user['login'], ENT_QUOTES) ?></h2>
+    <div class='tendances'>
+        <h2>Compositions de <?= htmlspecialchars($user['login'], ENT_QUOTES) ?></h2>
 
-    <?php if (!empty($compositions)): ?>
-        <div class="cards-container">
-            <?php foreach ($compositions as $c): ?>
-                <?php 
-                  // sécurité: normaliser les valeurs attendues
-                  $already = !empty($c['already_liked']) ? 1 : 0;
-                  $nbLikes = isset($c['nb_likes']) ? (int)$c['nb_likes'] : 0;
-                  $compId = isset($c['id_composition']) ? (int)$c['id_composition'] : 0;
-                ?>
-                <div class="card">
-                    <h3><?= htmlspecialchars($c['donut_name'], ENT_QUOTES) ?> <?= $c['type'] ? '('.htmlspecialchars($c['type'], ENT_QUOTES).')' : '' ?></h3>
+        <?php if (!empty($compositions)): ?>
+            <div class="cards-container">
+                <?php foreach ($compositions as $c): ?>
+                    <?php
+                    // sécurité: normaliser les valeurs attendues
+                    $already = !empty($c['already_liked']) ? 1 : 0;
+                    $nbLikes = isset($c['nb_likes']) ? (int) $c['nb_likes'] : 0;
+                    $compId = isset($c['id_composition']) ? (int) $c['id_composition'] : 0;
+                    ?>
+                    <div class="card">
+                        <h3><?= htmlspecialchars($c['donut_name'], ENT_QUOTES) ?>
+                            <?= $c['type'] ? '(' . htmlspecialchars($c['type'], ENT_QUOTES) . ')' : '' ?>
+                        </h3>
 
-                    <?php if (!empty($c['image']) || !empty($c['description'])): ?>
-                        <div class="content">
-                            <?php if (!empty($c['image'])): ?>
-                                <img src="<?= htmlspecialchars($c['image'], ENT_QUOTES) ?>" alt="<?= htmlspecialchars($c['donut_name'], ENT_QUOTES) ?>">
-                            <?php endif; ?>
+                        <?php if (!empty($c['image']) || !empty($c['description'])): ?>
+                            <div class="content">
+                                <?php if (!empty($c['image'])): ?>
+                                    <img src="<?= htmlspecialchars($c['image'], ENT_QUOTES) ?>"
+                                        alt="<?= htmlspecialchars($c['donut_name'], ENT_QUOTES) ?>">
+                                <?php endif; ?>
 
-                            <?php if (!empty($c['description'])): ?>
-                                <p class="compo"><?= nl2br(htmlspecialchars($c['description'], ENT_QUOTES)) ?></p>
-                            <?php endif; ?>
-                        </div>
-                    <?php endif; ?>
+                                <?php if (!empty($c['description'])): ?>
+                                    <p class="compo"><?= nl2br(htmlspecialchars($c['description'], ENT_QUOTES)) ?></p>
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
 
-                    <div class="interaction">
-                        <a href="addpanier.php?id=<?= $compId ?>" class="btn">Ajouter au panier</a>
+                        <div class="interaction">
+                            <a href="addpanier.php?id=<?= $compId ?>" class="btn">Ajouter au panier</a>
 
-                        <div class="like">
-                            <!-- i correctement rempli : data-id, data-liked et classe initiale -->
-                            <i class="btnlike bx <?= $already ? 'bxs-heart' : 'bx-heart' ?>" 
-                               data-id="<?= $compId ?>"
-                               data-source="composition"
-                               data-liked="<?= $already ? '1' : '0' ?>"></i>
-                            <p class="nb_like"><?= $nbLikes ?></p>
+                            <div class="like">
+                                <!-- i correctement rempli : data-id, data-liked et classe initiale -->
+                                <i class="btnlike bx <?= $already ? 'bxs-heart' : 'bx-heart' ?>" data-id="<?= $compId ?>"
+                                    data-source="composition" data-liked="<?= $already ? '1' : '0' ?>"></i>
+                                <p class="nb_like"><?= $nbLikes ?></p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    <?php else: ?>
-        <p>Aucune composition pour le moment.</p>
-    <?php endif; ?>
-</div>
+                <?php endforeach; ?>
+            </div>
+        <?php else: ?>
+            <p>Aucune composition pour le moment.</p>
+        <?php endif; ?>
+    </div>
 
-<script>
-document.querySelectorAll('.subscribe-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const userId = btn.getAttribute('data-user');
-        fetch('subscribe.php', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            body: `user_id=${encodeURIComponent(userId)}`
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.status === 'subscribed') {
-                btn.textContent = 'Abonné';
-                btn.classList.add('following');
-            } else if (data.status === 'unsubscribed') {
-                btn.textContent = 'S\'abonner';
-                btn.classList.remove('following');
-            }
-        }).catch(err => {
-            console.error(err);
-        });
-    });
-});
-</script>
+    <script src='js/subscribe.js'></script>
 
-<script src="js/like.js"></script>
-<script src="js/header.js"></script>
+    <script src="js/like.js"></script>
+    <script src="js/header.js"></script>
 
 
 </body>
+
 </html>

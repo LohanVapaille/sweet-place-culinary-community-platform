@@ -1,39 +1,42 @@
-:root{
-    --mainfont :  "Modak", system-ui;
-    --textfont :"Mada", sans-serif;
-    --maincolor : #CBFFBF;
-    --textcolor : #660505;
-  
+:root {
+  --mainfont: "Modak", system-ui;
+  --textfont: "Mada", sans-serif;
+  --maincolor: #cbffbf;
+  --textcolor: #660505;
 }
 
-
-.infoprofil{
-
-    background-color: whitesmoke;
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    gap: 50px;
-    
+.infoprofil {
+  background-color: whitesmoke;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  gap: 50px;
 }
 
-.infoprofil img{
-
-    height: 200px;
+.infoprofil img {
+  height: 200px;
 }
 
-.infos{
-
-    display: flex;
-    justify-content: space-between;
-    font-size: 1.3rem;
-    font-family: var(--mainfont);
-    font-weight: 100;
-    color: var(--textcolor);
+.infos {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.3rem;
+  font-family: var(--mainfont);
+  font-weight: 100;
+  color: var(--textcolor);
 }
 
-.btnprofil{
-    display: flex;
-    gap: 20px;
+.btnprofil {
+  display: flex;
+  gap: 20px;
 }
 
+.following {
+  background-color: whitesmoke;
+  color: var(--textcolor);
+  border: var(--textcolor) 2px solid;
+}
+
+.subscribe-btn:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.55);
+}
