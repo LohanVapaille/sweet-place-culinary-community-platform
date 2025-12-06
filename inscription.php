@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             border: 2px solid #660505;
             border-radius: 30px;
-            width: 564px;
+            width: 100%;
             height: 58px;
             margin-bottom: 20px;
             font-size: 1.4rem;
@@ -92,15 +92,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         input[type="submit"] {
-    width: fit-content;
-    padding-top: 0px;
-    padding-bottom: 0px;
- margin-left: auto;
- font-family: "Modak", system-ui;
- font-weight: 100 !important;
-}
-
-
+            width: fit-content;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            margin-left: auto;
+            font-family: "Modak", system-ui;
+            font-weight: 100 !important;
+        }
     </style>
 
 </head>

@@ -25,8 +25,8 @@ $donuts = getDonutsSweetplace($pdo, $userId); // TOUS LES DONUTS
 
 <body>
 
-    <div class="welcome" style="border : none; height: 150px;">
-        <div class="content" style="border : none; height: 100px;">
+    <div class="welcome">
+        <div class="content">
             <h1>Nos Donuts SWEET PLACE</h1>
             <p class='slogan'>Parcourir les donuts conçus par nos soins</p>
 

@@ -29,7 +29,7 @@ if ($sourceTable === 'nos_donuts') {
     $stmt = $pdo->prepare("SELECT id_donuts_de_base FROM nos_donuts WHERE id_donuts_de_base = :id LIMIT 1");
     $stmt->execute([':id' => $sourceId]);
     if (!$stmt->fetch()) {
-        $back = $_SERVER['HTTP_REFERER'] ?? 'feed.php';
+        $back = $_SERVER['HTTP_REFERER'] ?? 'index.php';
         header('Location: ' . $back);
         exit;
     }
@@ -95,6 +95,6 @@ if ($existing) {
 }
 
 // Redirection vers la page précédente ou feed
-$back = $_SERVER['HTTP_REFERER'] ?? 'feed.php';
+$back = $_SERVER['HTTP_REFERER'] ?? 'index.php';
 header('Location: ' . $back);
 exit;

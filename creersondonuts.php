@@ -107,7 +107,8 @@ $toppings = $toppings_stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <div class="content">
             <div class="left">
-                <img src="images/design/donuts.webp" alt="">
+                <img src="https://www.cash-alimentaire.com/11763-large_default/donut-nature-44gr-x-72-u-le-ct.jpg"
+                    alt="">
             </div>
 
             <div class="right">

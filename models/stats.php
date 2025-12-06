@@ -41,3 +41,38 @@ function getTotalFollowers(PDO $pdo, int $userId): int
     return (int) $stmt->fetchColumn();
 }
 
+
+/**
+ * Récupère tous les donuts compositions likés par un utilisateur.
+ */
+function getLikedCompositions(PDO $pdo, int $userId): array
+{
+    $sql = "
+       SELECT 
+            c.id_composition AS id,
+            c.donut_name AS title,
+            c.image AS image,
+            c.description AS description
+        FROM fk_like l
+        JOIN compositions_donuts c ON l.id_compositions_donuts = c.id_composition
+        WHERE l.id_users = ?
+
+        UNION ALL
+
+        SELECT 
+            n.id_donuts_de_base AS id,
+            n.title AS title,
+            n.img AS image,
+            n.description AS description
+        FROM fk_like_base l
+        JOIN nos_donuts n ON l.id_donuts_de_base = n.id_donuts_de_base
+        WHERE l.id_users = ?
+
+        ORDER BY id DESC
+
+    ";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$userId, $userId]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+

@@ -56,6 +56,8 @@ $stmt_compo = $pdo->prepare($sql_compo);
 $stmt_compo->execute([':currentUser' => $user_id ?? 0, ':creator' => $creator_id]);
 $compositions = $stmt_compo->fetchAll(PDO::FETCH_ASSOC);
 
+$likedDonuts = getLikedCompositions($pdo, $creator_id);
+
 
 ?>
 
@@ -83,7 +85,7 @@ $compositions = $stmt_compo->fetchAll(PDO::FETCH_ASSOC);
                 <p><?= htmlspecialchars($user['login'], ENT_QUOTES) ?></p>
                 <p>Followers : <?= $total_follow ?></p>
                 <p>Compo : <?= count($compositions) ?></p>
-                <p>Likes : <?= $total_likes ?></p>
+                <p>Likes obtenus : <?= $total_likes ?></p>
             </div>
 
             <div class="btnprofil">
@@ -95,7 +97,10 @@ $compositions = $stmt_compo->fetchAll(PDO::FETCH_ASSOC);
                         <?= $is_following ? 'Suivit' : "Suivre" ?>
                     </button>
                 <?php endif; ?>
+                <button class="btn edit-profile">Donuts Enregistrés ♡</button>
             </div>
+
+
 
             <p>Salut les zouzous, j’espère que mes donuts vous plairont, n’hésitez pas à vous abonner</p>
         </div>
@@ -147,6 +152,27 @@ $compositions = $stmt_compo->fetchAll(PDO::FETCH_ASSOC);
         <?php else: ?>
             <p>Aucune composition pour le moment.</p>
         <?php endif; ?>
+    </div>
+
+    <div class="liked">
+        <h2>Donuts Enregistrés</h2>
+
+
+        <div class="liked-donuts-container">
+            <?php foreach ($likedDonuts as $donut): ?>
+                <div class="donut-card">
+                    <?php if (!empty($donut['image'])): ?>
+                        <img src="<?php echo htmlspecialchars($donut['image'], ENT_QUOTES); ?>"
+                            alt="<?php echo htmlspecialchars($donut['title'], ENT_QUOTES); ?>">
+                    <?php endif; ?>
+                    <h3><?php echo htmlspecialchars($donut['title'], ENT_QUOTES); ?></h3>
+
+
+
+                </div>
+            <?php endforeach; ?>
+        </div>
+
     </div>
 
     <script src='js/subscribe.js'></script>

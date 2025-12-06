@@ -18,26 +18,15 @@ $donuts = getDonutsUsers($pdo, $userId); // TOUS LES DONUTS
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feed</title>
     <?php include 'css/links.php'; ?>
-    <style>
-        .creator {
 
-            text-decoration: none;
-            color: #660505;
-        }
-
-        .creator:hover {
-
-            text-decoration: underline;
-        }
-    </style>
 </head>
 
 <body>
     <?php include 'header/header.php'; ?>
 
 
-    <div class="welcome" style="border : none; height: 150px;">
-        <div class="content" style="border : none; height: 100px;">
+    <div class="welcome">
+        <div class="content">
             <h1>Les compos de la communauté</h1>
             <p class='slogan'>Parcourez les créateurs et suivez ceux qui vous plaisent le plus !</p>
 

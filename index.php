@@ -28,8 +28,6 @@ $donutsUsers = getDonutsUsers($pdo, $userId, 6, true);
 <?php include 'header/header.php'; ?>
 
 <body>
-
-
     <div class="welcome">
         <div class="content">
             <h1>BIENVENUE SUR SWEET PLACE</h1>

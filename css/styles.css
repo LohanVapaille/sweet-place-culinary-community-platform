@@ -1,204 +1,201 @@
-:root{
-    --mainfont :  "Modak", system-ui;
-    --textfont :"Mada", sans-serif;
-    --maincolor : #CBFFBF;
-    --textcolor : #660505;
-  
+:root {
+  --mainfont: "Modak", system-ui;
+  --textfont: "Mada", sans-serif;
+  --maincolor: #cbffbf;
+  --textcolor: #660505;
 }
 
-*, *::after, *::before { box-sizing: border-box;}
-
-body{
-
-    margin: 0;
-    padding: 0;
-    background-color: var(--maincolor);
-    font-family: var(--textfont);
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
 }
 
-h1,h2{
-
-    font-family: var(--mainfont);
-    color: var(--textcolor);
-    font-weight: 400;
-    margin: 0;
-    font-size: 3rem;
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--maincolor);
+  font-family: var(--textfont);
 }
 
-p{
-    margin: 0;
+h1,
+h2 {
+  font-family: var(--mainfont);
+  color: var(--textcolor);
+  font-weight: 400;
+  margin: 0;
+  font-size: 3rem;
 }
 
-.welcome{
+p {
+  margin: 0;
+}
 
-    width: 100%;
-    height: 400px ;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: whitesmoke;
-    /* background-image: url('../images/design/donuts.webp');
+.creator {
+  text-decoration: none;
+  color: #660505;
+}
+
+.creator:hover {
+  text-decoration: underline;
+}
+
+.welcome {
+  width: 100%;
+  height: auto;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: whitesmoke;
+  /* background-image: url('../images/design/donuts.webp');
     background-repeat: no-repeat;
     background-size: cover; */
-
 }
 
-
-.welcome .content{
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-font-family: var(--textfont);
-width: 90%;
-height: 90%;
-border: 2px solid var(--textcolor);
-border-radius: 26px ;
-color: var(--textcolor);
+.welcome .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--textfont);
+  width: 90%;
+  height: 90%;
+  border: 2px solid var(--textcolor);
+  border-radius: 26px;
+  color: var(--textcolor);
 }
 
-.slogan{
-font-size: 1.7rem;
-font-weight: 600;
-text-align: center;
-
+.slogan {
+  font-size: 1.7rem;
+  font-weight: 600;
+  text-align: center;
 }
 
-.btncta{
-    text-decoration: none;
-    color: white;
-    background-color: var(--textcolor);
-    font-family: var(--mainfont);
-    font-size: 1.5rem;
-    padding: 8px 15px;
-    border: 3px solid transparent; /* <-- ajoute ceci */
-    border-radius: 20px;
-    margin-top: 20px;
-    transition: 0.2s ease; /* optionnel mais propre */
-    margin-bottom: 15px;
+.btncta {
+  text-decoration: none;
+  color: white;
+  background-color: var(--textcolor);
+  font-family: var(--mainfont);
+  font-size: 1.5rem;
+  padding: 8px 15px;
+  border: 3px solid transparent; /* <-- ajoute ceci */
+  border-radius: 20px;
+  margin-top: 20px;
+  transition: 0.2s ease; /* optionnel mais propre */
+  margin-bottom: 15px;
 }
 
-.btncta:hover, .btn:hover{
-    background-color: white;
-    border-color: var(--textcolor); /* <-- change seulement la couleur */
-    color: var(--textcolor);
-    cursor: pointer;
+.btncta:hover,
+.btn:hover {
+  background-color: white;
+  border-color: var(--textcolor); /* <-- change seulement la couleur */
+  color: var(--textcolor);
+  cursor: pointer;
 }
 
-.welcome .phrase_accroche{
-
-    color: black;
-    font-size: 1rem;
+.welcome .phrase_accroche {
+  color: black;
+  font-size: 1rem;
 }
 
-.tendances  {
-padding: 20px;
-display: flex;
-flex-direction: column;
+.welcome .content {
+  padding: 30px;
 }
 
-h2{
-    margin: auto;
+.tendances {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
-h3{
-    font-family: var(--mainfont);
-    font-weight: 400;
-    color: var(--textcolor);
-    font-size: 2rem;
-    margin: 5px;
+h2 {
+  margin: auto;
 }
 
- .cards-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 cartes par ligne */
-    gap: 20px; /* espace entre les cartes */
-    width: 90%;
-    margin: 0 auto;
+h3 {
+  font-family: var(--mainfont);
+  font-weight: 400;
+  color: var(--textcolor);
+  font-size: 2rem;
+  margin: 5px;
 }
 
-.nosdonuts{
-
-    background-color: whitesmoke;
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  width: min(100%, 990px); /* 3 cartes * 300px max */
+  margin: 0 auto;
 }
 
-.nosdonuts .card{
+.cards-container .nosdonuts {
+  background-color: whitesmoke;
+}
 
-    border-color: #660505;
-    
+.nosdonuts .card {
+  border-color: #660505;
 }
 
 .card {
-    background-color: white;
-    border: 2px solid #ccc;
-    border-radius: 15px;
-    padding: 15px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: 0.2s ease;
+  background-color: white;
+  border: 2px solid #ccc;
+  border-radius: 15px;
+  padding: 15px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s ease;
 }
 
 .card:hover {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
 }
 
-.card .content, .card .interaction{
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
+.card .content,
+.card .interaction {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.interaction{
-
-    gap: 25px;
+.interaction {
+  gap: 25px;
 }
 
-i{
-
-    font-size: 2rem;
-    color: var(--textcolor);
-    
+i {
+  font-size: 2rem;
+  color: var(--textcolor);
 }
 
-i:hover{
-
-    cursor:pointer;
+i:hover {
+  cursor: pointer;
 }
 
-.nb_like{
-    color: var(--textcolor);
+.nb_like {
+  color: var(--textcolor);
 }
 
-
-.content img{
-width: 120px;
+.content img {
+  width: 120px;
 }
 
-.card .content p{
-
-    width: 60%;
-    text-align: left;
+.card .content p {
+  width: 60%;
+  text-align: left;
 }
 
-.btn{
-
-        text-decoration: none;
-    color: white;
-    background-color: var(--textcolor);
-    font-size: 1rem;
-    padding: 8px 15px;
-    border: 3px solid transparent; /* <-- ajoute ceci */
-    border-radius: 20px;
-    margin-top: 20px;
-    transition: 0.2s ease; /* optionnel mais propre */
-    margin-bottom: 15px;
-
+.btn {
+  text-decoration: none;
+  color: white;
+  background-color: var(--textcolor);
+  font-size: 1rem;
+  padding: 8px 15px;
+  border: 3px solid transparent; /* <-- ajoute ceci */
+  border-radius: 20px;
+  margin-top: 20px;
+  transition: 0.2s ease; /* optionnel mais propre */
+  margin-bottom: 15px;
 }
-
-
-
