@@ -28,11 +28,16 @@ if (!empty($_SESSION['id'])) {
 }
 
 if (empty($userId)) {
+    // Si requête AJAX (fetch), renvoyer JSON avec instruction de redirection.
+    // Côté navigateur, ton JS devra détecter data.redirect et faire window.location.
     http_response_code(401);
-    echo json_encode(['success' => false, 'message' => 'Non authentifié']);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Non authentifié',
+        'redirect' => 'connexion.php'
+    ]);
     exit;
 }
-
 $donutId = isset($input['id']) ? (int) $input['id'] : 0;
 if ($donutId <= 0) {
     http_response_code(400);

@@ -13,7 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 // Lire JSON
 $input = json_decode(file_get_contents('php://input'), true);
-if (!is_array($input)) $input = [];
+if (!is_array($input))
+    $input = [];
 
 // Récupérer l'ID utilisateur depuis la session (priorité à 'id')
 $userId = null;
@@ -30,8 +31,14 @@ if (!empty($_SESSION['id'])) {
 }
 
 if (empty($userId)) {
+    // Si requête AJAX (fetch), renvoyer JSON avec instruction de redirection.
+    // Côté navigateur, ton JS devra détecter data.redirect et faire window.location.
     http_response_code(401);
-    echo json_encode(['success' => false, 'message' => 'Non authentifié']);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Non authentifié',
+        'redirect' => 'connexion.php'
+    ]);
     exit;
 }
 
@@ -89,5 +96,3 @@ try {
     echo json_encode(['success' => false, 'message' => 'Erreur base de données']);
     exit;
 }
-
-

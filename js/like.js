@@ -36,8 +36,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      console.log(data);
+
       if (resp.status === 401) {
-        alert(data.message || 'Vous devez être connecté pour aimer une composition.');
+
+        window.location.href = data.redirect;
         return;
       }
 
