@@ -76,3 +76,64 @@ function getLikedCompositions(PDO $pdo, int $userId): array
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+
+/**
+ * Récupère les compositions créées par un utilisateur, avec nb_likes et already_liked.
+ */
+function getCompoByUser(PDO $pdo, int $creatorId, int $currentUser = 0, int $limit = 0, bool $random = false): array
+{
+    $sql = "
+        SELECT
+        c.id_composition,
+        c.donut_name,
+        c.image,
+        c.description,
+        c.id_createur,
+        c.id_beignet,
+        c.id_fourrage,
+        c.id_glacage,
+        c.id_topping,
+        b.name_beignet,
+        f.name_fourrage,
+        g.name_glacage,
+        t.name_topping,
+        (SELECT COUNT(*) FROM fk_like l WHERE l.id_compositions_donuts = c.id_composition) AS nb_likes,
+        EXISTS(
+          SELECT 1 FROM fk_like l2
+          WHERE l2.id_compositions_donuts = c.id_composition
+            AND l2.id_users = :currentUser
+        ) AS already_liked,
+        'compo' AS type
+    FROM compositions_donuts c
+        LEFT JOIN beignets b ON c.id_beignet = b.id_beignet
+        LEFT JOIN fourrages f ON c.id_fourrage = f.id_fourrage
+        LEFT JOIN glacages g ON c.id_glacage = g.id_glacage
+        LEFT JOIN topping t ON c.id_topping = t.id_topping
+        WHERE c.id_createur = :creator
+    ";
+
+    // tri
+    if ($random) {
+        $sql .= " ORDER BY RAND() ";
+    } else {
+        $sql .= " ORDER BY c.id_composition DESC ";
+    }
+
+    // limite optionnelle
+    if ($limit > 0) {
+        $sql .= " LIMIT :limit";
+    }
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindValue(':currentUser', $currentUser, PDO::PARAM_INT);
+    $stmt->bindValue(':creator', $creatorId, PDO::PARAM_INT);
+
+    if ($limit > 0) {
+        $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+    }
+
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+

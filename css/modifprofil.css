@@ -1,0 +1,110 @@
+/* Fusionner ton CSS de base + styles complémentaires */
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+h1 {
+  margin: auto;
+}
+.container {
+  display: flex;
+  gap: 40px;
+  position: relative;
+  justify-content: center;
+}
+.left {
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: sticky;
+  top: 50px;
+  gap: 10px;
+}
+.left img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+.right {
+  flex: 1;
+}
+.messages .error {
+  color: #b00020;
+  margin-bottom: 0.25rem;
+}
+.messages .success {
+  color: #006600;
+  margin-bottom: 0.25rem;
+}
+
+form.edit-profile {
+  display: grid;
+  gap: 0.75rem;
+}
+label {
+  font-weight: 600;
+}
+input[type="text"],
+input[type="password"],
+textarea {
+  border: 2px solid #660505;
+  border-radius: 300px;
+  width: 564px;
+  height: 58px;
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  padding: 15px;
+}
+
+input[type="password"] {
+  padding-right: 50px;
+}
+
+textarea {
+  height: 60px;
+}
+
+.btn {
+  margin-left: auto;
+}
+.profile-preview {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.profile-preview img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.pw-preview {
+  font-family: monospace;
+  background: #f4f4f4;
+  padding: 0.35rem 0.5rem;
+  border-radius: 6px;
+  display: inline-block;
+}
+.small {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.password-wrapper {
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+
+.password-wrapper i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(calc(-50% - 10px));
+}

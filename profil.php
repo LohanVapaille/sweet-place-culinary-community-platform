@@ -1,7 +1,7 @@
 <?php
 session_start();
-require 'config.php'; // doit définir $pdo (instance PDO)
-require 'models/stats.php';    // la fonction getTotalLikesForUser
+require 'config.php';
+require 'models/stats.php';
 
 // Vérifier param id
 if (!isset($_GET['id'])) {
@@ -34,27 +34,7 @@ if ($user_id && $user_id !== $creator_id) {
     $is_following = (int) $stmt_follow->fetchColumn() > 0;
 }
 
-// Récupérer les compositions de donuts créées par l'utilisateur
-// On ajoute : nb_likes (déjà présent) et already_liked (pour l'utilisateur connecté)
-$sql_compo = "
-    SELECT c.*, b.name_beignet, f.name_fourrage, g.name_glacage, t.name_topping,
-           (SELECT COUNT(*) FROM fk_like l WHERE l.id_compositions_donuts = c.id_composition) AS nb_likes,
-           EXISTS(
-             SELECT 1 FROM fk_like l2
-             WHERE l2.id_compositions_donuts = c.id_composition
-               AND l2.id_users = :currentUser
-           ) AS already_liked
-    FROM compositions_donuts c
-    LEFT JOIN beignets b ON c.id_beignet = b.id_beignet
-    LEFT JOIN fourrages f ON c.id_fourrage = f.id_fourrage
-    LEFT JOIN glacages g ON c.id_glacage = g.id_glacage
-    LEFT JOIN topping t ON c.id_topping = t.id_topping
-    WHERE c.id_createur = :creator
-    ORDER BY c.id_composition DESC
-";
-$stmt_compo = $pdo->prepare($sql_compo);
-$stmt_compo->execute([':currentUser' => $user_id ?? 0, ':creator' => $creator_id]);
-$compositions = $stmt_compo->fetchAll(PDO::FETCH_ASSOC);
+$compositions = getCompoByUser($pdo, $creator_id, $user_id);
 
 $likedDonuts = getLikedCompositions($pdo, $creator_id);
 
@@ -79,7 +59,9 @@ $likedDonuts = getLikedCompositions($pdo, $creator_id);
 
     <div class="infoprofil">
         <div class="left">
-            <img src="images/design/profil.webp" alt="photo profil">
+            <img src="<?= !empty($user['photo']) ? htmlspecialchars($user['photo'], ENT_QUOTES) : 'images/design/profil.webp' ?>"
+                alt="photo profil">
+
             <p class="onlyphone"><?= htmlspecialchars($user['login'], ENT_QUOTES) ?></p>
         </div>
 
@@ -93,19 +75,20 @@ $likedDonuts = getLikedCompositions($pdo, $creator_id);
 
             <div class="btnprofil">
                 <?php if ($user_id === $creator_id): ?>
-                    <button class="btn edit-profile">Modifier le profil</button>
+                    <a href='modifprofil.php' class="btn edit-profile">Modifier le profil</a>
                 <?php else: ?>
                     <button class="btn follow subscribe-btn <?= $is_following ? 'following' : '' ?>"
                         data-user="<?= $creator_id ?>">
                         <?= $is_following ? 'Suivit' : "Suivre" ?>
                     </button>
                 <?php endif; ?>
-                <button class="btn edit-profile">Donuts Enregistrés ♡</button>
+                <a href='profil.php?id=<?php echo $creator_id ?>#likeddonuts' class="btn edit-profile">Donuts
+                    Enregistrés</a>
             </div>
 
 
 
-            <p>Salut les zouzous, j’espère que mes donuts vous plairont, n’hésitez pas à vous abonner</p>
+            <p><?php echo $user['description'] ?></p>
         </div>
     </div>
 
@@ -161,7 +144,7 @@ $likedDonuts = getLikedCompositions($pdo, $creator_id);
         <h2>Donuts Enregistrés</h2>
 
 
-        <div class="liked-donuts-container">
+        <div class="liked-donuts-container" id="likeddonuts">
             <?php foreach ($likedDonuts as $donut): ?>
                 <div class="donut-card">
                     <?php if (!empty($donut['image'])): ?>

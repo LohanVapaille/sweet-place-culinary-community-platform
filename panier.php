@@ -128,7 +128,7 @@ $items = $panierModel->getItemsByUser($user);
     </div>
   <?php endif; ?>
 
-  <script src="js/quantitepanier"></script>
+  <script src="js/quantitepanier.js"></script>
   <script src="js/header.js"></script>
 
 </body>

@@ -10,11 +10,13 @@
   display: flex;
   align-items: center;
   padding: 20px;
+  padding-left: 120px;
   gap: 50px;
 }
 
 .infoprofil img {
   height: 200px;
+  border-radius: 190px;
 }
 
 .infos {
@@ -24,11 +26,16 @@
   font-family: var(--mainfont);
   font-weight: 100;
   color: var(--textcolor);
+  gap: 30px;
 }
 
 .btnprofil {
   display: flex;
   gap: 20px;
+  font-family: var(--textfont);
+}
+.btn {
+  font-family: var(--textfont);
 }
 
 .following {
@@ -91,11 +98,17 @@
 
 @media (max-width: 768px) {
   .infoprofil {
-    gap: 15px;
+    gap: 10px;
+    justify-content: center;
+    padding: 20px;
   }
   .infoprofil img {
     width: 90px;
     height: auto;
+  }
+
+  .infos {
+    gap: 10px;
   }
 
   .infoprofil .right .infos,

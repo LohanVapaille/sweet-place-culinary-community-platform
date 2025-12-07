@@ -37,7 +37,7 @@ $donutsUsers = getDonutsUsers($pdo, $userId, 6, true);
                 publier les tiennes sur ton profil </p>
         </div>
     </div>
-
+    <img class="degouline" src="images/design/degouline.jpg" alt="">
     <!-- SECTION : compositions populaires -->
     <div class="tendances">
         <h2>Les plus populaires</h2>

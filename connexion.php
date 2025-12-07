@@ -46,12 +46,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             background-color: white;
         }
 
+
+
+
+
         .connecter {
             margin-top: 40px;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            padding: 50px;
         }
 
         .connecter p {
@@ -103,24 +108,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <?php include './header/header.php'; ?>
 
-    <div class="connecter">
-        <h1>Me connecter</h1>
-        <p>Si tu n’as pas de compte, <a href="inscription.php">Crée-en un !</a></p>
+    <main>
+        <div class="connecter">
+            <h1>Me connecter</h1>
+            <p>Si tu n’as pas de compte, <a href="inscription.php">Crée-en un !</a></p>
 
-        <?php if ($message): ?>
-            <div class="message"><?= htmlspecialchars($message) ?></div>
-        <?php endif; ?>
+            <?php if ($message): ?>
+                <div class="message"><?= htmlspecialchars($message) ?></div>
+            <?php endif; ?>
 
-        <form method="POST" action="">
-            <label for="login">Login</label>
-            <input type="text" id="login" name="login" required>
+            <form method="POST" action="">
+                <label for="login">Login</label>
+                <input type="text" id="login" name="login" required>
 
-            <label for="mdp">Mot de passe</label>
-            <input type="password" id="mdp" name="mdp" required>
+                <label for="mdp">Mot de passe</label>
+                <input type="password" id="mdp" name="mdp" required>
 
-            <input class="btn" type="submit" value="Me connecter">
-        </form>
-    </div>
+                <input class="btn" type="submit" value="Me connecter">
+            </form>
+        </div>
+
+    </main>
 </body>
 
 <script src="js/header.js"></script>
