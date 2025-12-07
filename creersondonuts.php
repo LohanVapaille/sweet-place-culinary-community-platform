@@ -30,8 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Prépare la requête d'insertion
             // J'utilise la table "compositions" et les champs que tu as fournis.
             $sql = "INSERT INTO compositions_donuts
-                (donut_name, id_beignet, id_fourrage, id_glacage, id_topping, id_createur, image, description, type)
-                VALUES (:donut_name, :id_beignet, :id_fourrage, :id_glacage, :id_topping, :id_createur, :image, :description, :type)";
+                (donut_name, id_beignet, id_fourrage, id_glacage, id_topping, id_createur, description, type)
+                VALUES (:donut_name, :id_beignet, :id_fourrage, :id_glacage, :id_topping, :id_createur, :description, :type)";
 
             $stmt = $pdo->prepare($sql);
             $stmt->bindValue(':donut_name', $donut_name, PDO::PARAM_STR);
@@ -40,7 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->bindValue(':id_glacage', $id_glacage, $id_glacage === null ? PDO::PARAM_NULL : PDO::PARAM_INT);
             $stmt->bindValue(':id_topping', $id_topping, $id_topping === null ? PDO::PARAM_NULL : PDO::PARAM_INT);
             $stmt->bindValue(':id_createur', $creator_id, PDO::PARAM_INT);
-            $stmt->bindValue(':image', $image_url !== '' ? $image_url : null, $image_url !== '' ? PDO::PARAM_STR : PDO::PARAM_NULL);
             $stmt->bindValue(':description', $description !== '' ? $description : null, $description !== '' ? PDO::PARAM_STR : PDO::PARAM_NULL);
             $stmt->bindValue(':type', $type !== '' ? $type : null, $type !== '' ? PDO::PARAM_STR : PDO::PARAM_NULL);
 
@@ -61,10 +60,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // ------------- Récupération des listes pour les selects -------------
 
 // Remplace les noms de tables si nécessaire
-$beignets_stmt = $pdo->query("SELECT id_beignet AS id, name_beignet AS label FROM beignets s");
-$fourrages_stmt = $pdo->query("SELECT id_fourrage AS id, name_fourrage AS label FROM fourrages ");
-$glacages_stmt = $pdo->query("SELECT id_glacage AS id, name_glacage AS label FROM glacages");
-$toppings_stmt = $pdo->query("SELECT id_topping AS id, name_topping AS label FROM topping ");
+$beignets_stmt = $pdo->query("SELECT id_beignet AS id, name_beignet AS label, img_beignets AS img FROM beignets");
+$fourrages_stmt = $pdo->query("SELECT id_fourrage AS id, name_fourrage AS label, img_fourrage AS img FROM fourrages");
+$glacages_stmt = $pdo->query("SELECT id_glacage AS id, name_glacage AS label, img_glacage AS img FROM glacages");
+$toppings_stmt = $pdo->query("SELECT id_topping AS id, name_topping AS label, img_topping AS img FROM topping");
+
 
 
 $beignets = $beignets_stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -106,11 +106,38 @@ $toppings = $toppings_stmt->fetchAll(PDO::FETCH_ASSOC);
         </p>
 
         <div class="content">
-            <div class="left">
-                <img src="https://www.cash-alimentaire.com/11763-large_default/donut-nature-44gr-x-72-u-le-ct.jpg"
-                    alt="">
+            <div class="lateral-barre">
+                <div class="fusion">
+                    <img id="img-type"
+                        src="https://www.cash-alimentaire.com/11763-large_default/donut-nature-44gr-x-72-u-le-ct.jpg"
+                        alt="Type">
+                    <p>Type de donuts : <span id='name-type'>Sucré</span></p>
+                </div>
+                <div class="fusion">
+                    <img id="img-beignet" src="images/food/beignets/Nature.png" alt="Beignet">
+                    <p>Beignet : <span id='name-beignet'>Pas séléctionné</span></p>
+                </div>
+                <div class="fusion">
+                    <img id="img-fourrage"
+                        src="https://www.cash-alimentaire.com/11763-large_default/donut-nature-44gr-x-72-u-le-ct.jpg"
+                        alt="Fourrage">
+                    <p>Fourrage : <span id='name-fourrage'>Pas séléctionné</span></p>
+                </div>
+                <div class="fusion">
+                    <img id="img-glacage"
+                        src="https://img.freepik.com/vecteurs-premium/tache-goutte-chocolat-eclaboussure-liquide-brun-doux_53562-17713.jpg"
+                        alt="Glacage">
+                    <p>Glaçage : <span id='name-glacage'>Pas séléctionné</span></p>
+                </div>
+                <div class="fusion">
+                    <img id="img-topping"
+                        src="https://www.cash-alimentaire.com/11763-large_default/donut-nature-44gr-x-72-u-le-ct.jpg"
+                        alt="Topping">
+                    <p>Topping : <span id='name-topping'>Pas séléctionné</span></p>
+                </div>
 
             </div>
+
 
             <div class="right">
                 <!-- Si tu veux permettre l'upload de fichiers, ajoute enctype="multipart/form-data" -->
@@ -119,11 +146,12 @@ $toppings = $toppings_stmt->fetchAll(PDO::FETCH_ASSOC);
                         <div class="label-el">
                             <label for="sucresale">Choisir le type</label>
                             <select name="sucresale" id="sucresale">
-                                <option value="sucré">Sucré</option>
-                                <option value="salé">Salé</option>
-                                <option value="sucresale">Les 2 (sucré & salé)</option>
-                                <option value="none">Non précisé</option>
+                                <option value="sucré" data-img="images/food/types/sucre.png">Sucré</option>
+                                <option value="salé" data-img="images/food/types/sel.png">Salé</option>
+                                <option value="les2" data-img="images/food/types/les2.png">Les 2 (sucré & salé)
+                                </option>
                             </select>
+
                         </div>
 
                         <div class="label-el">
@@ -131,10 +159,12 @@ $toppings = $toppings_stmt->fetchAll(PDO::FETCH_ASSOC);
                             <select name="beignet" id="beignet">
                                 <option value="">Séléctionne un beignet</option>
                                 <?php foreach ($beignets as $b): ?>
-                                    <option value="<?= (int) $b['id'] ?>" <?= (isset($_POST['beignet']) && $_POST['beignet'] == $b['id']) ? 'selected' : '' ?>>
+                                    <option value="<?= (int) $b['id'] ?>" data-img="<?= htmlspecialchars($b['img']) ?>"
+                                        <?= (isset($_POST['beignet']) && $_POST['beignet'] == $b['id']) ? 'selected' : '' ?>>
                                         <?= htmlspecialchars($b['label']) ?>
                                     </option>
                                 <?php endforeach; ?>
+
                             </select>
                         </div>
                     </div>
@@ -200,9 +230,7 @@ $toppings = $toppings_stmt->fetchAll(PDO::FETCH_ASSOC);
                     <input id="description" name="description" type="text"
                         value="<?= isset($_POST['description']) ? htmlspecialchars($_POST['description']) : '' ?>">
 
-                    <label for="image">URL de l'image (optionnel)</label>
-                    <input id="image" name="image" type="text"
-                        value="<?= isset($_POST['image']) ? htmlspecialchars($_POST['image']) : '' ?>">
+
 
                     <input class="btn" type="submit" value="Ajouter">
                 </form>
@@ -211,6 +239,7 @@ $toppings = $toppings_stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 
 </body>
+<script src="js/constructionDonuts.js"></script>
 <script src="js/header.js"></script>
 
 </html>
