@@ -105,7 +105,12 @@ $toppings = $toppings_stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php echo isset($_SESSION['login']) ? htmlspecialchars($_SESSION['login']) : 'Invité'; ?>
         </p>
 
+
+
+
+
         <div class="content">
+
             <div class="lateral-barre">
                 <div class="fusion">
                     <img id="img-type"
@@ -137,105 +142,102 @@ $toppings = $toppings_stmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
 
             </div>
+            <!-- Si tu veux permettre l'upload de fichiers, ajoute enctype="multipart/form-data" -->
+            <form method="POST" action="">
+                <div class="row">
+                    <div class="label-el">
+                        <label for="sucresale">Choisir le type</label>
+                        <select name="sucresale" id="sucresale">
+                            <option value="sucré" data-img="images/food/types/sucre.png">Sucré</option>
+                            <option value="salé" data-img="images/food/types/sel.png">Salé</option>
+                            <option value="les2" data-img="images/food/types/les2.png">Les 2 (sucré & salé)
+                            </option>
+                        </select>
 
+                    </div>
 
-            <div class="right">
-                <!-- Si tu veux permettre l'upload de fichiers, ajoute enctype="multipart/form-data" -->
-                <form method="POST" action="">
-                    <div class="row">
-                        <div class="label-el">
-                            <label for="sucresale">Choisir le type</label>
-                            <select name="sucresale" id="sucresale">
-                                <option value="sucré" data-img="images/food/types/sucre.png">Sucré</option>
-                                <option value="salé" data-img="images/food/types/sel.png">Salé</option>
-                                <option value="les2" data-img="images/food/types/les2.png">Les 2 (sucré & salé)
+                    <div class="label-el">
+                        <label for="beignet">Choisir un beignet</label>
+                        <select name="beignet" id="beignet">
+                            <option value="">Séléctionne un beignet</option>
+                            <?php foreach ($beignets as $b): ?>
+                                <option value="<?= (int) $b['id'] ?>" data-img="<?= htmlspecialchars($b['img']) ?>"
+                                    <?= (isset($_POST['beignet']) && $_POST['beignet'] == $b['id']) ? 'selected' : '' ?>>
+                                    <?= htmlspecialchars($b['label']) ?>
                                 </option>
-                            </select>
+                            <?php endforeach; ?>
 
-                        </div>
+                        </select>
+                    </div>
+                </div>
 
-                        <div class="label-el">
-                            <label for="beignet">Choisir un beignet</label>
-                            <select name="beignet" id="beignet">
-                                <option value="">Séléctionne un beignet</option>
-                                <?php foreach ($beignets as $b): ?>
-                                    <option value="<?= (int) $b['id'] ?>" data-img="<?= htmlspecialchars($b['img']) ?>"
-                                        <?= (isset($_POST['beignet']) && $_POST['beignet'] == $b['id']) ? 'selected' : '' ?>>
-                                        <?= htmlspecialchars($b['label']) ?>
-                                    </option>
-                                <?php endforeach; ?>
-
-                            </select>
-                        </div>
+                <div class="row">
+                    <div class="label-el">
+                        <label for="fourrage">Choisir un fourrage</label>
+                        <select name="fourrage" id="fourrage">
+                            <option value="">Séléctionne un fourrage</option>
+                            <?php foreach ($fourrages as $f): ?>
+                                <option value="<?= (int) $f['id'] ?>" <?= (isset($_POST['fourrage']) && $_POST['fourrage'] == $f['id']) ? 'selected' : '' ?>>
+                                    <?= htmlspecialchars($f['label']) ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
 
-                    <div class="row">
-                        <div class="label-el">
-                            <label for="fourrage">Choisir un fourrage</label>
-                            <select name="fourrage" id="fourrage">
-                                <option value="">Séléctionne un fourrage</option>
-                                <?php foreach ($fourrages as $f): ?>
-                                    <option value="<?= (int) $f['id'] ?>" <?= (isset($_POST['fourrage']) && $_POST['fourrage'] == $f['id']) ? 'selected' : '' ?>>
-                                        <?= htmlspecialchars($f['label']) ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
+                    <div class="label-el">
+                        <label for="glacage">Choisir un glaçage</label>
+                        <select name="glacage" id="glacage">
+                            <option value="">Séléctionne un glaçage</option>
+                            <?php foreach ($glacages as $g): ?>
+                                <option value="<?= (int) $g['id'] ?>" <?= (isset($_POST['glacage']) && $_POST['glacage'] == $g['id']) ? 'selected' : '' ?>>
+                                    <?= htmlspecialchars($g['label']) ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
 
-                        <div class="label-el">
-                            <label for="glacage">Choisir un glaçage</label>
-                            <select name="glacage" id="glacage">
-                                <option value="">Séléctionne un glaçage</option>
-                                <?php foreach ($glacages as $g): ?>
-                                    <option value="<?= (int) $g['id'] ?>" <?= (isset($_POST['glacage']) && $_POST['glacage'] == $g['id']) ? 'selected' : '' ?>>
-                                        <?= htmlspecialchars($g['label']) ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
+                <div class="row">
+                    <div class="label-el">
+                        <label for="topping">Choisir un topping</label>
+                        <select name="topping" id="topping">
+                            <option value="">Séléctionne un topping</option>
+                            <?php foreach ($toppings as $t): ?>
+                                <option value="<?= (int) $t['id'] ?>" <?= (isset($_POST['topping']) && $_POST['topping'] == $t['id']) ? 'selected' : '' ?>>
+                                    <?= htmlspecialchars($t['label']) ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
 
-                    <div class="row">
-                        <div class="label-el">
-                            <label for="topping">Choisir un topping</label>
-                            <select name="topping" id="topping">
-                                <option value="">Séléctionne un topping</option>
-                                <?php foreach ($toppings as $t): ?>
-                                    <option value="<?= (int) $t['id'] ?>" <?= (isset($_POST['topping']) && $_POST['topping'] == $t['id']) ? 'selected' : '' ?>>
-                                        <?= htmlspecialchars($t['label']) ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-
-                        <div class="label-el">
-                            <label for="taille">Choisir une taille</label>
-                            <select name="taille" id="taille">
-                                <option value="">Séléctionne une taille</option>
-                                <option value="normal">Normal</option>
-                                <option value="big">Gros</option>
-                                <option value="mini">Mini</option>
+                    <div class="label-el">
+                        <label for="taille">Choisir une taille</label>
+                        <select name="taille" id="taille">
+                            <option value="">Séléctionne une taille</option>
+                            <option value="normal">Normal</option>
+                            <option value="big">Gros</option>
+                            <option value="mini">Mini</option>
 
 
-                            </select>
-                        </div>
+                        </select>
                     </div>
+                </div>
 
-                    <br><br>
-                    <label for="name">Choisir un nom</label>
-                    <input id="name" name="name" type="text"
-                        value="<?= isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '' ?>">
+                <br><br>
+                <label for="name">Choisir un nom</label>
+                <input id="name" name="name" type="text"
+                    value="<?= isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '' ?>">
 
-                    <label for="description">Décrit ton beignet</label>
-                    <input id="description" name="description" type="text"
-                        value="<?= isset($_POST['description']) ? htmlspecialchars($_POST['description']) : '' ?>">
+                <label for="description">Décrit ton beignet</label>
+                <input id="description" name="description" type="text"
+                    value="<?= isset($_POST['description']) ? htmlspecialchars($_POST['description']) : '' ?>">
 
 
 
-                    <input class="btn" type="submit" value="Ajouter">
-                </form>
-            </div>
+                <input class="btn" type="submit" value="Ajouter">
+            </form>
         </div>
+    </div>
     </div>
 
 </body>

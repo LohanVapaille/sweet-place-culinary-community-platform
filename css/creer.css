@@ -24,43 +24,33 @@ h1 {
   justify-content: center;
   gap: 10px;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 180px;
+  padding: 20px;
+  position: relative;
 }
 
 .connect {
   margin-bottom: 20px;
 }
 
-.left,
-.right {
-  padding: 20px;
-}
-
-.left {
-  width: 40%;
-  /* border: #660505 solid 2px;
-  border-radius: 20px; */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.left img {
-  width: 100%;
-}
-
-.right {
-  width: 40%;
-  border: #660505 solid 2px;
-  border-radius: 20px;
-}
-
-.right form {
+.content form {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+}
+
+.lateral-barre {
+  display: flex;
+  justify-content: space-between;
+  background-color: #cbffbf;
+  align-items: center;
+  position: fixed;
+  bottom: 0px;
+  padding-left: 50px;
+  padding-right: 50px;
+  width: 100%;
+  padding-bottom: 20px;
 }
 
 label {
@@ -68,11 +58,11 @@ label {
   font-size: 1.3rem;
 }
 
-.right form input {
+.content form input {
   width: 60%;
 }
 
-.right .row {
+.content .row {
   display: flex;
   gap: 20px;
   justify-content: space-between;
@@ -83,7 +73,7 @@ label {
   flex-direction: column;
 }
 
-.right form select {
+.content form select {
   appearance: none; /* retire la flèche native */
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -109,11 +99,11 @@ label {
 }
 
 /* Pour IE/Edge */
-.right form select::-ms-expand {
+.content form select::-ms-expand {
   display: none;
 }
 
-.right form select:hover {
+.content form select:hover {
   border-radius: 20px;
 }
 
@@ -127,7 +117,7 @@ input {
   padding: 15px;
 }
 
-.right form input[type="submit"] {
+.content form input[type="submit"] {
   width: fit-content;
   padding-top: 0px;
   padding-bottom: 0px;
@@ -139,7 +129,7 @@ input {
 }
 
 @media (max-width: 670px) {
-  .right .row {
+  .content .row {
     flex-direction: column;
   }
 }
@@ -149,8 +139,7 @@ input {
     flex-direction: column-reverse;
     align-items: center;
   }
-  .right,
-  .left {
+  .content {
     width: 80%;
   }
 }
