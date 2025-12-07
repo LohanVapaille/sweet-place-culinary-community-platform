@@ -51,7 +51,7 @@ function getLikedCompositions(PDO $pdo, int $userId): array
        SELECT 
             c.id_composition AS id,
             c.donut_name AS title,
-            c.image AS image,
+            NULL AS image,
             c.description AS description
         FROM fk_like l
         JOIN compositions_donuts c ON l.id_compositions_donuts = c.id_composition
@@ -86,7 +86,7 @@ function getCompoByUser(PDO $pdo, int $creatorId, int $currentUser = 0, int $lim
         SELECT
         c.id_composition,
         c.donut_name,
-        c.image,
+        NULL AS image,
         c.description,
         c.id_createur,
         c.id_beignet,

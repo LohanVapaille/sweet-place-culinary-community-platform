@@ -104,6 +104,10 @@ label {
   background-size: 14px;
 }
 
+.lateral-barre img {
+  transition: opacity 0.25s ease;
+}
+
 /* Pour IE/Edge */
 .right form select::-ms-expand {
   display: none;

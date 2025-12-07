@@ -4,7 +4,6 @@ function getDonutsUsers(PDO $pdo, int $userId = 0, int $limit = 0, bool $random 
     $sql = "
     SELECT c.id_composition,
            c.donut_name,
-           c.image,
            c.description,
            u.id_user AS creator_id,
            u.login AS creator_name,
