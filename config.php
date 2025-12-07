@@ -4,8 +4,8 @@
 // Paramètres de connexion
 $host = 'localhost';
 $dbname = 'donuts2';
-$username = 'root';      // souvent 'root' en local
-$password = '';          // vide par défaut sur XAMPP/WAMP
+$username = 'root';
+$password = '';
 
 
 // $host = 'localhost';
@@ -29,4 +29,3 @@ try {
     // Affiche une erreur si la connexion échoue
     die("Erreur de connexion à la base de données : " . $e->getMessage());
 }
-?>

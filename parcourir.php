@@ -41,6 +41,8 @@ $donuts = getDonutsUsers($pdo, $userId); // TOUS LES DONUTS
         </div>
     </div>
 
+
+
     <script src="js/like.js"></script>
     <script src="js/header.js"></script>
 

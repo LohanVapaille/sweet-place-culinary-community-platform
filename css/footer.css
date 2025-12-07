@@ -1,0 +1,107 @@
+.imgfooter {
+  width: 100%;
+}
+
+footer {
+  background-color: var(--maincolor);
+  color: var(--textcolor);
+  font-family: var(--textfont);
+  padding: 40px 20px 20px 20px;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: var(--textcolor);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+footer h3 {
+  font-family: var(--mainfont);
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+
+footer h4 {
+  font-family: var(--mainfont);
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.footer-container {
+  display: flex;
+
+  /* flex-wrap: wrap; */
+
+  gap: 30px;
+}
+
+.footer-container > div {
+  flex: 1 1 300px; /* minimum 300px, puis flexible */
+}
+
+.footer-column {
+  margin-bottom: 20px;
+}
+.footer-right,
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 8px;
+}
+
+.footer-column ul li a {
+  display: inline-block;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 15px 0;
+  font-size: 0.85rem;
+  border-top: 1px solid #66050533;
+  margin-top: 20px;
+}
+
+/* Dropdown pour crédits musicaux */
+footer .dropdown {
+  position: relative;
+}
+
+footer .dropdown-toggle {
+  cursor: pointer;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+footer .dropdown-menu {
+  display: none;
+  background-color: #f5f5f5;
+  color: #000;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+}
+
+footer .dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 1050px) {
+  .footer-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+}

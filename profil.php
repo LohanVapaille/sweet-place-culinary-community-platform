@@ -161,6 +161,8 @@ $likedDonuts = getLikedCompositions($pdo, $creator_id);
 
     </div>
 
+    <?php include 'footer/footer.php'; ?>
+
     <script src='js/subscribe.js'></script>
 
     <script src="js/like.js"></script>

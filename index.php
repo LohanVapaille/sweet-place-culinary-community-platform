@@ -59,6 +59,8 @@ $donutsUsers = getDonutsUsers($pdo, $userId, 6, true);
         </div>
     </div>
 
+    <?php include 'footer/footer.php'; ?>
+
     <script src="js/like.js"></script>
     <script src="js/header.js"></script>
 
