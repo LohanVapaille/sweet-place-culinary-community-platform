@@ -64,7 +64,7 @@ h1 {
 
 label {
   font-family: var(--mainfont);
-  font-size: 1.3rem;
+  font-size: 1.7rem;
 }
 
 .content form input {
@@ -73,7 +73,7 @@ label {
 
 .content .row {
   display: flex;
-  gap: 20px;
+  gap: 50px;
   justify-content: space-between;
 }
 
