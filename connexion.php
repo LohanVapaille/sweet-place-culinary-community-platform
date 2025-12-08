@@ -1,6 +1,8 @@
 <?php
 session_start();
 include 'config.php'; // connexion PDO
+$flash = $_SESSION['flash_message'] ?? null;
+unset($_SESSION['flash_message']); // Supprime le message après affichage
 
 $message = '';
 
@@ -101,6 +103,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             font-family: "Modak", system-ui;
             font-weight: 100 !important;
         }
+
+        .flash-message p {
+
+            font-family: "Mada", sans-serif;
+            color: #660505;
+        }
     </style>
 
 </head>
@@ -111,7 +119,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <main>
         <div class="connecter">
             <h1>Me connecter</h1>
-            <p>Si tu n’as pas de compte, <a href="inscription.php">Crée-en un !</a></p>
+            <?php if (!$flash): ?>
+                <p>Si tu n’as pas de compte, <a href="inscription.php">Crée-en un !</a></p>
+            <?php endif; ?>
+
+
+            <?php if ($flash): ?>
+                <div class="flash-message">
+                    <p><?= htmlspecialchars($flash) ?></p>
+                </div>
+            <?php endif; ?>
+
 
             <?php if ($message): ?>
                 <div class="message"><?= htmlspecialchars($message) ?></div>
