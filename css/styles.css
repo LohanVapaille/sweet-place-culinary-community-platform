@@ -181,6 +181,11 @@ h3 {
   transform: translateY(-5px);
 }
 
+.rienpourlemoment {
+  margin: auto;
+  margin-top: 20px;
+}
+
 .laterale-barre {
   position: absolute;
   bottom: 0px;
@@ -220,7 +225,7 @@ h3 {
 
 .interaction {
   justify-content: space-between;
-  padding: 2px 12px 2px 12px;
+  padding: 5px 20px 5px 20px;
   z-index: 22;
   background-color: whitesmoke;
   border-left: 2px solid #ccc;

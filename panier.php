@@ -88,13 +88,16 @@ $items = $panierModel->getItemsByUser($user);
 
 <body>
   <?php include 'header/header.php'; ?>
-  <div class="h1">
+  <div class="paniercontent">
     <h1>Mon panier</h1>
-  </div>
+    <?php if (empty($items)): ?>
+      <p class="empty rienpourlemoment">Ton panier est vide.</p>
+    <?php else: ?>
 
-  <?php if (empty($items)): ?>
-    <div class="empty">Ton panier est vide.</div>
-  <?php else: ?>
+
+    </div>
+
+
     <div class='cards-container' id="cart-list">
       <?php foreach ($items as $it): ?>
         <div class="card cart-item"

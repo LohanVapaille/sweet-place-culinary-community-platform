@@ -136,7 +136,7 @@ $likedDonuts = getLikedCompositions($pdo, $creator_id);
                 <?php endforeach; ?>
             </div>
         <?php else: ?>
-            <p>Aucune composition pour le moment.</p>
+            <p class="rienpourlemoment">Aucune composition pour le moment.</p>
         <?php endif; ?>
     </div>
 
