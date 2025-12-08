@@ -246,12 +246,12 @@ h3 {
   gap: 25px;
 }
 
-i {
+.like i {
   font-size: 2rem;
   color: var(--textcolor);
 }
 
-i:hover {
+.like i:hover {
   cursor: pointer;
 }
 

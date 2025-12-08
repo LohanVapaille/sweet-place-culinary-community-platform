@@ -36,7 +36,7 @@
         <div class="addcart">
             <!-- Bouton panier -->
             <a href="addpanier.php?id=<?= $donut['id_composition'] ?>" class="btn">
-                Ajouter au panier
+                <i class='bx bx-cart-add'></i>
             </a>
 
         </div>
