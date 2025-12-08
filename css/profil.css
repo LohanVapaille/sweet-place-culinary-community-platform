@@ -4,13 +4,21 @@
   --maincolor: #cbffbf;
   --textcolor: #660505;
 }
-
 .infoprofil {
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-left: 120px;
+}
+
+.allinfoprofil {
   background-color: whitesmoke;
   display: flex;
   align-items: center;
   padding: 20px;
-  padding-left: 120px;
+
   gap: 50px;
 }
 
@@ -34,6 +42,7 @@
   gap: 20px;
   font-family: var(--textfont);
 }
+
 .btn {
   font-family: var(--textfont);
 }
@@ -66,6 +75,10 @@
   justify-items: center;
 }
 
+.phonedesign {
+  display: flex;
+}
+
 .donut-card {
   background: #fff;
   padding: 1rem;
@@ -87,6 +100,12 @@
   justify-content: center;
   gap: 10px;
 }
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 .donut-card img {
   max-height: 70%;
   border-radius: 8px;
@@ -100,6 +119,7 @@
   .infoprofil {
     gap: 10px;
     justify-content: center;
+    align-items: center;
     padding: 20px;
   }
   .infoprofil img {
@@ -114,7 +134,7 @@
   .infoprofil .right .infos,
   .btnprofil .btn,
   .infoprofil {
-    font-size: 0.7rem;
+    font-size: 1rem;
   }
 
   .onlydesk {
@@ -123,5 +143,31 @@
 
   .btnprofil .btn {
     padding: 5px;
+  }
+
+  /* --- Règle pour une seule carte --- */
+  /* Cible le conteneur avec la nouvelle classe */
+  .cards-container.single-item {
+    /* Rétablit le comportement de grille par défaut (auto-fit) */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+    /* Annule le centrage forcé */
+    justify-items: unset; /* ou 'initial' */
+  }
+
+  /* Annule le positionnement forcé sur la première colonne */
+  .cards-container.single-item > .onecard-container {
+    grid-column: unset; /* L'enfant reprend le comportement normal de la grille */
+  }
+
+  .onlyphonebtnprofil .btn {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+@media (min-width: 789px) {
+  .onlyphone {
+    display: none;
   }
 }

@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include 'config.php'; // ta connexion PDO
 
 // Message d'erreur ou succès
@@ -24,7 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Insertion dans la BDD
             $insert = $pdo->prepare("INSERT INTO users (login, mdp) VALUES (?, ?)");
             if ($insert->execute([$login, $hashedPassword])) {
-                $message = "Compte créé avec succès ! Vous pouvez maintenant vous connecter.";
+                $_SESSION['flash_message'] = "✅ Votre compte a été créé avec succès ! Vous pouvez vous connecter.";
+                header('Location: connexion.php');
+                exit;
+
             } else {
                 $message = "Erreur lors de la création du compte.";
             }

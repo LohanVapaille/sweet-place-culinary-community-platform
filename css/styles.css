@@ -182,10 +182,6 @@ h3 {
   border-left: 2px solid #ccc;
 }
 
-.userdonuts:hover {
-  cursor: pointer;
-}
-
 .onecard-container:hover,
 .sweetplacedonuts:hover {
   transform: translateY(-5px);
@@ -323,6 +319,10 @@ h3 {
   }
 
   h1 {
+    text-align: center;
+  }
+
+  .welcome {
     text-align: center;
   }
 }
