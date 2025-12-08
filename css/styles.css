@@ -129,7 +129,8 @@ h3 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 40px;
-  width: min(100%, 990px); /* 3 cartes * 300px max */
+  align-items: stretch; /* étire les enfants */
+  width: min(100%, 990px);
   margin: 0 auto;
 }
 
@@ -138,12 +139,12 @@ h3 {
 }
 
 .nosdonuts .card {
-  border-color: #660505;
+  border-color: var(--textcolor);
 }
 
 .card {
   background-color: white;
-  border: 2px solid #ccc;
+
   border-radius: 15px;
   padding: 15px;
   text-align: center;
@@ -152,20 +153,91 @@ h3 {
   align-items: center;
   justify-content: center;
   transition: 0.2s ease;
+  position: relative;
 }
 
-.card:hover {
+.onecard-container {
+  transition: 0.2s ease;
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+  height: 100%;
+}
+
+.userdonuts {
+  padding-bottom: 55px;
+  border-radius: 13px 13px 0px 0px;
+  border-top: 2px solid #ccc;
+  border-right: 2px solid #ccc;
+  border-left: 2px solid #ccc;
+}
+
+.userdonuts:hover {
+  cursor: pointer;
+}
+
+.onecard-container:hover,
+.sweetplacedonuts:hover {
   transform: translateY(-5px);
 }
 
-.card .content,
-.card .interaction {
+.laterale-barre {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+
+  height: 50px;
+  background-color: var(--maincolor);
   display: flex;
-  justify-content: center;
+
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px;
+}
+
+.laterale-barre img {
+  width: 40px;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.laterale-barre .imgbig {
+  object-fit: cover; /* remplit le cadre sans déformer */
+  object-position: auto; /* zoom centré */
+  transform: scale(4); /* facteur de zoom (augmente si besoin) */
+  transform-origin: center;
+  padding-right: 10px;
+  padding-top: 3px;
+}
+
+.card .content,
+.card .addcart,
+.interaction {
+  display: flex;
+  flex-grow: 1; /* prend tout l’espace restant */
   align-items: center;
 }
 
 .interaction {
+  justify-content: space-between;
+  padding: 2px 12px 2px 12px;
+  z-index: 22;
+  background-color: whitesmoke;
+  border-left: 2px solid #ccc;
+  border-bottom: 2px solid #ccc;
+  border-right: 2px solid #ccc;
+  border-radius: 0px 0px 13px 13px;
+}
+
+.card .content .desc-donuts {
+  width: 100%;
+}
+
+.card a {
+  z-index: 20;
+}
+
+.addcart {
   gap: 25px;
 }
 
@@ -178,15 +250,29 @@ i:hover {
   cursor: pointer;
 }
 
+.like {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
 .nb_like {
   color: var(--textcolor);
 }
 
 .content img {
   width: 120px;
+  z-index: 1;
 }
 
-.card .content p {
+.interaction a {
+  z-index: 20;
+}
+
+.sweetplacedonuts {
+  border: solid 2px var(--textcolor);
+}
+.sweetplacedonuts .content p {
   width: 60%;
   text-align: left;
 }
