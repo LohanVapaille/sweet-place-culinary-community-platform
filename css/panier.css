@@ -24,6 +24,14 @@ h1 {
   height: 100px;
 }
 
+.cart-item {
+  transition: all ease 0.2s;
+}
+
+.cart-item:hover {
+  transform: translateY(-5px);
+}
+
 .item-info {
   width: 50%;
 }
