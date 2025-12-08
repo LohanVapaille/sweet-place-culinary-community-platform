@@ -5,7 +5,7 @@
 $host = 'localhost';
 $dbname = 'donuts';
 $username = 'root';
-$password = '';
+$password = 'root';
 
 
 // $host = 'localhost';
