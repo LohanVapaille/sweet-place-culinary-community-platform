@@ -108,138 +108,143 @@ $toppings = $toppings_stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 
+        <main>
+            <div class="content">
 
-        <div class="content">
-
-            <!-- Si tu veux permettre l'upload de fichiers, ajoute enctype="multipart/form-data" -->
-            <form method="POST" action="">
-                <div class="row">
-                    <div class="input-object">
-                        <div class="label-el">
-                            <label for="sucresale">Choisir le type</label>
-                            <select name="sucresale" id="sucresale">
-                                <option value="sucré" data-img="images/food/types/sucre.svg">Sucré</option>
-                                <option value="salé" data-img="images/food/types/sel.svg">Salé</option>
-                                <option value="les2" data-img="images/food/types/les2.svg">Les 2 (sucré & salé)
-                                </option>
-                            </select>
-                        </div>
-                        <div class="fusion">
-                            <img id="img-type" src="" alt="Type">
-                            <p>Type de donuts : <span id='name-type'>Sucré</span></p>
-                        </div>
-                    </div>
-                    <div class="input-object">
-                        <div class="label-el">
-                            <label for="beignet">Choisir un beignet</label>
-                            <select name="beignet" id="beignet">
-
-                                <?php foreach ($beignets as $b): ?>
-                                    <option value="<?= (int) $b['id'] ?>" data-img="<?= htmlspecialchars($b['img']) ?>"
-                                        <?= (isset($_POST['beignet']) && $_POST['beignet'] == $b['id']) ? 'selected' : '' ?>>
-                                        <?= htmlspecialchars($b['label']) ?>
+                <!-- Si tu veux permettre l'upload de fichiers, ajoute enctype="multipart/form-data" -->
+                <form method="POST" action="">
+                    <div class="row">
+                        <div class="input-object">
+                            <div class="label-el">
+                                <label for="sucresale">Choisir le type</label>
+                                <select name="sucresale" id="sucresale">
+                                    <option value="sucré" data-img="images/food/types/sucre.svg">Sucré</option>
+                                    <option value="salé" data-img="images/food/types/sel.svg">Salé</option>
+                                    <option value="les2" data-img="images/food/types/les2.svg">Les 2 (sucré & salé)
                                     </option>
-                                <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="fusion">
+                                <img id="img-type" src="" alt="Type">
+                                <p>Type de donuts : <span id='name-type'>Sucré</span></p>
+                            </div>
+                        </div>
+                        <div class="input-object">
+                            <div class="label-el">
+                                <label for="beignet">Choisir un beignet</label>
+                                <select name="beignet" id="beignet">
 
-                            </select>
-                        </div>
-                        <div class="fusion">
-                            <img id="img-beignet" src="images/food/beignets/nature.svg" alt="Beignet">
-                            <p>Beignet : <span id='name-beignet'>Pas séléctionné</span></p>
-                        </div>
-                    </div>
-                </div>
+                                    <?php foreach ($beignets as $b): ?>
+                                        <option value="<?= (int) $b['id'] ?>" data-img="<?= htmlspecialchars($b['img']) ?>"
+                                            <?= (isset($_POST['beignet']) && $_POST['beignet'] == $b['id']) ? 'selected' : '' ?>>
+                                            <?= htmlspecialchars($b['label']) ?>
+                                        </option>
+                                    <?php endforeach; ?>
 
-                <div class="row">
-                    <div class="input-object">
-                        <div class="label-el">
-                            <label for="fourrage">Choisir un fourrage</label>
-                            <select name="fourrage" id="fourrage">
-                                <option value="">Séléctionne un fourrage</option>
-                                <?php foreach ($fourrages as $f): ?>
-                                    <option value="<?= (int) $f['id'] ?>" data-img="<?= htmlspecialchars($f['img']) ?>"
-                                        <?= (isset($_POST['fourrage']) && $_POST['fourrage'] == $f['id']) ? 'selected' : '' ?>>
-                                        <?= htmlspecialchars($f['label']) ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                        <div class="fusion">
-                            <img id="img-fourrage" src="images/food/fourrage/chocolat.svg" alt="Fourrage">
-                            <p>Fourrage : <span id='name-fourrage'>Pas séléctionné</span></p>
-                        </div>
-                    </div>
-                    <div class="input-object">
-                        <div class="label-el">
-                            <label for="glacage">Choisir un glaçage</label>
-                            <select name="glacage" id="glacage">
-                                <option value="">Séléctionne un glaçage</option>
-                                <?php foreach ($glacages as $g): ?>
-                                    <option value="<?= (int) $g['id'] ?>" data-img="<?= htmlspecialchars($g['img']) ?>"
-                                        <?= (isset($_POST['glacage']) && $_POST['glacage'] == $g['id']) ? 'selected' : '' ?>>
-                                        <?= htmlspecialchars($g['label']) ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                        <div class="fusion">
-                            <img class='imgbig' id="img-glacage" src="images/food/glacages/chocolat.svg" alt="Glacage">
-                            <p>Glaçage : <span id='name-glacage'>Pas séléctionné</span></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-
-                    <div class="input-object">
-                        <div class="label-el">
-                            <label for="topping">Choisir un topping</label>
-                            <select name="topping" id="topping">
-                                <option value="">Séléctionne un topping</option>
-                                <?php foreach ($toppings as $t): ?>
-                                    <option value="<?= (int) $t['id'] ?>" data-img="<?= htmlspecialchars($t['img']) ?>"
-                                        <?= (isset($_POST['topping']) && $_POST['topping'] == $t['id']) ? 'selected' : '' ?>>
-                                        <?= htmlspecialchars($t['label']) ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-
-                        <div class="fusion">
-                            <img id="img-topping" src="images/food/topping/m&m.svg" alt="Topping">
-                            <p>Topping : <span id='name-topping'>Pas séléctionné</span></p>
+                                </select>
+                            </div>
+                            <div class="fusion">
+                                <img id="img-beignet" src="images/food/beignets/nature.svg" alt="Beignet">
+                                <p>Beignet : <span id='name-beignet'>Pas séléctionné</span></p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="label-el">
-                        <label for="taille">Choisir une taille</label>
-                        <select name="taille" id="taille">
-                            <option value="">Séléctionne une taille</option>
-                            <option value="normal">Normal</option>
-                            <option value="big">Gros</option>
-                            <option value="mini">Mini</option>
-
-
-                        </select>
+                    <div class="row">
+                        <div class="input-object">
+                            <div class="label-el">
+                                <label for="fourrage">Choisir un fourrage</label>
+                                <select name="fourrage" id="fourrage">
+                                    <option value="">Séléctionne un fourrage</option>
+                                    <?php foreach ($fourrages as $f): ?>
+                                        <option value="<?= (int) $f['id'] ?>" data-img="<?= htmlspecialchars($f['img']) ?>"
+                                            <?= (isset($_POST['fourrage']) && $_POST['fourrage'] == $f['id']) ? 'selected' : '' ?>>
+                                            <?= htmlspecialchars($f['label']) ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="fusion">
+                                <img id="img-fourrage" src="images/food/fourrage/chocolat.svg" alt="Fourrage">
+                                <p>Fourrage : <span id='name-fourrage'>Pas séléctionné</span></p>
+                            </div>
+                        </div>
+                        <div class="input-object">
+                            <div class="label-el">
+                                <label for="glacage">Choisir un glaçage</label>
+                                <select name="glacage" id="glacage">
+                                    <option value="">Séléctionne un glaçage</option>
+                                    <?php foreach ($glacages as $g): ?>
+                                        <option value="<?= (int) $g['id'] ?>" data-img="<?= htmlspecialchars($g['img']) ?>"
+                                            <?= (isset($_POST['glacage']) && $_POST['glacage'] == $g['id']) ? 'selected' : '' ?>>
+                                            <?= htmlspecialchars($g['label']) ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="fusion">
+                                <img class='imgbig' id="img-glacage" src="images/food/glacages/chocolat.svg"
+                                    alt="Glacage">
+                                <p>Glaçage : <span id='name-glacage'>Pas séléctionné</span></p>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <br><br>
-                <label for="name">Choisir un nom</label>
-                <input class="alone" id="name" name="name" type="text"
-                    value="<?= isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '' ?>">
+                    <div class="row">
 
-                <label for="description">Décrit ton beignet</label>
-                <textarea class="alone" id="description" name="description" type="text"
-                    value="<?= isset($_POST['description']) ? htmlspecialchars($_POST['description']) : '' ?>"></textarea>
+                        <div class="input-object">
+                            <div class="label-el">
+                                <label for="topping">Choisir un topping</label>
+                                <select name="topping" id="topping">
+                                    <option value="">Séléctionne un topping</option>
+                                    <?php foreach ($toppings as $t): ?>
+                                        <option value="<?= (int) $t['id'] ?>" data-img="<?= htmlspecialchars($t['img']) ?>"
+                                            <?= (isset($_POST['topping']) && $_POST['topping'] == $t['id']) ? 'selected' : '' ?>>
+                                            <?= htmlspecialchars($t['label']) ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+
+                            <div class="fusion">
+                                <img id="img-topping" src="images/food/topping/m&m.svg" alt="Topping">
+                                <p>Topping : <span id='name-topping'>Pas séléctionné</span></p>
+                            </div>
+                        </div>
+                        <div class="input-object">
+                            <div class="label-el">
+                                <label for="taille">Choisir une taille</label>
+                                <select name="taille" id="taille">
+                                    <option value="">Séléctionne une taille</option>
+                                    <option value="normal">Normal</option>
+                                    <option value="big">Gros</option>
+                                    <option value="mini">Mini</option>
+
+
+                                </select>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <br><br>
+                    <label for="name">Choisir un nom</label>
+                    <input class="alone" id="name" name="name" type="text"
+                        value="<?= isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '' ?>">
+
+                    <label for="description">Décrit ton beignet</label>
+                    <textarea class="alone" id="description" name="description" type="text"
+                        value="<?= isset($_POST['description']) ? htmlspecialchars($_POST['description']) : '' ?>"></textarea>
 
 
 
-                <input class="btn" type="submit" value="Ajouter">
-            </form>
-        </div>
+                    <input class="btn" type="submit" value="Ajouter">
+                </form>
+            </div>
+        </main>
     </div>
-    </div>
+
 
 </body>
 <script src="js/constructionDonuts.js"></script>

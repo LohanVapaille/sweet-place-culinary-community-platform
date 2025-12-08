@@ -11,6 +11,11 @@
   align-items: center;
   flex-direction: column;
 }
+
+main {
+  background-color: var(--maincolor);
+  width: 100%;
+}
 h1 {
   margin: auto;
   margin-top: 20px;
@@ -27,10 +32,14 @@ h1 {
   margin-bottom: 40px;
   padding: 20px;
   position: relative;
+  margin: auto;
+  margin-top: 20px;
+  /* background-color: whitesmoke; */
+  padding-top: 40px;
 }
 
 .content {
-  border: 2px solid #660505;
+  /* border: 2px solid #660505; */
   border-radius: 50px;
   margin: 30px;
   max-width: 1000px;
@@ -46,7 +55,7 @@ h1 {
   align-items: center;
   width: 100%;
   justify-content: center;
-  gap: 30px;
+  gap: 10px;
 }
 
 .lateral-barre {
@@ -73,8 +82,8 @@ label {
 
 .content .row {
   display: flex;
-  gap: 50px;
-  justify-content: space-between;
+  width: 100%;
+  gap: 20px;
 }
 
 .label-el {
@@ -146,25 +155,33 @@ textarea {
 .input-object {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 20px;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
+  border: solid 6px var(--textcolor);
+  border-radius: 30px;
+  width: 50%;
+  padding: 20px;
+  background-color: whitesmoke;
+  transition: all ease 0.2s;
+}
+
+.input-object:hover {
+  transform: translateY(-5px);
 }
 
 .fusion {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   overflow: hidden;
+  width: 100%;
 }
 
 .fusion img {
   height: 90px;
-}
-
-.content form .alone {
-  width: 40%;
 }
 
 .fusion .imgbig {
@@ -176,9 +193,14 @@ textarea {
   transform-origin: center;
 }
 
-@media (max-width: 670px) {
+@media (max-width: 768px) {
   .content .row {
     flex-direction: column;
+    align-items: center;
+  }
+
+  .input-object {
+    width: 80%;
   }
 }
 
