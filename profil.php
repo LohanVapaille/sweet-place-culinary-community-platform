@@ -58,39 +58,62 @@ $likedDonuts = getLikedCompositions($pdo, $creator_id);
 
 
     <div class="infoprofil">
-        <div class="left">
-            <img src="<?= !empty($user['photo']) ? htmlspecialchars($user['photo'], ENT_QUOTES) : 'images/design/profil.webp' ?>"
-                alt="photo profil">
+        <div class="allinfoprofil">
+            <div class="left">
+                <img src="<?= !empty($user['photo']) ? htmlspecialchars($user['photo'], ENT_QUOTES) : 'images/design/profil.webp' ?>"
+                    alt="photo profil">
 
-            <p class="onlyphone"><?= htmlspecialchars($user['login'], ENT_QUOTES) ?></p>
+                <p class="onlyphone"><?= htmlspecialchars($user['login'], ENT_QUOTES) ?></p>
+            </div>
+
+            <div class="right">
+
+                <div class="infos">
+                    <p class='onlydesk'><?= htmlspecialchars($user['login'], ENT_QUOTES) ?></p>
+                    <p><span class="chiffre"><?= $total_follow ?> </span><span class="ecrit">Followers</span></p>
+                    <p><span class="chiffre"><?= count($compositions) ?> </span><span class="ecrit">Compos<span
+                                class='onlydesk'>itions</span></span>
+                    </p>
+                    <p><span class="chiffre"><?= $total_likes ?> </span><span class="ecrit">Likes <span
+                                class='onlydesk'>Obtenus</span></span></p>
+
+                </div>
+
+                <div class="btnprofil onlydesk">
+                    <?php if ($user_id === $creator_id): ?>
+                        <a href='modifprofil.php' class="btn edit-profile">Modifier le profil</a>
+                    <?php else: ?>
+                        <button class="btn follow subscribe-btn <?= $is_following ? 'following' : '' ?>"
+                            data-user="<?= $creator_id ?>">
+                            <?= $is_following ? 'Suivit' : "Suivre" ?>
+                        </button>
+                    <?php endif; ?>
+                    <a href='profil.php?id=<?php echo $creator_id ?>#likeddonuts' class="btn edit-profile">Donuts
+                        Enregistrés</a>
+                </div>
+
+
+
+                <p><?php echo $user['description'] ?></p>
+            </div>
         </div>
-
-        <div class="right">
-            <div class="infos">
-                <p class='onlydesk'><?= htmlspecialchars($user['login'], ENT_QUOTES) ?></p>
-                <p><span class="green">Followers : </span><?= $total_follow ?></p>
-                <p><span class="green">Compo : </span><?= count($compositions) ?></p>
-                <p><span class="green">Likes obtenus : </span><?= $total_likes ?></p>
-            </div>
-
-            <div class="btnprofil">
-                <?php if ($user_id === $creator_id): ?>
-                    <a href='modifprofil.php' class="btn edit-profile">Modifier le profil</a>
-                <?php else: ?>
-                    <button class="btn follow subscribe-btn <?= $is_following ? 'following' : '' ?>"
-                        data-user="<?= $creator_id ?>">
-                        <?= $is_following ? 'Suivit' : "Suivre" ?>
-                    </button>
-                <?php endif; ?>
-                <a href='profil.php?id=<?php echo $creator_id ?>#likeddonuts' class="btn edit-profile">Donuts
-                    Enregistrés</a>
-            </div>
-
-
-
-            <p><?php echo $user['description'] ?></p>
+        <div class="btnprofil onlyphone onlyphonebtnprofil">
+            <?php if ($user_id === $creator_id): ?>
+                <a href='modifprofil.php' class="btn edit-profile">Modifier le profil</a>
+            <?php else: ?>
+                <button class="btn follow subscribe-btn <?= $is_following ? 'following' : '' ?>"
+                    data-user="<?= $creator_id ?>">
+                    <?= $is_following ? 'Suivit' : "Suivre" ?>
+                </button>
+            <?php endif; ?>
+            <a href='profil.php?id=<?php echo $creator_id ?>#likeddonuts' class="btn edit-profile">Donuts
+                Enregistrés</a>
         </div>
     </div>
+
+
+
+
 
     <?php
     // ... (code précédent)
