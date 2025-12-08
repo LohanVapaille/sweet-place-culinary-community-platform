@@ -38,6 +38,8 @@ h1 {
   flex-direction: column;
   align-items: center;
   width: 100%;
+  justify-content: center;
+  gap: 20px;
 }
 
 .lateral-barre {
@@ -107,14 +109,20 @@ label {
   border-radius: 20px;
 }
 
-input {
+input,
+textarea {
   border: 2px solid #660505;
   border-radius: 300px;
-  width: 564px;
+  width: 100%;
   height: 58px;
   margin-bottom: 20px;
   font-size: 1.4rem;
   padding: 15px;
+}
+
+textarea {
+  height: 100px;
+  border-radius: 25px;
 }
 
 .content form input[type="submit"] {
@@ -126,6 +134,39 @@ input {
   margin-left: auto;
   font-family: "Modak", system-ui;
   font-weight: 100 !important;
+}
+
+.input-object {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.fusion {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.fusion img {
+  height: 90px;
+}
+
+.content form .alone {
+  width: 40%;
+}
+
+.fusion .imgbig {
+  width: 120px; /* garde la taille souhaitée */
+  height: 120px;
+  object-fit: cover; /* remplit le cadre sans déformer */
+  object-position: auto; /* zoom centré */
+  transform: scale(2); /* facteur de zoom (augmente si besoin) */
+  transform-origin: center;
 }
 
 @media (max-width: 670px) {

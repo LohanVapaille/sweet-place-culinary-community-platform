@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_2" data-name="Calque 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 581.17 373">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        stroke: #000;
+        stroke-miterlimit: 10;
+        stroke-width: 3px;
+      }
+
+      .cls-2 {
+        fill: #fff842;
+      }
+
+      .cls-3 {
+        fill: #ff3e32;
+      }
+
+      .cls-4 {
+        fill: #55f;
+      }
+    </style>
+  </defs>
+  <rect class="cls-3" x="93.37" y="159.95" width="139.7" height="38.74" rx="19.37" ry="19.37"/>
+  <rect class="cls-1" x="224.26" y="113.05" width="139.7" height="38.74" rx="19.37" ry="19.37"/>
+  <rect class="cls-3" x="122.13" y="293.03" width="139.7" height="38.74" rx="19.37" ry="19.37"/>
+  <rect class="cls-4" x="390.95" y="41.23" width="139.7" height="38.74" rx="19.37" ry="19.37"/>
+  <rect class="cls-4" x="217.21" y="47.93" width="139.7" height="38.74" rx="19.37" ry="19.37"/>
+  <rect class="cls-2" x="57.56" y="110.09" width="139.7" height="38.74" rx="19.37" ry="19.37"/>
+  <rect class="cls-4" x="410.91" y="157.45" width="139.7" height="38.74" rx="19.37" ry="19.37"/>
+  <rect class="cls-2" x="245.39" y="166.43" width="139.7" height="38.74" rx="19.37" ry="19.37"/>
+  <rect class="cls-3" x="57.56" y="60.23" width="139.7" height="38.74" rx="19.37" ry="19.37"/>
+  <rect class="cls-4" x="30.56" y="234.92" width="139.7" height="38.74" rx="19.37" ry="19.37"/>
+  <rect class="cls-3" x="375.69" y="107.18" width="139.7" height="38.74" rx="19.37" ry="19.37"/>
+  <rect class="cls-2" x="396.02" y="273.66" width="139.7" height="38.74" rx="19.37" ry="19.37"/>
+  <rect class="cls-1" x="375.69" y="215.55" width="139.7" height="38.74" rx="19.37" ry="19.37"/>
+  <rect class="cls-1" x="203.13" y="234.92" width="139.7" height="38.74" rx="19.37" ry="19.37"/>
+</svg>

@@ -15,7 +15,7 @@ class PanierModel
     {
         $sql = "
         SELECT p.id_fk_panier, p.quantite, p.source_table, p.source_id, p.id_compositions_donuts,
-               c.id_composition AS c_id, c.donut_name AS c_name, c.image AS c_image, c.description AS c_description,
+               c.id_composition AS c_id, c.donut_name AS c_name, c.description AS c_description,
                n.id_donuts_de_base AS n_id, n.title AS n_title, n.img AS n_image, n.description AS n_description
         FROM fk_panier p
         LEFT JOIN compositions_donuts c
@@ -34,7 +34,6 @@ class PanierModel
         foreach ($rows as $r) {
             if ($r['source_table'] === 'compositions_donuts') {
                 $title = $r['c_name'];
-                $image = $r['c_image'];
                 $description = $r['c_description'];
                 $source_id = $r['c_id'];
             } elseif ($r['source_table'] === 'nos_donuts') {

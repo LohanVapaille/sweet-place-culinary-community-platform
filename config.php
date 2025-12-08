@@ -3,7 +3,7 @@
 
 // Paramètres de connexion
 $host = 'localhost';
-$dbname = 'donuts2';
+$dbname = 'donuts';
 $username = 'root';
 $password = '';
 

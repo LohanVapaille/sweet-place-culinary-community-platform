@@ -10,7 +10,7 @@ if (!isset($_GET['id'])) {
 }
 
 $creator_id = (int) $_GET['id'];
-$user_id = isset($_SESSION['id']) ? (int) $_SESSION['id'] : null;
+$user_id = isset($_SESSION['id']) ? (int) $_SESSION['id'] : 0;
 
 // Récupérer les infos de l'utilisateur (UNE seule requête)
 $user = getInfosUser($pdo, $creator_id);
