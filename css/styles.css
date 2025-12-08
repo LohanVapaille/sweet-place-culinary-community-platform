@@ -246,6 +246,10 @@ h3 {
   gap: 25px;
 }
 
+.addcart i {
+  font-size: 2rem;
+}
+
 .like i {
   font-size: 2rem;
   color: var(--textcolor);
