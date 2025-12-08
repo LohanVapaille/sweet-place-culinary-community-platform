@@ -92,47 +92,29 @@ $likedDonuts = getLikedCompositions($pdo, $creator_id);
         </div>
     </div>
 
+    <?php
+    // ... (code précédent)
+    
+    $donuts = getCompoByUser($pdo, $creator_id, $user_id);
+
+    // Déterminer la classe CSS pour la grille
+    $grid_class = '';
+    if (count($donuts) === 1) {
+        // Si une seule carte, on ajoute une classe spécifique
+        $grid_class = ' single-item';
+    }
+
+    // ... (code suivant)
+    ?>
+
     <div class='tendances'>
         <h2>Compositions de <?= htmlspecialchars($user['login'], ENT_QUOTES) ?></h2>
 
         <?php if (!empty($compositions)): ?>
-            <div class="cards-container">
-                <?php foreach ($compositions as $c): ?>
+            <div class="cards-container <?= $grid_class ?>">
+                <?php foreach ($compositions as $donut): ?>
                     <?php
-                    // sécurité: normaliser les valeurs attendues
-                    $already = !empty($c['already_liked']) ? 1 : 0;
-                    $nbLikes = isset($c['nb_likes']) ? (int) $c['nb_likes'] : 0;
-                    $compId = isset($c['id_composition']) ? (int) $c['id_composition'] : 0;
-                    ?>
-                    <div class="card">
-                        <h3><?= htmlspecialchars($c['donut_name'], ENT_QUOTES) ?>
-                            <?= $c['type'] ? '(' . htmlspecialchars($c['type'], ENT_QUOTES) . ')' : '' ?>
-                        </h3>
-
-                        <?php if (!empty($c['image']) || !empty($c['description'])): ?>
-                            <div class="content">
-                                <?php if (!empty($c['image'])): ?>
-                                    <img src="<?= htmlspecialchars($c['image'], ENT_QUOTES) ?>"
-                                        alt="<?= htmlspecialchars($c['donut_name'], ENT_QUOTES) ?>">
-                                <?php endif; ?>
-
-                                <?php if (!empty($c['description'])): ?>
-                                    <p class="compo"><?= nl2br(htmlspecialchars($c['description'], ENT_QUOTES)) ?></p>
-                                <?php endif; ?>
-                            </div>
-                        <?php endif; ?>
-
-                        <div class="interaction">
-                            <a href="addpanier.php?id=<?= $compId ?>" class="btn">Ajouter au panier</a>
-
-                            <div class="like">
-                                <!-- i correctement rempli : data-id, data-liked et classe initiale -->
-                                <i class="btnlike bx <?= $already ? 'bxs-heart' : 'bx-heart' ?>" data-id="<?= $compId ?>"
-                                    data-source="composition" data-liked="<?= $already ? '1' : '0' ?>"></i>
-                                <p class="nb_like"><?= $nbLikes ?></p>
-                            </div>
-                        </div>
-                    </div>
+                    include 'views/_donuts_users.php' ?>
                 <?php endforeach; ?>
             </div>
         <?php else: ?>

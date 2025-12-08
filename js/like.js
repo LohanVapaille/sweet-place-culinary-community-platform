@@ -11,8 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heart.dataset.locked === '1') return;
     heart.dataset.locked = '1';
 
-    const card = heart.closest('.card');
-    const counterEl = card ? card.querySelector('.nb_like') : null;
+    // Trouver le conteneur logique : priorise .onecard-container, sinon fallback sur .card
+    const container = heart.closest('.onecard-container') || heart.closest('.card') || document;
+    const counterEl = container.querySelector('.nb_like'); // trouver le compteur dans le même conteneur
     const source = heart.dataset.source || 'composition';
     const endpoint = source === 'base' ? 'like_base.php' : 'like.php';
 
@@ -24,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        // Envoi uniforme { id: ... } — like.php accepte aussi id_composition
         body: JSON.stringify({ id: id })
       });
 
@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log(data);
 
       if (resp.status === 401) {
-
         window.location.href = data.redirect;
         return;
       }
@@ -50,9 +49,17 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Mettre à jour compteur
+      // Mettre à jour compteur (si présent). On préfère utiliser data.likes retourné par le serveur.
       if (typeof data.likes !== 'undefined' && counterEl) {
-        counterEl.textContent = data.likes;
+        // S'assurer que c'est un nombre
+        const likesNum = Number(data.likes);
+        if (!Number.isNaN(likesNum)) {
+          counterEl.textContent = likesNum;
+        } else {
+          // fallback: incrément local si le serveur n'envoie pas un total
+          const current = Number(counterEl.textContent) || 0;
+          counterEl.textContent = data.liked ? current + 1 : Math.max(0, current - 1);
+        }
       }
 
       // Mettre à jour état durable (dataset.liked) et classes d'icône
@@ -79,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const heart = e.target.closest('.btnlike');
     if (!heart) return;
 
-    // si pas déjà liked, montrer icône pleine au hover
     if (!heart.dataset.liked) {
       heart.classList.add('bxs-heart', 'hover-temp');
       heart.classList.remove('bx-heart');
@@ -90,22 +96,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const heart = e.target.closest('.btnlike');
     if (!heart) return;
 
-    // si on avait ajouté l'effet hover (hover-temp) et ce n'est pas liked, on retire
     if (heart.classList.contains('hover-temp') && !heart.dataset.liked) {
       heart.classList.remove('bxs-heart', 'hover-temp');
       heart.classList.add('bx-heart');
     }
   });
 
-  // Optionnel : au chargement, si ton HTML utilise data-liked="1", synchroniser classes
+  // Sync initial state
   document.querySelectorAll('.btnlike').forEach(heart => {
     if (heart.dataset.liked === '1' || heart.getAttribute('data-liked') === '1') {
-      // état déjà liké côté serveur -> icone pleine
       heart.dataset.liked = '1';
       heart.classList.remove('bx-heart');
       heart.classList.add('bxs-heart');
     } else {
-      // état non liké -> icone vide
       delete heart.dataset.liked;
       heart.classList.remove('bxs-heart');
       heart.classList.add('bx-heart');

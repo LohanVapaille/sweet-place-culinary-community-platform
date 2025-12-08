@@ -34,9 +34,10 @@
         </div>
 
         <div class="addcart">
-            <!-- Bouton panier -->
-            <a href="addpanier.php?id=<?= $donut['id_composition'] ?>" class="btn">
-                <i class='bx bx-cart-add'></i>
+
+
+            <a href="addpanier.php?id=<?= $donut['id_composition'] ?>" class=" know-more  btn">
+                En savoir +
             </a>
 
         </div>
@@ -46,15 +47,19 @@
     </div>
     <div class="interaction">
 
-        <div class="like">
-            <i class="btnlike bx <?= $donut['already_liked'] ? 'bxs-heart' : 'bx-heart' ?>"
-                data-id="<?= $donut['id_composition'] ?>" data-liked="<?= $donut['already_liked'] ? '1' : '0' ?>"></i>
+        <div class="int-left">
+            <div class="like">
+                <i class="btnlike bx <?= $donut['already_liked'] ? 'bxs-heart' : 'bx-heart' ?>"
+                    data-id="<?= $donut['id_composition'] ?>"
+                    data-liked="<?= $donut['already_liked'] ? '1' : '0' ?>"></i>
 
 
-            <p class="nb_like"><?= $donut['likes'] ?></p>
-
-
-
+                <p class="nb_like"><?= $donut['likes'] ?></p>
+            </div>
+            <!-- Bouton panier -->
+            <a href="addpanier.php?id=<?= $donut['id_composition'] ?>" class="useraddcart">
+                <i class='bx bx-cart-add'></i>
+            </a>
         </div>
 
         <a class="creator" href="profil.php?id=<?= (int) $donut['id_user'] ?>">

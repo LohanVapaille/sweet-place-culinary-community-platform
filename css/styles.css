@@ -134,6 +134,16 @@ h3 {
   margin: 0 auto;
 }
 
+.cards-container.single-item {
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+}
+
+.cards-container.single-item > .onecard-container {
+  grid-column: 1 / 2;
+  width: 100%;
+}
+
 .nosdonuts {
   background-color: whitesmoke;
 }
@@ -246,8 +256,16 @@ h3 {
   gap: 25px;
 }
 
-.addcart i {
+.int-left {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.addcart i,
+.int-left i {
   font-size: 2rem;
+  color: #660505;
 }
 
 .like i {

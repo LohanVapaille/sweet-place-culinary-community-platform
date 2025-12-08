@@ -80,6 +80,9 @@ function getLikedCompositions(PDO $pdo, int $userId): array
 /**
  * Récupère les compositions créées par un utilisateur, avec nb_likes et already_liked.
  */
+/**
+ * Récupère les compositions créées par un utilisateur, avec nb_likes et already_liked.
+ */
 function getCompoByUser(PDO $pdo, int $creatorId, int $currentUser = 0, int $limit = 0, bool $random = false): array
 {
     $sql = "
@@ -89,26 +92,33 @@ function getCompoByUser(PDO $pdo, int $creatorId, int $currentUser = 0, int $lim
         NULL AS image,
         c.description,
         c.id_createur,
+        u.login,
         c.id_beignet,
         c.id_fourrage,
         c.id_glacage,
         c.id_topping,
         b.name_beignet,
+        b.img_beignets,
         f.name_fourrage,
+        f.img_fourrage,
         g.name_glacage,
+        g.img_glacage,
         t.name_topping,
-        (SELECT COUNT(*) FROM fk_like l WHERE l.id_compositions_donuts = c.id_composition) AS nb_likes,
+        t.img_topping,
+        (SELECT COUNT(*) FROM fk_like l WHERE l.id_compositions_donuts = c.id_composition) AS likes,
         EXISTS(
           SELECT 1 FROM fk_like l2
           WHERE l2.id_compositions_donuts = c.id_composition
             AND l2.id_users = :currentUser
         ) AS already_liked,
-        'compo' AS type
+        'compo' AS type,
+        c.id_createur AS id_user
     FROM compositions_donuts c
         LEFT JOIN beignets b ON c.id_beignet = b.id_beignet
         LEFT JOIN fourrages f ON c.id_fourrage = f.id_fourrage
         LEFT JOIN glacages g ON c.id_glacage = g.id_glacage
         LEFT JOIN topping t ON c.id_topping = t.id_topping
+        LEFT JOIN users u ON c.id_createur = u.id_user  -- C'EST LA LIGNE CORRIGÉE
         WHERE c.id_createur = :creator
     ";
 
@@ -135,5 +145,4 @@ function getCompoByUser(PDO $pdo, int $creatorId, int $currentUser = 0, int $lim
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
 
