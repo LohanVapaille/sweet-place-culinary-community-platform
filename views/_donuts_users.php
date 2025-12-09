@@ -36,8 +36,8 @@
         <div class="addcart">
 
 
-            <a href="addpanier.php?id=<?= $donut['id_composition'] ?>" class=" know-more  btn">
-                En savoir +
+            <a style='opacity:0.5;' href="addpanier.php?id=<?= $donut['id_composition'] ?>" class=" know-more  btn">
+                En savoir plus
             </a>
 
         </div>

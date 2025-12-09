@@ -67,6 +67,12 @@ h1 {
   cursor: pointer;
   background-color: white;
   border: none;
+  font-size: 1.5rem;
+  color: #660505;
+}
+
+.confirmpanier {
+  margin-left: auto;
 }
 
 @media (max-width: 789px) {

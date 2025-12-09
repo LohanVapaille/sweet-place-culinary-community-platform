@@ -23,8 +23,10 @@
 }
 
 .infoprofil img {
+  width: 200px;
   height: 200px;
-  border-radius: 190px;
+  object-fit: cover; /* évite la déformation */
+  border-radius: 50%;
 }
 
 .infos {

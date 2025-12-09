@@ -128,8 +128,11 @@ $items = $panierModel->getItemsByUser($user);
           </div>
         </div>
       <?php endforeach; ?>
+      <a class="btn confirmpanier" href="#">Valider le panier</a>
     </div>
   <?php endif; ?>
+
+
 
   <script src="js/quantitepanier.js"></script>
   <script src="js/header.js"></script>
