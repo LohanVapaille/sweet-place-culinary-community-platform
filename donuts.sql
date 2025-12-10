@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 08 déc. 2025 à 17:30
+-- Généré le : mer. 10 déc. 2025 à 08:39
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -49,6 +49,25 @@ INSERT INTO `beignets` (`id_beignet`, `name_beignet`, `img_beignets`, `type_beig
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `commentaires`
+--
+
+DROP TABLE IF EXISTS `commentaires`;
+CREATE TABLE IF NOT EXISTS `commentaires` (
+  `id_commentaire` int NOT NULL AUTO_INCREMENT,
+  `text-comment` varchar(100) NOT NULL,
+  `note` int NOT NULL,
+  `date` int NOT NULL,
+  `id_donuts_concerné` int NOT NULL,
+  `id_auteur` int NOT NULL,
+  PRIMARY KEY (`id_commentaire`),
+  KEY `id_auteur` (`id_auteur`),
+  KEY `id_donuts_concerné` (`id_donuts_concerné`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `compositions_donuts`
 --
 
@@ -69,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `compositions_donuts` (
   KEY `fk_fourrage` (`id_fourrage`),
   KEY `fk_glacage` (`id_glacage`),
   KEY `fk_topping` (`id_topping`)
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `compositions_donuts`
@@ -80,7 +99,9 @@ INSERT INTO `compositions_donuts` (`id_composition`, `donut_name`, `id_beignet`,
 (52, 'Chocolinito', 1, 1, 1, 1, 3, 'Donuts tout choco topping M&M\'s', 'sucré'),
 (60, 'Le Durger', 2, 18, 12, 11, 3, 'Un Hambuger en donut, délicieux', 'salé'),
 (61, 'Abri\'pique', 2, 12, 21, 11, 3, 'Beignet plein fourré à l\'abricot et recouvert d\'harissa', 'sucré'),
-(64, 'le Mastodonte', 3, 26, 22, 23, 4, 'Donuts uniquement dédié aux doberman, à consommer avec modération', 'les2');
+(64, 'le Mastodonte', 3, 23, 22, 23, 4, 'Donuts uniquement dédié aux doberman, à consommer avec modération', 'les2'),
+(72, 'Chocolat base', 2, 6, 1, 10, 15, 'Un petit beignet aux sucres', 'sucré'),
+(73, 'Abri\'pique', 2, 12, 8, 10, 15, 'Petit beignet fourré à l\'abricot', 'sucré');
 
 -- --------------------------------------------------------
 
@@ -96,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `fk_follow` (
   PRIMARY KEY (`id`),
   KEY `id_user_qui_follow` (`id_user_qui_follow`),
   KEY `id_user_suivit` (`id_user_suivit`)
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `fk_follow`
@@ -106,7 +127,9 @@ INSERT INTO `fk_follow` (`id`, `id_user_suivit`, `id_user_qui_follow`) VALUES
 (65, 2, 3),
 (66, 3, 2),
 (67, 4, 3),
-(68, 3, 4);
+(68, 3, 4),
+(69, 4, 15),
+(70, 15, 3);
 
 -- --------------------------------------------------------
 
@@ -122,14 +145,13 @@ CREATE TABLE IF NOT EXISTS `fk_like` (
   PRIMARY KEY (`id_like`),
   KEY `fk_compo1` (`id_compositions_donuts`),
   KEY `fk_users` (`id_users`)
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `fk_like`
 --
 
 INSERT INTO `fk_like` (`id_like`, `id_compositions_donuts`, `id_users`) VALUES
-(49, 51, 2),
 (54, 51, 3),
 (55, 52, 3),
 (57, 60, 3),
@@ -139,7 +161,20 @@ INSERT INTO `fk_like` (`id_like`, `id_compositions_donuts`, `id_users`) VALUES
 (63, 52, 4),
 (64, 60, 4),
 (66, 51, 4),
-(67, 61, 4);
+(67, 61, 4),
+(72, 51, 5),
+(73, 60, 5),
+(74, 52, 5),
+(77, 64, 5),
+(78, 61, 5),
+(85, 60, 2),
+(89, 64, 2),
+(90, 61, 2),
+(94, 51, 2),
+(100, 72, 15),
+(101, 72, 3),
+(102, 73, 15),
+(105, 64, 15);
 
 -- --------------------------------------------------------
 
@@ -157,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `fk_like_base` (
   KEY `id_donuts_de_base` (`id_donuts_de_base`),
   KEY `id_users` (`id_users`),
   KEY `idx_base` (`id_donuts_de_base`,`id_users`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `fk_like_base`
@@ -198,7 +233,31 @@ INSERT INTO `fk_like_base` (`id_like`, `id_donuts_de_base`, `id_users`, `created
 (49, 10, 3, '2025-12-06 18:05:31'),
 (50, 43, 3, '2025-12-06 19:12:12'),
 (53, 44, 3, '2025-12-06 19:44:22'),
-(54, 46, 2, '2025-12-07 11:17:23');
+(54, 46, 2, '2025-12-07 11:17:23'),
+(56, 8, 5, '2025-12-08 18:31:35'),
+(57, 14, 5, '2025-12-08 18:32:01'),
+(58, 4, 5, '2025-12-08 18:32:02'),
+(59, 27, 5, '2025-12-08 18:32:38'),
+(60, 12, 5, '2025-12-08 18:32:39'),
+(61, 16, 5, '2025-12-08 18:32:40'),
+(62, 2, 5, '2025-12-08 18:32:41'),
+(63, 1, 5, '2025-12-08 18:32:42'),
+(64, 9, 5, '2025-12-08 18:32:43'),
+(66, 46, 5, '2025-12-08 21:01:07'),
+(67, 40, 5, '2025-12-08 21:01:12'),
+(68, 18, 2, '2025-12-08 21:27:10'),
+(69, 5, 2, '2025-12-08 21:27:11'),
+(72, 19, 5, '2025-12-08 22:13:30'),
+(73, 46, 15, '2025-12-09 09:56:58'),
+(74, 37, 15, '2025-12-09 10:16:16'),
+(75, 14, 15, '2025-12-09 10:16:17'),
+(76, 18, 15, '2025-12-09 10:16:18'),
+(77, 13, 15, '2025-12-09 10:16:19'),
+(78, 2, 15, '2025-12-09 10:16:20'),
+(79, 27, 15, '2025-12-09 10:16:21'),
+(80, 43, 2, '2025-12-10 07:36:02'),
+(81, 31, 2, '2025-12-10 08:18:38'),
+(82, 17, 2, '2025-12-10 08:18:40');
 
 -- --------------------------------------------------------
 
@@ -218,7 +277,7 @@ CREATE TABLE IF NOT EXISTS `fk_panier` (
   KEY `fk_compo` (`id_compositions_donuts`),
   KEY `fk_users1` (`id_users`),
   KEY `idx_fkpanier_source_user` (`source_table`,`source_id`,`id_users`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `fk_panier`
@@ -226,9 +285,16 @@ CREATE TABLE IF NOT EXISTS `fk_panier` (
 
 INSERT INTO `fk_panier` (`id_fk_panier`, `id_compositions_donuts`, `source_table`, `source_id`, `id_users`, `quantite`) VALUES
 (9, NULL, 'nos_donuts', 6, 2, 3),
-(22, 51, 'compositions_donuts', 51, 2, 3),
-(32, NULL, 'nos_donuts', 46, 3, 3),
-(33, NULL, 'nos_donuts', 44, 3, 4);
+(22, 51, 'compositions_donuts', 51, 2, 4),
+(32, NULL, 'nos_donuts', 46, 3, 1),
+(33, NULL, 'nos_donuts', 44, 3, 1),
+(36, NULL, 'nos_donuts', 46, 5, 4),
+(38, 65, 'compositions_donuts', 65, 2, 2),
+(39, 52, 'compositions_donuts', 52, 2, 1),
+(40, 60, 'compositions_donuts', 60, 2, 2),
+(43, 72, 'compositions_donuts', 72, 3, 3),
+(49, 71, 'compositions_donuts', 71, 5, 1),
+(50, 70, 'compositions_donuts', 70, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -274,7 +340,6 @@ INSERT INTO `fourrages` (`id_fourrage`, `name_fourrage`, `img_fourrage`, `type_f
 (23, 'Kebab', 'images/food/fourrage/kebab.svg', 'salé'),
 (24, 'Cordon Bleu', 'images/food/fourrage/cordon bleu.svg', 'salé'),
 (25, 'Falafel', 'images/food/fourrage/falafel.svg', 'salé'),
-(26, 'Magret de Canard', 'images/food/fourrage/magret de canard.svg', 'salé'),
 (27, 'Guacamole', 'images/food/fourrage/guacamole.svg', 'salé');
 
 -- --------------------------------------------------------
@@ -446,20 +511,29 @@ CREATE TABLE IF NOT EXISTS `users` (
   `description` text NOT NULL,
   `admin` int NOT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`id_user`, `login`, `mdp`, `photo`, `description`, `admin`) VALUES
-(2, 'Adam', '$2y$10$2slyKoViqJnp8dbAsa5UfOqcIwKayvXqtYLOoETz3TwfpkfkY5CKG', 'images/pp/a7b39111cef62242d89d8484.png', 'J\'adore les donuts et tout abonnez vous !', 0),
+(2, 'Adam', '$2y$10$2slyKoViqJnp8dbAsa5UfOqcIwKayvXqtYLOoETz3TwfpkfkY5CKG', 'images/pp/afe8c2c182b20652ad288f42.jpg', 'J\'adore les donuts et tout abonnez vous !', 0),
 (3, 'Lohan', '$2y$10$acMN1dNLzLnFvieiPcI2F.pOppFerwMM/xsQMjumere2KhcxQu7ba', 'images/pp/cc5dc6aaf38ff13796563e46.jpg', '', 0),
-(4, 'MXS_MMS', '$2y$10$KVogGBlsdOvwNW6PsFMaZeFvDaRIva1cifciaD0jSWLfKbPiB.aEK', 'images/pp/92235e754a0796a4ae838de1.png', 'spécialisé dans les compos de détraqué (ig : max_ens8)', 0);
+(4, 'MXS_MMS', '$2y$10$KVogGBlsdOvwNW6PsFMaZeFvDaRIva1cifciaD0jSWLfKbPiB.aEK', 'images/pp/92235e754a0796a4ae838de1.png', 'spécialisé dans les compos de détraqué (ig : max_ens8)', 0),
+(5, 'paul', '$2y$10$CifqOor2SiO4YeYgt80B3ecm.Phy88tpC1Pr90192f2C1Rrlhx4Yq', '', '', 0),
+(15, 'Fatima', '$2y$10$3/rmRvct13WZyfEw29h6BuJSORvFWs4QqBjwQjrL8h/WqXE4xdc2y', 'images/pp/6fc470099fd0d563f8cf75f2.webp', '', 0);
 
 --
 -- Contraintes pour les tables déchargées
 --
+
+--
+-- Contraintes pour la table `commentaires`
+--
+ALTER TABLE `commentaires`
+  ADD CONSTRAINT `commentaires_ibfk_1` FOREIGN KEY (`id_auteur`) REFERENCES `users` (`id_user`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `commentaires_ibfk_2` FOREIGN KEY (`id_donuts_concerné`) REFERENCES `compositions_donuts` (`id_composition`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Contraintes pour la table `compositions_donuts`

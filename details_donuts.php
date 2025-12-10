@@ -4,11 +4,12 @@ session_start();
 require 'config.php';
 
 // ---------- PROTECTION BASIQUE ----------
-if (!isset($_SESSION['id'])) {
-    header('Location: connexion.php');
-    exit;
+if (isset($_SESSION['id'])) {
+    $user = (int) $_SESSION['id'];
 }
-$user = (int) $_SESSION['id'];
+
+$id_donuts = $_GET['id'];
+
 
 ?>
 <!doctype html>
