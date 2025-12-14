@@ -213,3 +213,27 @@ textarea {
     width: 80%;
   }
 }
+
+.img-consutructor {
+  width: 100%;
+  position: relative;
+}
+
+.img-consutructor2 {
+  width: 100%;
+  position: relative;
+}
+
+.img-consutructor img {
+  position: absolute;
+  top: 20px;
+  width: 100px;
+  margin-left: 20px;
+}
+
+.img-consutructor2 img {
+  position: absolute;
+  top: 20px;
+  width: 100px;
+  margin-left: 160px;
+}

@@ -106,6 +106,21 @@ $toppings = $toppings_stmt->fetchAll(PDO::FETCH_ASSOC);
         </p>
 
 
+        <div class="img-consutructor">
+            <img src="images/constructor/donuts/beignet test.svg" alt="">
+            <img src="images/constructor/donuts/fourrage test.svg" alt="">
+            <img src="images/constructor/donuts/glaçage test.svg" alt="">
+            <img src="images/constructor/donuts/toppings test.svg" alt="">
+        </div>
+
+        <div class="img-consutructor2">
+            <img src="images/constructor/bagel/bagel test.svg" alt="">
+            <img src="images/constructor/bagel/bagel fourrage test.svg" alt="">
+            <img src="images/constructor/bagel/bagel glaçage test.svg" alt="">
+            <img src="images/constructor/bagel/bagel topping test.svg" alt="">
+        </div>
+
+
 
 
         <main>
