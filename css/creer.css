@@ -24,25 +24,12 @@ h1 {
   margin-right: 20px;
 }
 
-.creer .content {
+.content {
+  width: 100%;
   display: flex;
   justify-content: center;
-  gap: 10px;
-  width: 100%;
-  margin-bottom: 40px;
-  padding: 20px;
-  position: relative;
-  margin: auto;
-  margin-top: 20px;
-  /* background-color: whitesmoke; */
-  padding-top: 40px;
-}
-
-.content {
-  /* border: 2px solid #660505; */
-  border-radius: 50px;
-  margin: 30px;
-  max-width: 1000px;
+  /* background-color: #660505; */
+  padding: 50px;
 }
 
 .connect {
@@ -53,27 +40,31 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: 50%;
   justify-content: center;
   gap: 10px;
 }
 
-.lateral-barre {
-  display: flex;
-  justify-content: space-between;
-  background-color: #cbffbf;
-  align-items: center;
-  position: fixed;
-  bottom: 0px;
-  padding-left: 50px;
-  padding-right: 50px;
-  width: 100%;
-  padding-bottom: 20px;
+label {
+  font-family: var(--textfont);
+  font-size: 1.7rem;
 }
 
-label {
-  font-family: var(--mainfont);
-  font-size: 1.7rem;
+.beignet-switch {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}
+
+.beignet-switch div {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.content form .beignet-switch input {
+  width: 30px;
+  margin: 0;
 }
 
 .content form input {
@@ -103,6 +94,7 @@ label {
   font-family: var(--textfont);
   font-size: 1.2rem;
   font-weight: 100;
+  width: 300px;
 
   /* Chevron blanc personnalisé */
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><polygon points='0,0 14,0 7,8' fill='white'/></svg>");
@@ -215,25 +207,13 @@ textarea {
 }
 
 .img-consutructor {
-  width: 100%;
   position: relative;
-}
-
-.img-consutructor2 {
-  width: 100%;
-  position: relative;
+  width: 50%;
 }
 
 .img-consutructor img {
-  position: absolute;
-  top: 20px;
-  width: 100px;
-  margin-left: 20px;
-}
-
-.img-consutructor2 img {
-  position: absolute;
-  top: 20px;
-  width: 100px;
-  margin-left: 160px;
+  position: fixed;
+  left: 25vw;
+  transform: translateX(-50%);
+  width: 500px;
 }

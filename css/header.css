@@ -1,10 +1,9 @@
 :root {
   --mainfont: "Modak", system-ui;
   --textfont: "Mada", sans-serif;
-  --maincolor: #cbffbf;
+  --maincolor: #f8f2f1;
   --textcolor: #660505;
 }
-
 header {
   display: flex;
   background-color: var(--maincolor);
@@ -16,18 +15,19 @@ header {
   padding-left: 20px;
   padding-right: 20px;
 }
-
 header i {
   font-size: 2rem;
 }
-
+header p {
+  font-size: 3.5rem;
+}
 .desk {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
-
 header .desk ul {
   display: flex;
   justify-content: space-between;
@@ -38,6 +38,122 @@ header .desk ul {
   padding: 0px;
   width: 100%;
 }
+.logo {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  z-index: 10;
+} /* OVERLAY NOIR */
+.gta-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+} /* ACTIF */
+.gta-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+} /* CROIX */
+.gta-close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  font-size: 3rem;
+  color: white;
+  cursor: pointer;
+} /* MENU CIRCULAIRE */
+.gta-radial {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  transform: scale(0);
+  transition: transform 0.5s ease;
+} /* SCALE À L’OUVERTURE */
+.gta-overlay.active .gta-radial {
+  transform: scale(1);
+} /* SVG CERCLE (BASE DONUT) */
+.gta-radial svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+.gta-radial circle {
+  fill: none;
+  stroke: white;
+  stroke-width: 2;
+  stroke-dasharray: 282;
+  stroke-dashoffset: 282;
+  transition: stroke-dashoffset 0.6s ease;
+}
+.gta-overlay.active circle {
+  stroke-dashoffset: 0;
+} /* LIENS */
+.gta-radial a {
+  position: absolute;
+  color: white;
+  font-family: var(--textfont);
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.3s ease 0.4s;
+} /* LIENS VISIBLES */
+.gta-overlay.active a {
+  opacity: 1;
+} /* POSITIONS GTA */
+.gta-radial a:nth-child(2) {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.gta-radial a:nth-child(3) {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.gta-radial a:nth-child(4) {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.gta-radial a:nth-child(5) {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.donut-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.7));
+}
+
+.donut-text text {
+  fill: rgb(0, 0, 0);
+  font-family: var(--textfont);
+  font-size: 14px;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  pointer-events: none;
+  letter-spacing: 0.5px;
+}
+
+.segment {
+  fill: #fc6;
+  stroke: #000;
+  stroke-width: 4;
+  cursor: pointer;
+  transition: transform 0.25s ease, fill 0.25s ease;
+  transform-origin: 50% 50%;
+}
+
+.segment:hover {
+  fill: #ffdd88;
+  transform: scale(1.05);
+}
 
 header .desk ul {
   padding: 0px;
@@ -45,29 +161,23 @@ header .desk ul {
 header li {
   list-style: none;
 }
-
 header .desk ul a {
   text-decoration: none;
   color: var(--textcolor);
 }
-
 header .desk ul a:hover {
   text-decoration: underline;
 }
-
 header .menubg {
   display: none;
 }
-
 header .phone {
   display: none;
 }
-
 @media (max-width: 1050px) {
   header .desk {
     display: none;
   }
-
   header .phone {
     display: none;
     flex-direction: column;
@@ -75,16 +185,13 @@ header .phone {
     position: absolute;
     top: 110px;
     right: 0px;
-
     z-index: 10;
     background-color: whitesmoke;
   }
-
   .phone ul {
     padding: 0px;
     text-align: center;
   }
-
   header .menubg {
     display: block;
     font-size: 3rem;
@@ -93,7 +200,6 @@ header .phone {
     align-items: center;
     justify-content: right;
   }
-
   .phone a {
     width: 100%;
     display: block;

@@ -2,7 +2,7 @@
 
 session_start();
 require 'config.php'; // doit définir $pdo (PDO)
-require 'models/detail_donuts.php'; // fichier où tu as collé la fonction ci-dessus
+require 'models/detail_donuts.php';
 
 $id_donuts = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 $info = getInfoDonutsById($pdo, $id_donuts);

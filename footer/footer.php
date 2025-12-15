@@ -1,4 +1,4 @@
-<img class="imgfooter" src="images/design/degouline.jpg" alt="">
+<!-- <img class="imgfooter" src="images/design/degouline.jpg" alt=""> -->
 
 <footer>
     <div class="footer-container">

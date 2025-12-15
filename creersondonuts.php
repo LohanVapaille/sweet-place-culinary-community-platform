@@ -1,76 +1,81 @@
 <?php
+
 session_start();
 require 'config.php';
 
+if (!isset($_SESSION['id'])) {
+    header('Location: connexion.php');
+    exit;
+}
 
-$creator_id = isset($_SESSION['id']) ? (int) $_SESSION['id'] : null;
-
-// Messages
+$creator_id = (int) $_SESSION['id'];
+$error = '';
 $success = '';
-
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // Nettoyage / récupération des champs POST
-    $type = $_POST['sucresale'];
-    $donut_name = trim($_POST['name'] ?? '');
+    $type = $_POST['type'] ?? 'sucré'; // donut par défaut
+    $name = trim($_POST['name'] ?? '');
+    $description = trim($_POST['description'] ?? '');
+
+
     $id_beignet = !empty($_POST['beignet']) ? (int) $_POST['beignet'] : null;
     $id_fourrage = !empty($_POST['fourrage']) ? (int) $_POST['fourrage'] : null;
     $id_glacage = !empty($_POST['glacage']) ? (int) $_POST['glacage'] : null;
     $id_topping = !empty($_POST['topping']) ? (int) $_POST['topping'] : null;
-    $image_url = trim($_POST['image'] ?? '');
-    $description = trim($_POST['description'] ?? '');
 
-    if ($creator_id === null) {
-        $error = "Vous devez être connecté pour créer un donut.";
+    if ($name === '') {
+        $error = "Le nom est obligatoire.";
     } else {
-        try {
+        $stmt = $pdo->prepare("
+            INSERT INTO compositions_donuts
+            (donut_name, id_beignet, id_fourrage, id_glacage, id_topping, id_createur, description, type)
+            VALUES (:name, :beignet, :fourrage, :glacage, :topping, :creator, :description, :type)
+        ");
 
+        $stmt->execute([
+            ':name' => $name,
+            ':beignet' => $id_beignet,
+            ':fourrage' => $id_fourrage,
+            ':glacage' => $id_glacage,
+            ':topping' => $id_topping,
+            ':creator' => $creator_id,
+            ':description' => $description,
+            ':type' => $type
+        ]);
 
-            // Prépare la requête d'insertion
-            // J'utilise la table "compositions" et les champs que tu as fournis.
-            $sql = "INSERT INTO compositions_donuts
-                (donut_name, id_beignet, id_fourrage, id_glacage, id_topping, id_createur, description, type)
-                VALUES (:donut_name, :id_beignet, :id_fourrage, :id_glacage, :id_topping, :id_createur, :description, :type)";
-
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindValue(':donut_name', $donut_name, PDO::PARAM_STR);
-            $stmt->bindValue(':id_beignet', $id_beignet, $id_beignet === null ? PDO::PARAM_NULL : PDO::PARAM_INT);
-            $stmt->bindValue(':id_fourrage', $id_fourrage, $id_fourrage === null ? PDO::PARAM_NULL : PDO::PARAM_INT);
-            $stmt->bindValue(':id_glacage', $id_glacage, $id_glacage === null ? PDO::PARAM_NULL : PDO::PARAM_INT);
-            $stmt->bindValue(':id_topping', $id_topping, $id_topping === null ? PDO::PARAM_NULL : PDO::PARAM_INT);
-            $stmt->bindValue(':id_createur', $creator_id, PDO::PARAM_INT);
-            $stmt->bindValue(':description', $description !== '' ? $description : null, $description !== '' ? PDO::PARAM_STR : PDO::PARAM_NULL);
-            $stmt->bindValue(':type', $type !== '' ? $type : null, $type !== '' ? PDO::PARAM_STR : PDO::PARAM_NULL);
-
-            $stmt->execute();
-
-            $success = "Composition ajoutée avec succès ! ";
-            header("Location: profil.php?id=" . $_SESSION['id']);
-            exit();
-
-
-        } catch (PDOException $e) {
-            $error = "Erreur lors de l'ajout : " . $e->getMessage();
-        }
+        header('Location: profil.php?id=' . $creator_id);
+        exit;
     }
 }
 
 
-// ------------- Récupération des listes pour les selects -------------
-
-// Remplace les noms de tables si nécessaire
-$beignets_stmt = $pdo->query("SELECT id_beignet AS id, name_beignet AS label, img_beignets AS img FROM beignets");
-$fourrages_stmt = $pdo->query("SELECT id_fourrage AS id, name_fourrage AS label, img_fourrage AS img FROM fourrages");
-$glacages_stmt = $pdo->query("SELECT id_glacage AS id, name_glacage AS label, img_glacage AS img FROM glacages");
-$toppings_stmt = $pdo->query("SELECT id_topping AS id, name_topping AS label, img_topping AS img FROM topping");
+$fourrages = $pdo->query("SELECT * FROM fourrages")->fetchAll(PDO::FETCH_ASSOC);
+$glacages = $pdo->query("SELECT * FROM glacages")->fetchAll(PDO::FETCH_ASSOC);
+$toppings = $pdo->query("SELECT * FROM topping")->fetchAll(PDO::FETCH_ASSOC);
 
 
 
-$beignets = $beignets_stmt->fetchAll(PDO::FETCH_ASSOC);
-$fourrages = $fourrages_stmt->fetchAll(PDO::FETCH_ASSOC);
-$glacages = $glacages_stmt->fetchAll(PDO::FETCH_ASSOC);
-$toppings = $toppings_stmt->fetchAll(PDO::FETCH_ASSOC);
+function select($name, $items)
+{
+    echo "<select name='$name' id='$name'>";
+    echo "<option value=''>— Choisir —</option>";
+    foreach ($items as $i) {
+        // Utilise le vrai type de l'ingrédient
+        $type_col = 'type_' . $name; // ex: type_fourrage
+        $img_col = 'img_' . $name;
+        $name_col = 'name_' . $name;
+        $id_col = 'id_' . $name;
+
+        echo "<option value='{$i[$id_col]}' data-img='{$i[$img_col]}' data-type='{$i[$type_col]}'>
+            {$i[$name_col]}
+        </option>";
+    }
+    echo "</select>";
+}
+
+
+
 
 
 
@@ -90,14 +95,10 @@ $toppings = $toppings_stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php include 'header/header.php'; ?>
 
     <div class="creer">
-        <h1>Créer / Publier un donuts</h1>
+        <h1>Créer un donuts</h1>
 
-        <?php if (!empty($success)): ?>
-            <div class="alert success"><?= htmlspecialchars($success) ?></div>
-        <?php endif; ?>
-
-        <?php if (!empty($error)): ?>
-            <div class="alert error"><?= htmlspecialchars($error) ?></div>
+        <?php if ($error): ?>
+            <p class="error"><?= htmlspecialchars($error) ?></p>
         <?php endif; ?>
 
         <p class='connect'>
@@ -106,163 +107,79 @@ $toppings = $toppings_stmt->fetchAll(PDO::FETCH_ASSOC);
         </p>
 
 
-        <div class="img-consutructor">
-            <img src="images/constructor/donuts/beignet test.svg" alt="">
-            <img src="images/constructor/donuts/fourrage test.svg" alt="">
-            <img src="images/constructor/donuts/glaçage test.svg" alt="">
-            <img src="images/constructor/donuts/toppings test.svg" alt="">
-        </div>
-
-        <div class="img-consutructor2">
-            <img src="images/constructor/bagel/bagel test.svg" alt="">
-            <img src="images/constructor/bagel/bagel fourrage test.svg" alt="">
-            <img src="images/constructor/bagel/bagel glaçage test.svg" alt="">
-            <img src="images/constructor/bagel/bagel topping test.svg" alt="">
-        </div>
-
-
-
-
         <main>
             <div class="content">
 
-                <!-- Si tu veux permettre l'upload de fichiers, ajoute enctype="multipart/form-data" -->
-                <form method="POST" action="">
-                    <div class="row">
-                        <div class="input-object">
-                            <div class="label-el">
-                                <label for="sucresale">Choisir le type</label>
-                                <select name="sucresale" id="sucresale">
-                                    <option value="sucré" data-img="images/food/types/sucre.svg">Sucré</option>
-                                    <option value="salé" data-img="images/food/types/sel.svg">Salé</option>
-                                    <option value="les2" data-img="images/food/types/les2.svg">Les 2 (sucré & salé)
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="fusion">
-                                <img id="img-type" src="" alt="Type">
-                                <p>Type de donuts : <span id='name-type'>Sucré</span></p>
-                            </div>
+                <div class="img-consutructor">
+                    <img id="img-beignet" src="images/constructor/beignets/donuts.svg" alt="">
+                    <img id="img-fourrage" src="" alt="">
+                    <img id="img-glacage" src="" alt="">
+                    <img id="img-topping" src="" alt="">
+                </div>
+
+
+
+
+
+                <!-- FORM -->
+                <form method="POST" id="form-compo">
+
+                    <p>Créé ta composition de donuts ou de bagel avec les ingrédients proposés.</p>
+
+                    <div class="beignet-switch">
+                        <div>
+                            <label for="donuts">Donuts (sucré)</label>
+                            <input id="donuts" type="radio" name="beignet" value="1" checked
+                                data-img="images/constructor/beignets/donuts.svg">
                         </div>
-                        <div class="input-object">
-                            <div class="label-el">
-                                <label for="beignet">Choisir un beignet</label>
-                                <select name="beignet" id="beignet">
-
-                                    <?php foreach ($beignets as $b): ?>
-                                        <option value="<?= (int) $b['id'] ?>" data-img="<?= htmlspecialchars($b['img']) ?>"
-                                            <?= (isset($_POST['beignet']) && $_POST['beignet'] == $b['id']) ? 'selected' : '' ?>>
-                                            <?= htmlspecialchars($b['label']) ?>
-                                        </option>
-                                    <?php endforeach; ?>
-
-                                </select>
-                            </div>
-                            <div class="fusion">
-                                <img id="img-beignet" src="images/food/beignets/nature.svg" alt="Beignet">
-                                <p>Beignet : <span id='name-beignet'>Pas séléctionné</span></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="input-object">
-                            <div class="label-el">
-                                <label for="fourrage">Choisir un fourrage</label>
-                                <select name="fourrage" id="fourrage">
-                                    <option value="">Séléctionne un fourrage</option>
-                                    <?php foreach ($fourrages as $f): ?>
-                                        <option value="<?= (int) $f['id'] ?>" data-img="<?= htmlspecialchars($f['img']) ?>"
-                                            <?= (isset($_POST['fourrage']) && $_POST['fourrage'] == $f['id']) ? 'selected' : '' ?>>
-                                            <?= htmlspecialchars($f['label']) ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="fusion">
-                                <img id="img-fourrage" src="images/food/fourrage/chocolat.svg" alt="Fourrage">
-                                <p>Fourrage : <span id='name-fourrage'>Pas séléctionné</span></p>
-                            </div>
-                        </div>
-                        <div class="input-object">
-                            <div class="label-el">
-                                <label for="glacage">Choisir un glaçage</label>
-                                <select name="glacage" id="glacage">
-                                    <option value="">Séléctionne un glaçage</option>
-                                    <?php foreach ($glacages as $g): ?>
-                                        <option value="<?= (int) $g['id'] ?>" data-img="<?= htmlspecialchars($g['img']) ?>"
-                                            <?= (isset($_POST['glacage']) && $_POST['glacage'] == $g['id']) ? 'selected' : '' ?>>
-                                            <?= htmlspecialchars($g['label']) ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="fusion">
-                                <img class='imgbig' id="img-glacage" src="images/food/glacages/chocolat.svg"
-                                    alt="Glacage">
-                                <p>Glaçage : <span id='name-glacage'>Pas séléctionné</span></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-
-                        <div class="input-object">
-                            <div class="label-el">
-                                <label for="topping">Choisir un topping</label>
-                                <select name="topping" id="topping">
-                                    <option value="">Séléctionne un topping</option>
-                                    <?php foreach ($toppings as $t): ?>
-                                        <option value="<?= (int) $t['id'] ?>" data-img="<?= htmlspecialchars($t['img']) ?>"
-                                            <?= (isset($_POST['topping']) && $_POST['topping'] == $t['id']) ? 'selected' : '' ?>>
-                                            <?= htmlspecialchars($t['label']) ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-
-                            <div class="fusion">
-                                <img id="img-topping" src="images/food/topping/m&m.svg" alt="Topping">
-                                <p>Topping : <span id='name-topping'>Pas séléctionné</span></p>
-                            </div>
-                        </div>
-                        <div class="input-object">
-                            <div class="label-el">
-                                <label for="taille">Choisir une taille</label>
-                                <select name="taille" id="taille">
-                                    <option value="">Séléctionne une taille</option>
-                                    <option value="normal">Normal</option>
-                                    <option value="big">Gros</option>
-                                    <option value="mini">Mini</option>
 
 
-                                </select>
-                            </div>
+                        <div><label for="bagel">Bagel (salé)</label>
+                            <input id='bagel' type="radio" name="beignet" value="2"
+                                data-img="images/constructor/beignets/bagel.svg">
                         </div>
 
 
                     </div>
 
-                    <br><br>
-                    <label for="name">Choisir un nom</label>
-                    <input class="alone" id="name" name="name" type="text"
-                        value="<?= isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '' ?>">
 
-                    <label for="description">Décrit ton beignet</label>
-                    <textarea class="alone" id="description" name="description" type="text"
-                        value="<?= isset($_POST['description']) ? htmlspecialchars($_POST['description']) : '' ?>"></textarea>
+                    <input type="hidden" name="type_final" id="type_final" value="sucré">
 
 
+                    <!-- SELECTS -->
 
-                    <input class="btn" type="submit" value="Ajouter">
+
+                    <label for="fourrage">Fourrage</label>
+                    <?php select('fourrage', $fourrages); ?>
+                    <label for="glacage">Glaçage</label>
+                    <?php select('glacage', $glacages); ?>
+                    <label for="topping">Topping</label>
+                    <?php select('topping', $toppings); ?>
+
+                    <label for="componame">Nomme ta composition</label>
+                    <input id='componame' type="text" name="name" placeholder="Nom de la composition" required>
+
+                    <label for="compodesc">Décrit en quelques mots ta composition</label>
+                    <textarea id='compodesc' name="description" maxlength="300"
+                        placeholder="Description (50 mots max)"></textarea>
+
+
+
+                    <input class="btn" type="submit" value="Publier"></input>
+
                 </form>
             </div>
         </main>
     </div>
 
+    <script>
 
+
+    </script>
+    <script src="js/header.js"></script>
+    <script src="js/constructionDonuts.js"></script>
 </body>
-<script src="js/constructionDonuts.js"></script>
-<script src="js/header.js"></script>
+
+
 
 </html>

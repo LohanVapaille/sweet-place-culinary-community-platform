@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 10 déc. 2025 à 08:39
+-- Généré le : lun. 15 déc. 2025 à 10:46
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -41,10 +41,8 @@ CREATE TABLE IF NOT EXISTS `beignets` (
 --
 
 INSERT INTO `beignets` (`id_beignet`, `name_beignet`, `img_beignets`, `type_beignet`) VALUES
-(1, 'Beignet Simple', 'images/food/beignets/nature.svg', 'les2'),
-(2, 'Beignet Plein', 'images/food/beignets/plein.svg', 'les2'),
-(3, 'Beignet végan', 'images/food/beignets/vegan.svg', 'les2'),
-(4, 'Beignet sans Gluten', 'images/food/beignets/sans-gluten.svg', 'les2');
+(1, 'Donuts', 'images/food/beignets/nature.svg', 'sucré'),
+(2, 'Bagel', 'images/food/beignets/plein.svg', 'salé');
 
 -- --------------------------------------------------------
 
@@ -63,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `commentaires` (
   PRIMARY KEY (`id_commentaire`),
   KEY `id_auteur` (`id_auteur`),
   KEY `id_donuts_concerné` (`id_donuts_concerné`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -99,7 +97,6 @@ INSERT INTO `compositions_donuts` (`id_composition`, `donut_name`, `id_beignet`,
 (52, 'Chocolinito', 1, 1, 1, 1, 3, 'Donuts tout choco topping M&M\'s', 'sucré'),
 (60, 'Le Durger', 2, 18, 12, 11, 3, 'Un Hambuger en donut, délicieux', 'salé'),
 (61, 'Abri\'pique', 2, 12, 21, 11, 3, 'Beignet plein fourré à l\'abricot et recouvert d\'harissa', 'sucré'),
-(64, 'le Mastodonte', 3, 23, 22, 23, 4, 'Donuts uniquement dédié aux doberman, à consommer avec modération', 'les2'),
 (72, 'Chocolat base', 2, 6, 1, 10, 15, 'Un petit beignet aux sucres', 'sucré'),
 (73, 'Abri\'pique', 2, 12, 8, 10, 15, 'Petit beignet fourré à l\'abricot', 'sucré');
 
@@ -117,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `fk_follow` (
   PRIMARY KEY (`id`),
   KEY `id_user_qui_follow` (`id_user_qui_follow`),
   KEY `id_user_suivit` (`id_user_suivit`)
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `fk_follow`
@@ -125,11 +122,12 @@ CREATE TABLE IF NOT EXISTS `fk_follow` (
 
 INSERT INTO `fk_follow` (`id`, `id_user_suivit`, `id_user_qui_follow`) VALUES
 (65, 2, 3),
-(66, 3, 2),
 (67, 4, 3),
 (68, 3, 4),
 (69, 4, 15),
-(70, 15, 3);
+(70, 15, 3),
+(71, 3, 2),
+(72, 15, 2);
 
 -- --------------------------------------------------------
 
@@ -145,36 +143,7 @@ CREATE TABLE IF NOT EXISTS `fk_like` (
   PRIMARY KEY (`id_like`),
   KEY `fk_compo1` (`id_compositions_donuts`),
   KEY `fk_users` (`id_users`)
-) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Déchargement des données de la table `fk_like`
---
-
-INSERT INTO `fk_like` (`id_like`, `id_compositions_donuts`, `id_users`) VALUES
-(54, 51, 3),
-(55, 52, 3),
-(57, 60, 3),
-(59, 61, 3),
-(60, 64, 3),
-(62, 64, 4),
-(63, 52, 4),
-(64, 60, 4),
-(66, 51, 4),
-(67, 61, 4),
-(72, 51, 5),
-(73, 60, 5),
-(74, 52, 5),
-(77, 64, 5),
-(78, 61, 5),
-(85, 60, 2),
-(89, 64, 2),
-(90, 61, 2),
-(94, 51, 2),
-(100, 72, 15),
-(101, 72, 3),
-(102, 73, 15),
-(105, 64, 15);
+) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -192,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `fk_like_base` (
   KEY `id_donuts_de_base` (`id_donuts_de_base`),
   KEY `id_users` (`id_users`),
   KEY `idx_base` (`id_donuts_de_base`,`id_users`)
-) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `fk_like_base`
@@ -257,7 +226,9 @@ INSERT INTO `fk_like_base` (`id_like`, `id_donuts_de_base`, `id_users`, `created
 (79, 27, 15, '2025-12-09 10:16:21'),
 (80, 43, 2, '2025-12-10 07:36:02'),
 (81, 31, 2, '2025-12-10 08:18:38'),
-(82, 17, 2, '2025-12-10 08:18:40');
+(82, 17, 2, '2025-12-10 08:18:40'),
+(83, 39, 2, '2025-12-12 16:17:56'),
+(84, 35, 3, '2025-12-14 10:38:21');
 
 -- --------------------------------------------------------
 
@@ -379,8 +350,8 @@ INSERT INTO `glacages` (`id_glacage`, `name_glacage`, `img_glacage`, `type_glaca
 (16, 'Miel', 'images/food/glacages/miel.svg', 'salé'),
 (17, 'Tomate', 'images/food/glacages/tomate.svg', 'salé'),
 (18, 'Sauce Curry', 'images/food/glacages/curry.svg', 'salé'),
-(19, 'Sauce Yopi', 'images/food/glacages/yopi.svg', 'les2'),
-(20, 'Sauce Nuoc-Mam', 'images/food/glacages/nuoc nam.svg', 'les2'),
+(19, 'Sauce Yopi', 'images/food/glacages/yopi.svg', 'salé'),
+(20, 'Sauce Nuoc-Mam', 'images/food/glacages/nuoc nam.svg', 'salé'),
 (21, 'Harissa', 'images/food/glacages/harissa.svg', 'salé'),
 (22, 'Soskipik', 'images/food/glacages/soskipik.svg', 'salé'),
 (23, 'Pesto', 'images/food/glacages/pesto.svg', 'salé');

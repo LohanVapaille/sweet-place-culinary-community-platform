@@ -1,66 +1,79 @@
-
 document.addEventListener("DOMContentLoaded", function () {
+    const selects = {
+        fourrage: document.getElementById('fourrage'),
+        glacage: document.getElementById('glacage'),
+        topping: document.getElementById('topping')
+    };
 
-    // couple selectId -> imgId
-    const pairs = [
-        { selectId: "beignet", imgId: "img-beignet" },
-        { selectId: "fourrage", imgId: "img-fourrage" },
-        { selectId: "glacage", imgId: "img-glacage" },
-        { selectId: "topping", imgId: "img-topping" },
-        { selectId: "sucresale", imgId: "img-type" }
-    ];
-
-    pairs.forEach(pair => {
-        const sel = document.getElementById(pair.selectId);
-        const img = document.getElementById(pair.imgId);
-        if (!sel || !img) return;
-
-        const defaultSrc = img.src || "";
-
-        function updateFromSelect() {
-            const opt = sel.options[sel.selectedIndex];
-            // priorité : data-img sur l'option
-            const dataImg = opt && opt.dataset && opt.dataset.img ? opt.dataset.img.trim() : "";
-            if (dataImg) {
-                img.src = dataImg;
-                img.alt = opt.text || sel.value;
-                return;
-            }
-            // sinon : fallback au src par défaut
-            img.src = defaultSrc;
-            img.alt = sel.value || img.alt;
-        }
-
-        sel.addEventListener("change", updateFromSelect);
-        // initialise l'image correctement au chargement (utile si POST repopule le select)
-        updateFromSelect();
-    });
-
-    function updateText(selectId, spanId, defaultText = "Pas sélectionné") {
-        const select = document.getElementById(selectId);
-        const span = document.getElementById(spanId);
-
-        function refresh() {
-            const selectedOption = select.options[select.selectedIndex];
-            span.textContent = selectedOption.value
-                ? selectedOption.textContent
-                : defaultText;
-        }
-
-        // Mise à jour au chargement
-        refresh();
-
-        // Mise à jour au changement
-        select.addEventListener("change", refresh);
+    const options = {};
+    for (const key in selects) {
+        options[key] = Array.from(selects[key].options).map(opt => ({
+            value: opt.value,
+            text: opt.text,
+            type: opt.dataset.type, // sucré ou salé
+            img: opt.dataset.img
+        }));
     }
 
-    // Liaisons
-    updateText("sucresale", "name-type");
-    updateText("beignet", "name-beignet");
-    updateText("fourrage", "name-fourrage");
-    updateText("glacage", "name-glacage");
-    updateText("topping", "name-topping");
+    function filterSelects(type) {
+        for (const key in selects) {
+            const select = selects[key];
+            select.innerHTML = '';
+            const defaultOpt = document.createElement('option');
+            defaultOpt.value = '';
+            defaultOpt.textContent = '— Choisir —';
+            select.appendChild(defaultOpt);
 
+            options[key].forEach(opt => {
+                if (!opt.type || opt.type === type) {
+                    const optionEl = document.createElement('option');
+                    optionEl.value = opt.value;
+                    optionEl.textContent = opt.text;
+                    optionEl.dataset.type = opt.type;
+                    optionEl.dataset.img = opt.img;
+                    select.appendChild(optionEl);
+                }
+            });
+        }
+    }
 
+    // Radios pour le beignet (donuts / bagel) => type sucré / salé
+    const beignetRadios = document.querySelectorAll('input[name="beignet"]');
+    const imgBeignet = document.getElementById('img-beignet');
+
+    function updateBeignetImgAndType() {
+        const checked = document.querySelector('input[name="beignet"]:checked');
+        if (!checked) return;
+
+        // mettre à jour l'image
+        imgBeignet.src = checked.dataset.img;
+
+        // déterminer le type pour filtrer les selects
+        const type = (checked.value === '1') ? 'sucré' : 'salé';
+        document.getElementById('type_final').value = type;
+        filterSelects(type);
+    }
+
+    beignetRadios.forEach(radio => {
+        radio.addEventListener('change', updateBeignetImgAndType);
+    });
+
+    // Filtrage initial
+    updateBeignetImgAndType();
+
+    // Gestion images pour selects
+    Object.keys(selects).forEach(key => {
+        const select = selects[key];
+        const imgId = 'img-' + key;
+        const img = document.getElementById(imgId);
+        const defaultSrc = img.src;
+
+        function updateImg() {
+            const opt = select.options[select.selectedIndex];
+            img.src = (opt && opt.dataset.img) ? opt.dataset.img : defaultSrc;
+        }
+
+        select.addEventListener('change', updateImg);
+        updateImg();
+    });
 });
-

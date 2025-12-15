@@ -2,7 +2,7 @@
   --mainfont: "Modak", system-ui;
   --textfont: "Mada", sans-serif;
   --maincolor: #f8f2f1;
-  --textcolor: #660505;
+  --textcolor: #4e3626;
 }
 
 *,
@@ -21,7 +21,7 @@ body {
 h1,
 h2 {
   font-family: var(--mainfont);
-  color: var(--textcolor);
+  color: #4e3626;
   font-weight: 400;
   margin: 0;
   font-size: 3rem;
@@ -47,7 +47,7 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: whitesmoke;
+
   /* background-image: url('../images/design/donuts.webp');
     background-repeat: no-repeat;
     background-size: cover; */
@@ -61,9 +61,6 @@ p {
   font-family: var(--textfont);
   width: 90%;
   height: 90%;
-  border: 2px solid var(--textcolor);
-  border-radius: 26px;
-  color: var(--textcolor);
 }
 
 .slogan {
