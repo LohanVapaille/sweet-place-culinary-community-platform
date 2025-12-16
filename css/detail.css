@@ -106,18 +106,33 @@ h1 {
   display: flex;
   align-items: center;
 
-  gap: 10%;
+  gap: 20px;
 }
 
 .nblike {
   padding: 8px 15px;
-  border-radius: 20px;
+  border-radius: 7px;
   margin-top: 20px;
   background-color: var(--brown);
   border: 3px solid transparent;
   font-size: 1rem;
   color: white;
   margin-bottom: 15px;
+}
+
+.back {
+  background-color: var(--whiterose);
+  border: var(--brown) 2px solid;
+  color: var(--brown);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.back:hover {
+  border: var(--rose) 2px solid;
+  background-color: var(--whiterose);
+  color: var(--rose);
 }
 
 .addcomment-container {

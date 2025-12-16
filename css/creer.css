@@ -13,7 +13,6 @@
 }
 
 main {
-  background-color: var(--maincolor);
   width: 100%;
 }
 h1 {
@@ -87,17 +86,17 @@ label {
   -webkit-appearance: none;
   -moz-appearance: none;
 
-  background-color: var(--textcolor); /* ton fond blanc */
-  color: rgb(255, 255, 255); /* ou la couleur de ton texte */
+  background-color: var(--maincolor); /* ton fond blanc */
+  color: #4e3626; /* ou la couleur de ton texte */
   padding: 10px 40px 10px 15px; /* espace pour la nouvelle flèche */
   border-radius: 20px;
   font-family: var(--textfont);
   font-size: 1.2rem;
-  font-weight: 100;
+  font-weight: 400;
   width: 300px;
 
   /* Chevron blanc personnalisé */
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><polygon points='0,0 14,0 7,8' fill='white'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><polygon points='0,0 14,0 7,8' fill='black'/></svg>");
 
   background-repeat: no-repeat;
   background-position: right 12px center;

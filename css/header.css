@@ -1,214 +1,175 @@
 :root {
   --mainfont: "Modak", system-ui;
   --textfont: "Mada", sans-serif;
+  --white: #f1f8f5;
+  --whiterose: #faf4f0;
+  --brown: #4e3626;
+  --green: #089b65;
+  --rose: #ff9298;
 }
-header {
+/* STRUCTURE */
+.header {
+  position: relative;
+  height: 150px;
   display: flex;
-
-  margin: 0;
-  font-family: var(--textfont);
-  height: 110px;
-  font-size: 1.5rem;
-  color: #089b65;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-header i {
-  font-size: 2rem;
+  align-items: center;
 }
 
-.rose {
-  color: #ff9298;
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
-header p {
-  font-size: 3.5rem;
+
+.logo-container {
+  height: 100%;
+  padding-right: 50px;
+  padding: 20px 40px;
+}
+
+.logo {
+  font-size: 3rem;
+  color: var(--green);
+  cursor: pointer;
   font-family: var(--mainfont);
 }
-.desk {
+
+/* ===== MEGA MENU ===== */
+.mega-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-}
-header .desk ul {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 40px;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin: 0;
-  padding: 0px;
-  width: 100%;
-}
-.logo {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
+  background: var(--white);
+  padding: 20px;
+  display: none;
+  border-top: var(--green) solid 2px;
   z-index: 10;
-} /* OVERLAY NOIR */
-.gta-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.9);
+}
+
+.mega-menu ul {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  list-style: none;
+}
+
+.mega-menu a {
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #000;
+}
+
+.donut-wrapper {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.donut {
+  height: 100%;
+  cursor: pointer;
+}
+
+.donut-hover-zone {
+  position: relative;
+  width: 220px; /* englobe icônes + donut */
+  height: 150px; /* égal au header */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  margin-right: 50px;
+}
+
+.donut-icons {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-110%, -50%);
+  width: 120px;
+  height: 130px; /* IMPORTANT : < 150px */
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.2s;
+}
+
+.donut-icons a {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 999;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-} /* ACTIF */
-.gta-overlay.active {
+  color: white;
+  font-size: 18px;
+  pointer-events: auto;
+}
+
+/* Haut gauche */
+.donut-icons a:nth-child(1) {
+  top: -2;
+  right: -20px;
+  background: var(--green);
+}
+
+/* Milieu haut gauche */
+.donut-icons a:nth-child(2) {
+  top: 50px;
+  right: 20px;
+  background: var(--brown);
+}
+
+/* bas bas gauche */
+.donut-icons a:nth-child(3) {
+  top: 96px;
+  right: -20px;
+  background: var(--rose);
+}
+
+/* DROITE */
+.right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.login {
+  font-weight: bold;
+  text-decoration: none;
+}
+.donut-hover-zone:hover .donut-icons {
   opacity: 1;
   pointer-events: auto;
-} /* CROIX */
-.gta-close {
-  position: absolute;
-  top: 30px;
-  right: 40px;
-  font-size: 3rem;
-  color: white;
-  cursor: pointer;
-} /* MENU CIRCULAIRE */
-.gta-radial {
+}
+
+.rose {
+  color: var(--rose);
+}
+
+.mega-menu ul li a {
   position: relative;
-  width: 600px;
-  height: 600px;
-  transform: scale(0);
-  transition: transform 0.5s ease;
-} /* SCALE À L’OUVERTURE */
-.gta-overlay.active .gta-radial {
-  transform: scale(1);
-} /* SVG CERCLE (BASE DONUT) */
-.gta-radial svg {
-  width: 100%;
-  height: 100%;
-  transform: rotate(-90deg);
+  padding-bottom: 6px;
 }
-.gta-radial circle {
-  fill: none;
-  stroke: white;
-  stroke-width: 2;
-  stroke-dasharray: 282;
-  stroke-dashoffset: 282;
-  transition: stroke-dashoffset 0.6s ease;
-}
-.gta-overlay.active circle {
-  stroke-dashoffset: 0;
-} /* LIENS */
-.gta-radial a {
+
+/* la barre */
+.mega-menu ul li a::after {
+  content: "";
   position: absolute;
-  color: white;
-  font-family: var(--textfont);
-  text-decoration: none;
-  opacity: 0;
-  transition: opacity 0.3s ease 0.4s;
-} /* LIENS VISIBLES */
-.gta-overlay.active a {
-  opacity: 1;
-} /* POSITIONS GTA */
-.gta-radial a:nth-child(2) {
-  top: 0;
   left: 50%;
-  transform: translateX(-50%);
-}
-.gta-radial a:nth-child(3) {
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.gta-radial a:nth-child(4) {
   bottom: 0;
-  left: 50%;
+  width: 0;
+  height: 3px;
+  background: var(--green);
+  transition: 0.3s ease;
   transform: translateX(-50%);
+  border-radius: 2px;
 }
-.gta-radial a:nth-child(5) {
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.donut-svg {
+
+/* hover */
+.mega-menu ul li a:hover::after {
   width: 100%;
-  height: 100%;
-  filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.7));
-}
-
-.donut-text text {
-  fill: rgb(0, 0, 0);
-  font-family: var(--textfont);
-  font-size: 14px;
-  text-anchor: middle;
-  dominant-baseline: middle;
-  pointer-events: none;
-  letter-spacing: 0.5px;
-}
-
-.segment {
-  fill: #fc6;
-  stroke: #000;
-  stroke-width: 4;
-  cursor: pointer;
-  transition: transform 0.25s ease, fill 0.25s ease;
-  transform-origin: 50% 50%;
-}
-
-.segment:hover {
-  fill: #ffdd88;
-  transform: scale(1.05);
-}
-
-header .desk ul {
-  padding: 0px;
-}
-header li {
-  list-style: none;
-}
-header .desk ul a {
-  text-decoration: none;
-  color: var(--textcolor);
-}
-header .desk ul a:hover {
-  text-decoration: underline;
-}
-header .menubg {
-  display: none;
-}
-header .phone {
-  display: none;
-}
-@media (max-width: 1050px) {
-  header .desk {
-    display: none;
-  }
-  header .phone {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
-    top: 110px;
-    right: 0px;
-    z-index: 10;
-    background-color: whitesmoke;
-  }
-  .phone ul {
-    padding: 0px;
-    text-align: center;
-  }
-  header .menubg {
-    display: block;
-    font-size: 3rem;
-  }
-  header {
-    align-items: center;
-    justify-content: right;
-  }
-  .phone a {
-    width: 100%;
-    display: block;
-    padding: 20px;
-    color: var(--textcolor);
-    text-decoration: none;
-  }
 }

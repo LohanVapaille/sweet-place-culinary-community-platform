@@ -151,7 +151,9 @@ if ($info['type'] === 'composition' && $comp['composition_type'] === 'sucré') {
                 <div class=" base-compo-container">
 
                     <div class="top">
+                        <a class="btn back" href="parcourir.php"> <i class='bx bx-arrow-back'></i>Retour</a>
                         <p class=" nblike"><?php echo $nb_like; ?> autres personnes ont likés ce produits</p>
+
                         <a href="addpanier?id=<?php echo $comp['id_composition'] ?>" class="btn">Ajouter au panier</a>
                     </div>
                     <h2>

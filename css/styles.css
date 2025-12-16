@@ -280,6 +280,10 @@ h3 {
   width: 150px;
 }
 
+.brown {
+  color: var(--brown);
+}
+
 .rienpourlemoment {
   margin: auto;
   margin-top: 20px;

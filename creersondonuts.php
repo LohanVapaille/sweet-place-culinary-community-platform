@@ -99,7 +99,7 @@ function select($name, $items)
     <?php include 'header/header.php'; ?>
 
     <div class="creer">
-        <h1>Créer un donuts</h1>
+        <h1 class="brown">Créer un donuts</h1>
 
         <?php if ($error): ?>
             <p class="error"><?= htmlspecialchars($error) ?></p>
