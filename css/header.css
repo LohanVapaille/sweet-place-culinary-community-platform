@@ -1,37 +1,41 @@
 :root {
   --mainfont: "Modak", system-ui;
   --textfont: "Mada", sans-serif;
-  --maincolor: #f8f2f1;
-  --textcolor: #660505;
 }
 header {
   display: flex;
-  background-color: var(--maincolor);
+
   margin: 0;
-  font-family: var(--mainfont);
+  font-family: var(--textfont);
   height: 110px;
   font-size: 1.5rem;
-  color: var(--textcolor);
+  color: #089b65;
   padding-left: 20px;
   padding-right: 20px;
 }
 header i {
   font-size: 2rem;
 }
+
+.rose {
+  color: #ff9298;
+}
 header p {
   font-size: 3.5rem;
+  font-family: var(--mainfont);
 }
 .desk {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   position: relative;
 }
 header .desk ul {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
+  gap: 40px;
   margin-left: 20px;
   margin-right: 20px;
   margin: 0;

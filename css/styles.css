@@ -1,8 +1,11 @@
 :root {
   --mainfont: "Modak", system-ui;
   --textfont: "Mada", sans-serif;
-  --maincolor: #f8f2f1;
-  --textcolor: #4e3626;
+  --white: #f1f8f5;
+  --whiterose: #faf4f0;
+  --brown: #4e3626;
+  --green: #089b65;
+  --rose: #ff9298;
 }
 
 *,
@@ -14,17 +17,22 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--maincolor);
+  background-color: var(--white);
   font-family: var(--textfont);
 }
 
 h1,
 h2 {
-  font-family: var(--mainfont);
-  color: #4e3626;
-  font-weight: 400;
+  font-family: var(--textfont);
+  color: var(--whiterose);
+  font-weight: 800;
   margin: 0;
   font-size: 3rem;
+}
+
+h2 {
+  color: #4e3626;
+  font-weight: 400;
 }
 
 p {
@@ -33,7 +41,7 @@ p {
 
 .creator {
   text-decoration: none;
-  color: #660505;
+  color: var(--textcolor);
 }
 
 .creator:hover {
@@ -47,10 +55,22 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative; /* 🔴 essentiel */
+  overflow: hidden; /* 🔴 empêche tout débordement */
+  background-image: url("../images/design/donutsetbagel.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
 
-  /* background-image: url('../images/design/donuts.webp');
-    background-repeat: no-repeat;
-    background-size: cover; */
+.welcome::before {
+  content: "";
+  position: absolute;
+  height: auto;
+
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5); /* intensité du film noir */
+  z-index: 0;
 }
 
 .welcome .content {
@@ -61,6 +81,8 @@ p {
   font-family: var(--textfont);
   width: 90%;
   height: 90%;
+  color: var(--whiterose);
+  z-index: 2;
 }
 
 .slogan {
@@ -72,8 +94,10 @@ p {
 .btncta {
   text-decoration: none;
   color: white;
-  background-color: var(--textcolor);
+  background-color: var(--green);
+  letter-spacing: 1px;
   font-family: var(--mainfont);
+  font-weight: 100;
   font-size: 1.5rem;
   padding: 8px 15px;
   border: 3px solid transparent; /* <-- ajoute ceci */
@@ -85,9 +109,8 @@ p {
 
 .btncta:hover,
 .btn:hover {
-  background-color: white;
-  border-color: var(--textcolor); /* <-- change seulement la couleur */
-  color: var(--textcolor);
+  background-color: var(--rose);
+  color: var(--white);
   cursor: pointer;
 }
 
@@ -104,14 +127,18 @@ p {
   padding: 20px;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
 }
 
+.green {
+  color: var(--green);
+}
 h2 {
   margin: auto;
 }
-
 h3 {
-  font-family: var(--mainfont);
+  font-family: var(--textfont);
   font-weight: 400;
   color: var(--textcolor);
   font-size: 2rem;
@@ -122,13 +149,23 @@ h3 {
   width: 100%;
 }
 
+.note {
+  background-color: var(--brown);
+  border-radius: 20px;
+  color: var(--whiterose);
+  padding: 10px;
+}
+
 .cards-container {
+  border-top: var(--rose) 2px solid;
+  padding-top: 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 40px;
   align-items: stretch; /* étire les enfants */
   width: min(100%, 990px);
   margin: 0 auto;
+  padding: 20px;
 }
 
 .cards-container.single-item {
@@ -139,14 +176,6 @@ h3 {
 .cards-container.single-item > .onecard-container {
   grid-column: 1 / 2;
   width: 100%;
-}
-
-.nosdonuts {
-  background-color: whitesmoke;
-}
-
-.nosdonuts .card {
-  border-color: var(--textcolor);
 }
 
 .card {
@@ -171,17 +200,84 @@ h3 {
   height: 100%;
 }
 
-.userdonuts {
-  padding-bottom: 55px;
+.userdonuts,
+.sweetplacedonuts {
   border-radius: 13px 13px 0px 0px;
   border-top: 2px solid #ccc;
   border-right: 2px solid #ccc;
   border-left: 2px solid #ccc;
 }
 
-.onecard-container:hover,
+.userdonuts:hover,
 .sweetplacedonuts:hover {
+  cursor: pointer;
+}
+
+.prix {
+  color: var(--rose);
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.onecard-container:hover {
   transform: translateY(-5px);
+}
+
+.card .top {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.top div {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.card .content {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  height: 100px;
+  align-items: center;
+}
+
+.card .img-container,
+.card .info {
+  height: 100px;
+}
+
+.img-container {
+  position: relative;
+  width: 35%;
+}
+.card .img-container img {
+  position: absolute;
+  top: 0px;
+  width: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.card .info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 65%;
+}
+.content .info p {
+  background-color: var(--whiterose);
+  border: var(--rose) 1px solid;
+  padding: 10px;
+  border-radius: 20px;
+  font-weight: 800;
+}
+
+.card img {
+  width: 150px;
 }
 
 .rienpourlemoment {
@@ -189,36 +285,6 @@ h3 {
   margin-top: 20px;
 }
 
-.laterale-barre {
-  position: absolute;
-  bottom: 0px;
-  width: 100%;
-
-  height: 50px;
-  background-color: var(--maincolor);
-  display: flex;
-
-  justify-content: space-around;
-  align-items: center;
-  padding: 5px;
-}
-
-.laterale-barre img {
-  width: 40px;
-  height: 100%;
-  opacity: 0.8;
-}
-
-.laterale-barre .imgbig {
-  object-fit: cover; /* remplit le cadre sans déformer */
-  object-position: auto; /* zoom centré */
-  transform: scale(4); /* facteur de zoom (augmente si besoin) */
-  transform-origin: center;
-  padding-right: 10px;
-  padding-top: 3px;
-}
-
-.card .content,
 .card .addcart,
 .interaction {
   display: flex;
@@ -235,10 +301,6 @@ h3 {
   border-bottom: 2px solid #ccc;
   border-right: 2px solid #ccc;
   border-radius: 0px 0px 13px 13px;
-}
-
-.card .content .desc-donuts {
-  width: 100%;
 }
 
 .card a {
@@ -280,27 +342,14 @@ h3 {
   color: var(--textcolor);
 }
 
-.content img {
-  width: 120px;
-  z-index: 1;
-}
-
 .interaction a {
   z-index: 20;
-}
-
-.sweetplacedonuts {
-  border: solid 2px var(--textcolor);
-}
-.sweetplacedonuts .content p {
-  width: 60%;
-  text-align: left;
 }
 
 .btn {
   text-decoration: none;
   color: white;
-  background-color: var(--textcolor);
+  background-color: var(--green);
   font-size: 1rem;
   padding: 8px 15px;
   border: 3px solid transparent; /* <-- ajoute ceci */
@@ -321,6 +370,14 @@ h3 {
 
   .welcome {
     text-align: center;
+  }
+
+  .cards-container {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+
+  .content .info p {
+    font-size: 0.7rem;
   }
 }
 

@@ -89,8 +89,8 @@ function getCompoByUser(PDO $pdo, int $creatorId, int $currentUser = 0, int $lim
         SELECT
         c.id_composition,
         c.donut_name,
-        NULL AS image,
         c.description,
+        c.prix,
         c.id_createur,
         u.login,
         c.id_beignet,

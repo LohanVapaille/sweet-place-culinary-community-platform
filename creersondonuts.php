@@ -14,7 +14,11 @@ $success = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $type = $_POST['type'] ?? 'sucré'; // donut par défaut
+    // Par
+    $type = 'sucré'; // valeur par défaut
+    if (isset($_POST['beignet'])) {
+        $type = ($_POST['beignet'] == '1') ? 'sucré' : 'salé';
+    }
     $name = trim($_POST['name'] ?? '');
     $description = trim($_POST['description'] ?? '');
 
@@ -59,7 +63,7 @@ $toppings = $pdo->query("SELECT * FROM topping")->fetchAll(PDO::FETCH_ASSOC);
 function select($name, $items)
 {
     echo "<select name='$name' id='$name'>";
-    echo "<option value=''>— Choisir —</option>";
+
     foreach ($items as $i) {
         // Utilise le vrai type de l'ingrédient
         $type_col = 'type_' . $name; // ex: type_fourrage

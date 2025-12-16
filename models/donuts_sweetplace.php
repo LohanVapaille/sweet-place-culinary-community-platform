@@ -7,6 +7,7 @@ function getDonutsSweetplace(PDO $pdo, int $userId = 0, int $limit = 0, bool $ra
                d.img,
                d.imgAlt,
                d.description,
+               d.prix,
                COALESCE(l.likes, 0) AS likes,
                EXISTS(
                  SELECT 1 FROM fk_like_base f

@@ -13,14 +13,34 @@ if (isset($_SESSION['id'])) {
 }
 ?>
 
-<header>
-  <nav class="desk">
+<!-- <nav class="desk">
     <p class="logo">SWEETPLACE.</p>
     <ul>
       <li><a href="index.php">Accueil</a></li>
       <li><a href="donuts_sweetplace.php">Donuts Sweet Place</a></li>
       <li><a href="parcourir.php">Parcourir les créateurs</a></li>
       <li><a href="creersondonuts.php">Créer mon donuts</a></li>
+
+      <?php if (isset($_SESSION['id'])): ?>
+        <li>
+          <a href="panier.php?id=<?php echo $_SESSION['id']; ?>">
+            <i class="bx bxs-cart"></i>
+            <span id="cart-count"><?php echo $cartCount; ?></span>
+          </a>
+        </li>
+        <li><a href="profil.php?id=<?php echo $_SESSION['id']; ?>"><i class="bx bxs-user-circle"></i></a></li>
+        <li><a href="logout.php"><i class="bx bx-log-out"></i></a></li>
+      <?php else: ?>
+        <li><a href="connexion.php">Se connecter</a></li>
+      <?php endif; ?>
+    </ul>
+
+  </nav> -->
+
+<header>
+  <nav class="desk">
+    <p tabindex="0" class="logo">SW<span class="rose">E</span>ETPLA<span class="rose">C</span>E.</p>
+    <ul>
 
       <?php if (isset($_SESSION['id'])): ?>
         <li>
@@ -154,6 +174,18 @@ if (isset($_SESSION['id'])) {
       </svg>
   </div>
 </div>
+
+<script>
+  document.querySelectorAll('.segment').forEach(segment => {
+    segment.addEventListener('click', () => {
+      const link = segment.dataset.link;
+      if (link) {
+        window.location.href = link;
+      }
+    });
+  });
+</script>
+
 
 <script>
   const logo = document.querySelector('.logo');

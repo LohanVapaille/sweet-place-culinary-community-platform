@@ -1,18 +1,35 @@
+:root {
+  --mainfont: "Modak", system-ui;
+  --textfont: "Mada", sans-serif;
+  --white: #f1f8f5;
+  --whiterose: #faf4f0;
+  --brown: #4e3626;
+  --green: #089b65;
+  --rose: #ff9298;
+}
+
 .banner {
   height: 300px;
   background-repeat: no-repeat;
-  background-image: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0) 40%,
-      rgba(245, 245, 245, 1) 100%
-    ),
-    url("https://www.marketresearchintellect.com/images/blogs/best-doughnut-brands.webp");
-
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+
+.banner::before {
+  content: "";
+  position: absolute;
+  height: auto;
+
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5); /* intensité du film noir */
+  z-index: 2;
+}
+
+.banner > * {
+  z-index: 3;
 }
 
 h1 {
@@ -20,17 +37,56 @@ h1 {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+.info {
+  display: flex;
+  gap: 10px;
+}
+
+.info p {
+  background-color: var(--whiterose);
+  border: var(--rose) 1px solid;
+  padding: 10px;
+  border-radius: 20px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.base-left {
+  position: relative;
+}
+
+.base-leftsweetplace {
+  width: 50%;
+}
+
+.img-container {
+  position: relative;
+  width: 100%;
+  height: 330px;
+}
+
+.img-container img {
+  position: absolute;
+  width: 400px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .base-content {
   background-color: whitesmoke;
   display: flex;
+  flex-direction: row-reverse;
   justify-content: center;
   align-items: center;
-  gap: 20%;
+  gap: 10%;
   padding: 60px;
 }
 
+.base-contentsweetplace {
+  flex-direction: row;
+}
+
 .base-content .base-left {
-  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,4 +100,111 @@ h1 {
 }
 .base-content .base-compo-container h2 {
   margin: 0;
+}
+
+.base-compo-container .top {
+  display: flex;
+  align-items: center;
+
+  gap: 10%;
+}
+
+.nblike {
+  padding: 8px 15px;
+  border-radius: 20px;
+  margin-top: 20px;
+  background-color: var(--brown);
+  border: 3px solid transparent;
+  font-size: 1rem;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.addcomment-container {
+  margin-top: 30px;
+}
+
+.addcomment-container textarea {
+  border: 2px solid var(--rose);
+  border-radius: 20px;
+  width: 100%;
+  font-family: var(--textfont);
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  padding: 15px;
+}
+
+.star-rating i {
+  font-size: 2rem;
+  color: var(--rose);
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.star-rating i:hover,
+.star-rating i.hovered {
+  transform: scale(1.2);
+}
+
+.commentcontainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+}
+
+.comment {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 20px; /* un peu plus large */
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.comment:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.comment-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.comment-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.bottom {
+  padding-left: 90px;
+  padding-right: 80px;
+}
+.comment-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-stars {
+  color: gold;
+  font-size: 1rem;
+  margin: 2px 0;
+}
+
+.comment-text {
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.4;
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+  .commentcontainer {
+    grid-template-columns: 1fr; /* 1 par ligne sur petit écran */
+  }
 }

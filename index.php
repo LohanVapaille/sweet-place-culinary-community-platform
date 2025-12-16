@@ -10,7 +10,7 @@ $donutsSweetplace = getDonutsSweetplace($pdo, $userId, 6, true); // 6 random
 
 $donutsUsers = getDonutsUsers($pdo, $userId, 6, true);
 
-
+// var_dump($donutsUsers);
 
 ?>
 
@@ -30,11 +30,10 @@ $donutsUsers = getDonutsUsers($pdo, $userId, 6, true);
 <body>
     <div class="welcome">
         <div class="content">
-            <h1><span class="onlydesk">BIENVENUE SUR</span> SWEET PLACE</h1>
-            <p class='slogan'>L’endroit où la douceur prend forme</p>
+            <h1>L’endroit où la douceur prend forme</h1>
+
             <a href="creersondonuts.php" class="btncta">Publie ta compo préférée</a>
-            <p class="phrase_accroche">Découvre les compositions les plus folles faites par les créateurs, tu peux aussi
-                publier les tiennes sur ton profil </p>
+
         </div>
     </div>
     <!-- <img class="degouline" src="images/design/degouline.jpg" alt=""> -->

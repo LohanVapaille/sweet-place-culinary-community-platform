@@ -45,14 +45,25 @@ document.addEventListener("DOMContentLoaded", function () {
         const checked = document.querySelector('input[name="beignet"]:checked');
         if (!checked) return;
 
-        // mettre à jour l'image
+        // mettre à jour l'image du beignet
         imgBeignet.src = checked.dataset.img;
+
+        // reset des autres images
+        document.getElementById('img-fourrage').src = '';
+        document.getElementById('img-glacage').src = '';
+        document.getElementById('img-topping').src = '';
 
         // déterminer le type pour filtrer les selects
         const type = (checked.value === '1') ? 'sucré' : 'salé';
         document.getElementById('type_final').value = type;
         filterSelects(type);
+
+        // réinitialiser les selects
+        Object.keys(selects).forEach(key => {
+            selects[key].selectedIndex = 0;
+        });
     }
+
 
     beignetRadios.forEach(radio => {
         radio.addEventListener('change', updateBeignetImgAndType);

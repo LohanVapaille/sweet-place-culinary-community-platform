@@ -1,46 +1,62 @@
-<div data-id="<?= htmlspecialchars($donut['id_composition']) ?>" class="onecard-container">
-    <div class="card userdonuts">
-        <div class="laterale-barre composition">
-            <?php if (!empty($donut['img_beignets'])): ?>
-                <img class="layer" src="<?= htmlspecialchars($donut['img_beignets'], ENT_QUOTES); ?>">
-            <?php endif; ?>
+<div class="onecard-container">
+    <div data-id="<?= htmlspecialchars($donut['id_composition']) ?>" class="card userdonuts">
 
-            <?php if (!empty($donut['img_fourrage'])): ?>
-                <img class="layer" src="<?= htmlspecialchars($donut['img_fourrage'], ENT_QUOTES); ?>">
-            <?php endif; ?>
-
-            <?php if (!empty($donut['img_glacage'])): ?>
-                <img class="layer imgbig" src="<?= htmlspecialchars($donut['img_glacage'], ENT_QUOTES); ?>">
-            <?php endif; ?>
-
-            <?php if (!empty($donut['img_topping'])): ?>
-                <img class="layer" src="<?= htmlspecialchars($donut['img_topping'], ENT_QUOTES); ?>">
-            <?php endif; ?>
-        </div>
-        <!-- Titre -->
-        <h3><?= htmlspecialchars($donut['donut_name']) ?></h3>
-
-        <div class="content">
-            <p class="desc-donuts"><?= htmlspecialchars($donut['description']) ?>
-                <br><br>Compo : <?php if (!empty($donut['name_fourrage'])): ?>
-                    <?= htmlspecialchars($donut['name_fourrage']) ?>
-                <?php endif; ?>,<?php if (!empty($donut['name_glacage'])): ?>
-                    <?= htmlspecialchars($donut['name_glacage']) ?>
-                <?php endif; ?>,<?php if (!empty($donut['name_topping'])): ?>
-                    <?= htmlspecialchars($donut['name_topping']) ?>
+        <div class="top">
+            <div>
+                <h3><?= htmlspecialchars($donut['donut_name']) ?></h3>
+                <a class="creator" href="profil.php?id=<?= (int) $donut['id_user'] ?>">
+                    Par <span class='green'><?= htmlspecialchars($donut['login'] ?? '', ENT_QUOTES) ?></span>
+                </a>
+            </div>
+            <p class="note"><i class='bx bx-star'></i>
+                <?php if (!empty($donut['note_moyenne'])): ?>
+                    <?= $donut['note_moyenne'] ?> / 5
+                <?php else: ?>
+                    0 avis
                 <?php endif; ?>
             </p>
 
         </div>
 
-        <div class="addcart">
 
 
-            <a href="details_donuts.php?id=<?= $donut['id_composition'] ?>" class=" know-more  btn">
-                En savoir plus
-            </a>
+        <div class="content">
+            <div class="img-container">
+                <img src="./<?= $donut['img_beignets'] ?>" alt="">
+
+                <?php if (!empty($donut['img_fourrage'])): ?>
+                    <img src="./<?= $donut['img_fourrage'] ?>" alt="">
+                <?php endif; ?>
+
+                <?php if (!empty($donut['img_glacage'])): ?>
+                    <img src="./<?= $donut['img_glacage'] ?>" alt="">
+                <?php endif; ?>
+
+                <?php if (!empty($donut['img_topping'])): ?>
+                    <img src="./<?= $donut['img_topping'] ?>" alt="">
+                <?php endif; ?>
+            </div>
+
+            <div class="info">
+                <p><?php if (!empty($donut['name_fourrage'])): ?>
+                        <?= $donut['name_fourrage'] ?>
+                    <?php endif; ?>
+                </p>
+
+                <p><?php if (!empty($donut['name_glacage'])): ?>
+                        <?= $donut['name_glacage'] ?>
+                    <?php endif; ?>
+                </p>
+
+                <p><?php if (!empty($donut['name_topping'])): ?>
+                        <?= $donut['name_topping'] ?>
+                    <?php endif; ?>
+                </p>
+            </div>
+
 
         </div>
+
 
 
 
@@ -62,8 +78,21 @@
             </a>
         </div>
 
-        <a class="creator" href="profil.php?id=<?= (int) $donut['id_user'] ?>">
-            par <?= htmlspecialchars($donut['login'] ?? '', ENT_QUOTES) ?>
-        </a>
+        <p class="prix"><?= $donut['prix'] ?>€</p>
+
+
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.userdonuts').forEach(card => {
+            card.addEventListener('click', () => {
+                const id = card.dataset.id;
+                if (id) {
+                    window.location.href = `details_donuts.php?id=${id}`;
+                }
+            });
+        });
+    });
+</script>

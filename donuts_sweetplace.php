@@ -32,7 +32,7 @@ $donuts = getDonutsSweetplace($pdo, $userId); // TOUS LES DONUTS
 
         </div>
     </div>
-    <img class="degouline " src="images/design/degouline.jpg" alt="">
+
 
     <div class="tendances">
         <div class="cards-container">
