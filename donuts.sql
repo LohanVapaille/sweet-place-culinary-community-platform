@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 16 déc. 2025 à 11:15
+-- Généré le : mar. 16 déc. 2025 à 15:53
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -61,14 +61,14 @@ CREATE TABLE IF NOT EXISTS `commentaires` (
   PRIMARY KEY (`id_commentaire`),
   KEY `id_auteur` (`id_auteur`),
   KEY `id_donuts_concerné` (`id_donuts_concerné`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `commentaires`
 --
 
 INSERT INTO `commentaires` (`id_commentaire`, `text-comment`, `note`, `date`, `id_donuts_concerné`, `id_auteur`) VALUES
-(8, 'Gout délicieux', 4, 1765834150, 60, 2);
+(13, 'Délicieux, très beau également !', 5, 1765899724, 79, 3);
 
 -- --------------------------------------------------------
 
@@ -94,20 +94,16 @@ CREATE TABLE IF NOT EXISTS `compositions_donuts` (
   KEY `fk_fourrage` (`id_fourrage`),
   KEY `fk_glacage` (`id_glacage`),
   KEY `fk_topping` (`id_topping`)
-) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `compositions_donuts`
 --
 
 INSERT INTO `compositions_donuts` (`id_composition`, `donut_name`, `id_beignet`, `id_fourrage`, `id_glacage`, `id_topping`, `id_createur`, `description`, `type`, `prix`) VALUES
-(51, 'Akhi\'nut', 2, 2, 2, 1, 2, 'Un bon donuts à la vanille et au café, le tout sur un beignet plein.', 'sucré', 0),
-(52, 'Chocolinito', 1, 1, 1, 1, 3, 'Donuts tout choco topping M&M\'s', 'sucré', 0),
-(60, 'Le Durger', 2, 18, 12, 11, 3, 'Un Hambuger en donut, délicieux', 'salé', 0),
-(61, 'Abri\'pique', 2, 12, 21, 11, 3, 'Beignet plein fourré à l\'abricot et recouvert d\'harissa', 'sucré', 0),
-(72, 'Chocolat base', 2, 6, 1, 10, 15, 'Un petit beignet aux sucres', 'sucré', 0),
-(73, 'Abri\'pique', 2, 12, 8, 10, 15, 'Petit beignet fourré à l\'abricot', 'sucré', 0),
-(78, 'Abri\'pique', 1, 12, 11, 9, 2, 'dzdqzdzq', 'sucré', 0);
+(52, 'Chocolinito', 1, 1, 1, 1, 3, 'Donuts tout choco topping M&M\'s', 'sucré', 3.2),
+(79, 'Matcha Bueno', 1, 14, 9, 7, 3, 'Un goût que j\'affectionne depuis longtemps !', 'sucré', 3.2),
+(82, 'fafafa', 2, 20, 14, 13, 3, 'fafafafa', 'salé', 0);
 
 -- --------------------------------------------------------
 
@@ -152,7 +148,14 @@ CREATE TABLE IF NOT EXISTS `fk_like` (
   PRIMARY KEY (`id_like`),
   KEY `fk_compo1` (`id_compositions_donuts`),
   KEY `fk_users` (`id_users`)
-) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=122 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `fk_like`
+--
+
+INSERT INTO `fk_like` (`id_like`, `id_compositions_donuts`, `id_users`) VALUES
+(121, 79, 3);
 
 -- --------------------------------------------------------
 
@@ -170,7 +173,7 @@ CREATE TABLE IF NOT EXISTS `fk_like_base` (
   KEY `id_donuts_de_base` (`id_donuts_de_base`),
   KEY `id_users` (`id_users`),
   KEY `idx_base` (`id_donuts_de_base`,`id_users`)
-) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `fk_like_base`
@@ -210,7 +213,6 @@ INSERT INTO `fk_like_base` (`id_like`, `id_donuts_de_base`, `id_users`, `created
 (48, 22, 3, '2025-12-06 18:05:29'),
 (49, 10, 3, '2025-12-06 18:05:31'),
 (50, 43, 3, '2025-12-06 19:12:12'),
-(53, 44, 3, '2025-12-06 19:44:22'),
 (54, 46, 2, '2025-12-07 11:17:23'),
 (56, 8, 5, '2025-12-08 18:31:35'),
 (57, 14, 5, '2025-12-08 18:32:01'),
@@ -238,7 +240,8 @@ INSERT INTO `fk_like_base` (`id_like`, `id_donuts_de_base`, `id_users`, `created
 (82, 17, 2, '2025-12-10 08:18:40'),
 (83, 39, 2, '2025-12-12 16:17:56'),
 (84, 35, 3, '2025-12-14 10:38:21'),
-(85, 6, 3, '2025-12-16 10:58:28');
+(85, 6, 3, '2025-12-16 10:58:28'),
+(87, 44, 3, '2025-12-16 15:33:27');
 
 -- --------------------------------------------------------
 
@@ -258,7 +261,7 @@ CREATE TABLE IF NOT EXISTS `fk_panier` (
   KEY `fk_compo` (`id_compositions_donuts`),
   KEY `fk_users1` (`id_users`),
   KEY `idx_fkpanier_source_user` (`source_table`,`source_id`,`id_users`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `fk_panier`
@@ -268,14 +271,17 @@ INSERT INTO `fk_panier` (`id_fk_panier`, `id_compositions_donuts`, `source_table
 (9, NULL, 'nos_donuts', 6, 2, 3),
 (22, 51, 'compositions_donuts', 51, 2, 4),
 (32, NULL, 'nos_donuts', 46, 3, 1),
-(33, NULL, 'nos_donuts', 44, 3, 1),
+(33, NULL, 'nos_donuts', 44, 3, 2),
 (36, NULL, 'nos_donuts', 46, 5, 4),
 (38, 65, 'compositions_donuts', 65, 2, 2),
 (39, 52, 'compositions_donuts', 52, 2, 1),
 (40, 60, 'compositions_donuts', 60, 2, 2),
 (43, 72, 'compositions_donuts', 72, 3, 3),
 (49, 71, 'compositions_donuts', 71, 5, 1),
-(50, 70, 'compositions_donuts', 70, 5, 1);
+(50, 70, 'compositions_donuts', 70, 5, 1),
+(51, 73, 'compositions_donuts', 73, 3, 1),
+(52, 52, 'compositions_donuts', 52, 3, 1),
+(53, 79, 'compositions_donuts', 79, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -416,7 +422,7 @@ INSERT INTO `nos_donuts` (`id_donuts_de_base`, `title`, `url`, `img`, `imgAlt`, 
 (24, 'Cake Batter', 'https://www.krispykreme.com/menu/doughnuts/cake-batter-doughnut', 'images/cake-batter-doughnut.jpg', 'Image du Cake Batter', 'images/cake-batter-doughnut-banner.jpg', 'images/cake-batter-doughnut-facts.pdf', 'Nous célébrons les anniversaires chaque jour : fourré au Cake Batter KREME, nappé de glaçage jaune et de confettis colorés.', 2.6),
 (25, 'Fourré Crème Pâtissière Chocolat', 'https://www.krispykreme.com/menu/doughnuts/chocolate-iced-custard-filled', 'images/chocolate-iced-custard-filled.jpg', 'Image du Fourré Crème Pâtissière Chocolat', 'images/chocolate-iced-custard-filled-banner.jpg', 'images/chocolate-iced-custard-filled-facts.pdf', 'Fourré de crème pâtissière et trempé dans un riche glaçage chocolat. Miam !', 2.6),
 (26, 'Glacé Fourré Framboise', 'https://www.krispykreme.com/menu/doughnuts/glazed-raspberry-filled', 'images/glazed-raspberry-filled.jpg', 'Image du Glacé Fourré Framboise', 'images/glazed-raspberry-filled-banner.jpg', 'images/glazed-raspberry-filled-facts.pdf', 'Glacé puis garni d’une gelée de framboise douce et acidulée.', 2.5),
-(27, 'Double Chocolat Noir', 'https://www.krispykreme.com/menu/doughnuts/double-dark-chocolate', 'images/double-dark-chocolate.jpg', 'Image du Double Chocolat Noir', 'images/double-dark-chocolate-banner.jpg', 'images/double-dark-chocolate-facts.pdf', '', 3),
+(27, 'Double Chocolat Noir', 'https://www.krispykreme.com/menu/doughnuts/double-dark-chocolate', 'images/double-dark-chocolate.jpg', 'Image du Double Chocolat Noir', 'images/double-dark-chocolate-banner.jpg', 'images/double-dark-chocolate-facts.pdf', 'Donuts avec un fourrage chocolat noir, avec, comme si ce n\'était pas assez, un glaçage chocolat noir.', 3),
 (28, 'Dulce De Leche', 'https://www.krispykreme.com/menu/doughnuts/dulce-de-leche', 'images/dulce-de-leche.jpg', 'Image du Dulce De Leche', 'images/dulce-de-leche-banner.jpg', 'images/dulce-de-leche-facts.pdf', 'Originaire d’Amérique latine : une douceur crémeuse saveur caramel. Fourré de dulce de leche et enrobé de sucre cristallisé.', 3),
 (29, 'Glacé Fourré Citron', 'https://www.krispykreme.com/menu/doughnuts/glazed-lemon-filled', 'images/glazed-lemon-filled.jpg', 'Image du Glacé Fourré Citron', 'images/glazed-lemon-filled-banner.jpg', 'images/glazed-lemon-filled-facts.pdf', 'Fourré d’un citron intense et recouvert du glaçage Original.', 2.6),
 (30, 'Glaçage Fraise et Vermicelles', 'https://www.krispykreme.com/menu/doughnuts/strawberry-iced-with-sprinkles', 'images/strawberry-iced-with-sprinkles.jpg', 'Image du Beignet Fraise avec Vermicelles', 'images/strawberry-iced-with-sprinkles-banner.jpg', 'images/strawberry-iced-with-sprinkles-facts.pdf', 'Original Glazed® trempé dans un glaçage fraise et décoré de vermicelles arc-en-ciel.', 2),
@@ -429,7 +435,7 @@ INSERT INTO `nos_donuts` (`id_donuts_de_base`, `title`, `url`, `img`, `imgAlt`, 
 (38, 'Mini Fraise Glacée avec Vermicelles', 'https://www.krispykreme.com/menu/doughnuts/mini-strawberry-iced-with-sprinkles', 'images/mini-strawberry-iced-with-sprinkles.jpg', 'Image des Mini Fraise avec Vermicelles', 'images/mini-strawberry-iced-with-sprinkles-banner.jpg', 'images/mini-strawberry-iced-with-sprinkles-facts.pdf', 'Même goût que la version fraise avec vermicelles, en format mini.', 0),
 (39, 'Cheesecake New York', 'https://www.krispykreme.com/menu/doughnuts/new-york-cheesecake', 'images/new-york-cheesecake.jpg', 'Image du Cheesecake New York', 'images/new-york-cheesecake-banner.jpg', 'images/new-york-cheesecake-facts.pdf', 'Fourré de cheesecake crémeux, nappé de glaçage cream cheese et saupoudré de graham croquant.', 3),
 (40, 'Fourré Myrtille Sucré', 'https://www.krispykreme.com/menu/doughnuts/powdered-blueberry-filled', 'images/powdered-blueberry-filled.jpg', 'Image du Fourré Myrtille Sucré', 'images/powdered-blueberry-filled-banner.jpg', 'images/powdered-blueberry-filled-facts.pdf', 'Beignet levé rempli de myrtille et enrobé de sucre glace.', 2.6),
-(43, 'Fourré Fraise Sucré', 'https://www.krispykreme.com/menu/doughnuts/powdered-strawberry-filled', 'images/powdered-strawberry-filled.jpg', 'Image du Fourré Fraise Sucré', 'images/powdered-strawberry-filled-banner.jpg', 'images/powdered-strawberry-filled-facts.pdf', 'Rempli de fraise et enrobé de sucre glace.', 0),
+(43, 'Fourré Fraise Sucré', 'https://www.krispykreme.com/menu/doughnuts/powdered-strawberry-filled', 'images/powdered-strawberry-filled.jpg', 'Image du Fourré Fraise Sucré', 'images/powdered-strawberry-filled-banner.jpg', 'images/powdered-strawberry-filled-facts.pdf', 'Rempli de fraise et enrobé de sucre glace.', 1.5),
 (44, 'Sucré Fourré Kreme Citron', 'https://www.krispykreme.com/menu/doughnuts/powdered-with-lemon-kreme', 'images/powdered-with-lemon-kreme.jpg', 'Image du Sucré Fourré Kreme Citron', 'images/powdered-with-lemon-kreme-banner.jpg', 'images/powdered-with-lemon-kreme-facts.pdf', 'Beignet sucré fourré d’un délicieux kreme citron.', 2.6),
 (45, 'Sucré Fourré Kreme Fraise', 'https://www.krispykreme.com/menu/doughnuts/powdered-with-strawberry-kreme', 'images/powdered-with-strawberry-kreme.jpg', 'Image du Sucré Fourré Kreme Fraise', 'images/powdered-with-strawberry-kreme-banner.jpg', 'images/powdered-with-strawberry-kreme-facts.pdf', 'Beignet sucré garni de kreme fraise sucré.', 2.6),
 (46, 'Glaçage Fraise', 'https://www.krispykreme.com/menu/doughnuts/strawberry-iced', 'images/strawberry-iced.jpg', 'Image du Beignet Glaçage Fraise', 'images/strawberry-iced-banner.jpg', 'images/strawberry-iced-facts.pdf', 'Un beignet glacé à la fraise, délicieux et joliment rose.', 2);
@@ -454,16 +460,16 @@ CREATE TABLE IF NOT EXISTS `topping` (
 --
 
 INSERT INTO `topping` (`id_topping`, `name_topping`, `img_topping`, `type_topping`) VALUES
-(1, 'M&M\'s', 'images/food/topping/m&m.svg', 'sucré'),
+(1, 'M&M\'s', 'images/constructor/toppings/m&m.svg', 'sucré'),
 (2, 'Cheddar', 'images/food/topping/cheddar.svg', 'salé'),
-(3, 'Motif Étoile', 'images/food/topping/motif étoile.svg', 'sucré'),
-(4, 'Motif Cœur', 'images/food/topping/motif coeur.svg', 'sucré'),
-(5, 'Motif Point', 'images/food/topping/motif point.svg', 'sucré'),
-(6, 'Paillettes', 'images/food/topping/paillette.svg', 'sucré'),
-(7, 'Kinder Bueno', 'images/food/topping/kinder bueno.svg', 'sucré'),
-(8, 'Oreo', 'images/food/topping/oreo.svg', 'sucré'),
-(9, 'KitKat', 'images/food/topping/kitkat.svg', 'sucré'),
-(10, 'Spéculos', 'images/food/topping/spéculos.svg', 'sucré'),
+(3, 'Motif Étoile', 'images/constructor/toppings/motif étoile.svg', 'sucré'),
+(4, 'Motif Cœur', 'images/constructor/toppings/motif coeur.svg', 'sucré'),
+(5, 'Motif Point', 'images/constructor/toppings/motif point.svg', 'sucré'),
+(6, 'Paillettes', 'images/constructor/toppings/paillette.svg', 'sucré'),
+(7, 'Kinder Bueno', 'images/constructor/toppings/kinder bueno.svg', 'sucré'),
+(8, 'Oreo', 'images/constructor/toppings/oreo.svg', 'sucré'),
+(9, 'KitKat', 'images/constructor/toppings/kitkat.svg', 'sucré'),
+(10, 'Spéculos', 'images/constructor/toppings/spéculos.svg', 'sucré'),
 (11, 'Bacon', 'images/food/topping/bacon.svg', 'salé'),
 (12, 'Oignons Frits', 'images/food/topping/oignon frit.svg', 'salé'),
 (13, 'Graines de Sésame', 'images/food/topping/graine de sésame.svg', 'salé'),
