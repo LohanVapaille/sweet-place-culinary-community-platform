@@ -12,7 +12,7 @@
     <?php else: ?>
       <div class="donut-hover-zone">
         <div class="donut-wrapper">
-          <img src="images/design/menudonuts.png" class="donut">
+          <img src="images/design/menudonuts.svg" class="donut">
 
           <div class="donut-icons">
             <a href="index.php"><i class='bx bxs-home-alt-2'></i></a>
@@ -40,28 +40,7 @@
   const donut = document.getElementById('donutTrigger');
   const donutIcons = donut ? donut.querySelector('.donut-icons') : null;
 
-  // MEGA MENU
-  logo.addEventListener('mouseenter', () => {
-    megaMenu.style.display = 'block';
-  });
 
-
-
-  logo.addEventListener('mouseleave', () => {
-    setTimeout(() => {
-      if (!megaMenu.matches(':hover')) {
-        megaMenu.style.display = 'none';
-      }
-    }, 100);
-  });
-
-  logo.addEventListener('click', () => {
-    megaMenu.style.display = 'block';
-  });
-
-  megaMenu.addEventListener('mouseleave', () => {
-    megaMenu.style.display = 'none';
-  });
 
   // DONUT ICONS
   if (donut) {

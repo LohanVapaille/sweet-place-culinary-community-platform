@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 16 déc. 2025 à 15:53
+-- Généré le : jeu. 18 déc. 2025 à 23:42
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -61,14 +61,19 @@ CREATE TABLE IF NOT EXISTS `commentaires` (
   PRIMARY KEY (`id_commentaire`),
   KEY `id_auteur` (`id_auteur`),
   KEY `id_donuts_concerné` (`id_donuts_concerné`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `commentaires`
 --
 
 INSERT INTO `commentaires` (`id_commentaire`, `text-comment`, `note`, `date`, `id_donuts_concerné`, `id_auteur`) VALUES
-(13, 'Délicieux, très beau également !', 5, 1765899724, 79, 3);
+(13, 'Délicieux, très beau également !', 5, 1765899724, 79, 3),
+(14, 'C\'est trop bon !', 5, 1765912519, 52, 2),
+(15, 'C\'est cool', 5, 1765912684, 83, 2),
+(16, 'TEst', 1, 1765912715, 83, 2),
+(19, 'BOnjouj j\'ai aimé ça', 5, 1765965008, 82, 2),
+(20, 'Merci ma soeur', 5, 1766066060, 85, 3);
 
 -- --------------------------------------------------------
 
@@ -81,9 +86,9 @@ CREATE TABLE IF NOT EXISTS `compositions_donuts` (
   `id_composition` int NOT NULL AUTO_INCREMENT,
   `donut_name` varchar(255) DEFAULT NULL,
   `id_beignet` int NOT NULL,
-  `id_fourrage` int NOT NULL,
-  `id_glacage` int NOT NULL,
-  `id_topping` int NOT NULL,
+  `id_fourrage` int DEFAULT NULL,
+  `id_glacage` int DEFAULT NULL,
+  `id_topping` int DEFAULT NULL,
   `id_createur` int NOT NULL,
   `description` text,
   `type` varchar(20) NOT NULL,
@@ -94,16 +99,19 @@ CREATE TABLE IF NOT EXISTS `compositions_donuts` (
   KEY `fk_fourrage` (`id_fourrage`),
   KEY `fk_glacage` (`id_glacage`),
   KEY `fk_topping` (`id_topping`)
-) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `compositions_donuts`
 --
 
 INSERT INTO `compositions_donuts` (`id_composition`, `donut_name`, `id_beignet`, `id_fourrage`, `id_glacage`, `id_topping`, `id_createur`, `description`, `type`, `prix`) VALUES
-(52, 'Chocolinito', 1, 1, 1, 1, 3, 'Donuts tout choco topping M&M\'s', 'sucré', 3.2),
-(79, 'Matcha Bueno', 1, 14, 9, 7, 3, 'Un goût que j\'affectionne depuis longtemps !', 'sucré', 3.2),
-(82, 'fafafa', 2, 20, 14, 13, 3, 'fafafafa', 'salé', 0);
+(52, 'Chocolinito', 1, 1, 1, 1, 3, 'Donuts tout choco topping M&M\'s', 'sucré', 4),
+(79, 'Matcha Bueno', 1, 14, 9, 7, 3, 'Un goût que j\'affectionne depuis longtemps !', 'sucré', 4),
+(82, 'Raclettino', 2, 20, 14, 13, 3, 'Bagel raclette avec un peu de salade pour la bonne conscience', 'salé', 4),
+(83, 'ChocoFraise', 1, 1, 3, 7, 2, 'Un donuts chocolat et fraise pour les gourmants !!', 'sucré', 4),
+(85, 'Oukhty\'nuts', 1, 5, 2, 10, 16, 'Pour vous mes arab girls #tiramisu #adam #grandremplacement #dubaï', 'sucré', 4),
+(89, 'Donuts Nutella Simple', 1, 3, NULL, NULL, 16, 'Un donuts simple, sans glaçage, simplement avec du nutella à l\'intérieur. Parfait pour les personnes difficiles en nourriture !', 'sucré', 3);
 
 -- --------------------------------------------------------
 
@@ -119,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `fk_follow` (
   PRIMARY KEY (`id`),
   KEY `id_user_qui_follow` (`id_user_qui_follow`),
   KEY `id_user_suivit` (`id_user_suivit`)
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `fk_follow`
@@ -132,7 +140,9 @@ INSERT INTO `fk_follow` (`id`, `id_user_suivit`, `id_user_qui_follow`) VALUES
 (69, 4, 15),
 (70, 15, 3),
 (71, 3, 2),
-(72, 15, 2);
+(72, 15, 2),
+(74, 3, 16),
+(75, 16, 3);
 
 -- --------------------------------------------------------
 
@@ -148,14 +158,22 @@ CREATE TABLE IF NOT EXISTS `fk_like` (
   PRIMARY KEY (`id_like`),
   KEY `fk_compo1` (`id_compositions_donuts`),
   KEY `fk_users` (`id_users`)
-) ENGINE=InnoDB AUTO_INCREMENT=122 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `fk_like`
 --
 
 INSERT INTO `fk_like` (`id_like`, `id_compositions_donuts`, `id_users`) VALUES
-(121, 79, 3);
+(128, 52, 2),
+(129, 82, 2),
+(130, 82, 3),
+(136, 52, 16),
+(138, 85, 3),
+(142, 52, 3),
+(143, 79, 3),
+(145, 89, 16),
+(146, 83, 16);
 
 -- --------------------------------------------------------
 
@@ -261,7 +279,7 @@ CREATE TABLE IF NOT EXISTS `fk_panier` (
   KEY `fk_compo` (`id_compositions_donuts`),
   KEY `fk_users1` (`id_users`),
   KEY `idx_fkpanier_source_user` (`source_table`,`source_id`,`id_users`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `fk_panier`
@@ -270,18 +288,14 @@ CREATE TABLE IF NOT EXISTS `fk_panier` (
 INSERT INTO `fk_panier` (`id_fk_panier`, `id_compositions_donuts`, `source_table`, `source_id`, `id_users`, `quantite`) VALUES
 (9, NULL, 'nos_donuts', 6, 2, 3),
 (22, 51, 'compositions_donuts', 51, 2, 4),
-(32, NULL, 'nos_donuts', 46, 3, 1),
-(33, NULL, 'nos_donuts', 44, 3, 2),
 (36, NULL, 'nos_donuts', 46, 5, 4),
 (38, 65, 'compositions_donuts', 65, 2, 2),
 (39, 52, 'compositions_donuts', 52, 2, 1),
 (40, 60, 'compositions_donuts', 60, 2, 2),
-(43, 72, 'compositions_donuts', 72, 3, 3),
 (49, 71, 'compositions_donuts', 71, 5, 1),
 (50, 70, 'compositions_donuts', 70, 5, 1),
-(51, 73, 'compositions_donuts', 73, 3, 1),
-(52, 52, 'compositions_donuts', 52, 3, 1),
-(53, 79, 'compositions_donuts', 79, 3, 2);
+(59, NULL, 'nos_donuts', 46, 3, 1),
+(60, 85, 'compositions_donuts', 85, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -319,15 +333,15 @@ INSERT INTO `fourrages` (`id_fourrage`, `name_fourrage`, `img_fourrage`, `type_f
 (15, 'Sésame Noir', 'images/constructor/fourrages/sesame noir.svg', 'sucré'),
 (16, 'Chocolat Noir', 'images/constructor/fourrages/chocolat noir.svg', 'sucré'),
 (17, 'Beurre de Cacahuète', 'images/constructor/fourrages/beurre de cacahuete.svg', 'sucré'),
-(18, 'Viande Hachée', 'images/food/fourrage/viande hachée.svg', 'salé'),
-(19, 'Poulet', 'images/food/fourrage/poulet.svg', 'salé'),
-(20, 'Raclette', 'images/food/fourrage/raclette.svg', 'salé'),
-(21, 'Saumon', 'images/food/fourrage/saumon.svg', 'salé'),
-(22, 'Thon', 'images/food/fourrage/thon.svg', 'salé'),
-(23, 'Kebab', 'images/food/fourrage/kebab.svg', 'salé'),
-(24, 'Cordon Bleu', 'images/food/fourrage/cordon bleu.svg', 'salé'),
-(25, 'Falafel', 'images/food/fourrage/falafel.svg', 'salé'),
-(27, 'Guacamole', 'images/food/fourrage/guacamole.svg', 'salé');
+(18, 'Viande Hachée', 'images/constructor/fourrages/viande hache.svg', 'salé'),
+(19, 'Poulet', 'images/constructor/fourrages/poulet.svg', 'salé'),
+(20, 'Raclette', 'images/constructor/fourrages/raclette.svg', 'salé'),
+(21, 'Saumon', 'images/constructor/fourrages/saumon.svg', 'salé'),
+(22, 'Thon', 'images/constructor/fourrages/thon.svg', 'salé'),
+(23, 'Kebab', 'images/constructor/fourrages/kebab.svg', 'salé'),
+(24, 'Cordon Bleu', 'images/constructor/fourrages/cordon bleu.svg', 'salé'),
+(25, 'Jambon', 'images/constructor/fourrages/jambon.svg', 'salé'),
+(27, 'Guacamole', 'images/constructor/fourrages/guacamole.svg', 'salé');
 
 -- --------------------------------------------------------
 
@@ -359,18 +373,17 @@ INSERT INTO `glacages` (`id_glacage`, `name_glacage`, `img_glacage`, `type_glaca
 (9, 'Caramel Beurre Salé', 'images/constructor/glacages/caramel beurre sale.svg', 'sucré'),
 (10, 'Café', 'images/constructor/glacages/cafe.svg', 'sucré'),
 (11, 'Sirop d\'Érable', 'images/constructor/glacages/sirop erable.svg', 'sucré'),
-(12, 'Cheddar', 'images/food/glacages/cheddar.svg', 'salé'),
-(13, 'Mayonnaise', 'images/food/glacages/mayonnaise.svg', 'salé'),
-(14, 'Fromage Raclette', 'images/food/glacages/raclette.svg', 'salé'),
-(15, 'Panure', 'images/food/glacages/panure.svg', 'salé'),
-(16, 'Miel', 'images/food/glacages/miel.svg', 'salé'),
-(17, 'Tomate', 'images/food/glacages/tomate.svg', 'salé'),
-(18, 'Sauce Curry', 'images/food/glacages/curry.svg', 'salé'),
-(19, 'Sauce Yopi', 'images/food/glacages/yopi.svg', 'salé'),
-(20, 'Sauce Nuoc-Mam', 'images/food/glacages/nuoc nam.svg', 'salé'),
-(21, 'Harissa', 'images/food/glacages/harissa.svg', 'salé'),
-(22, 'Soskipik', 'images/food/glacages/soskipik.svg', 'salé'),
-(23, 'Pesto', 'images/food/glacages/pesto.svg', 'salé');
+(12, 'Cheddar', 'images/constructor/sauces/cheddar.svg', 'salé'),
+(13, 'Mayonnaise', 'images/constructor/sauces/mayonnaise.svg', 'salé'),
+(14, 'Fromage Raclette', 'images/constructor/sauces/raclette.svg', 'salé'),
+(16, 'Miel', 'images/constructor/glacages/sirop erable.svg', 'sucré'),
+(17, 'Sauce Tomate', 'images/constructor/sauces/sauce tomate.svg', 'salé'),
+(18, 'Sauce Curry', 'images/constructor/sauces/sauce curry.svg', 'salé'),
+(19, 'Sauce Yopi', 'images/constructor/sauces/sauce yopie.svg', 'salé'),
+(20, 'Sauce Nuoc-Mam', 'images/constructor/sauces/sauce nuoc mam.svg', 'salé'),
+(21, 'Harissa', 'images/constructor/sauces/sauce harissa.svg', 'salé'),
+(22, 'Soskipik', 'images/constructor/sauces/soskipik.svg', 'salé'),
+(23, 'Pesto', 'images/constructor/sauces/sauce pesto.svg', 'salé');
 
 -- --------------------------------------------------------
 
@@ -453,7 +466,7 @@ CREATE TABLE IF NOT EXISTS `topping` (
   `img_topping` text NOT NULL,
   `type_topping` varchar(20) NOT NULL,
   PRIMARY KEY (`id_topping`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `topping`
@@ -461,7 +474,7 @@ CREATE TABLE IF NOT EXISTS `topping` (
 
 INSERT INTO `topping` (`id_topping`, `name_topping`, `img_topping`, `type_topping`) VALUES
 (1, 'M&M\'s', 'images/constructor/toppings/m&m.svg', 'sucré'),
-(2, 'Cheddar', 'images/food/topping/cheddar.svg', 'salé'),
+(2, 'Cheddar', 'images/constructor/crudites/cheddar.svg', 'salé'),
 (3, 'Motif Étoile', 'images/constructor/toppings/motif étoile.svg', 'sucré'),
 (4, 'Motif Cœur', 'images/constructor/toppings/motif coeur.svg', 'sucré'),
 (5, 'Motif Point', 'images/constructor/toppings/motif point.svg', 'sucré'),
@@ -470,19 +483,18 @@ INSERT INTO `topping` (`id_topping`, `name_topping`, `img_topping`, `type_toppin
 (8, 'Oreo', 'images/constructor/toppings/oreo.svg', 'sucré'),
 (9, 'KitKat', 'images/constructor/toppings/kitkat.svg', 'sucré'),
 (10, 'Spéculos', 'images/constructor/toppings/spéculos.svg', 'sucré'),
-(11, 'Bacon', 'images/food/topping/bacon.svg', 'salé'),
-(12, 'Oignons Frits', 'images/food/topping/oignon frit.svg', 'salé'),
-(13, 'Graines de Sésame', 'images/food/topping/graine de sésame.svg', 'salé'),
-(15, 'Parmesan', 'images/food/topping/parmesan.svg', 'salé'),
-(16, 'Riz Soufflé', 'images/food/topping/riz soufflé.svg', 'salé'),
-(17, 'Cornichon', 'images/food/topping/cornichon.svg', 'salé'),
-(18, 'Origan', 'images/food/topping/origan.svg', 'salé'),
-(19, 'CBD ', 'images/food/topping/cbd.svg', 'salé'),
-(20, 'Fromage végan', 'images/food/topping/fromage vegan.svg', 'salé'),
-(21, 'Champignon', 'images/food/topping/champignon.svg', 'salé'),
-(22, 'Doritos', 'images/food/topping/doritos.svg', 'salé'),
-(23, 'Crevettes ', 'images/food/topping/crevette.svg', 'salé'),
-(24, 'Clémentine', 'images/food/topping/clémentine.svg', 'salé');
+(11, 'Bacon', 'images/constructor/crudites/bacon.svg', 'salé'),
+(12, 'Oignons Frits', 'images/constructor/crudites/oignon frit.svg', 'salé'),
+(13, 'Salade', 'images/constructor/crudites/salade.svg', 'salé'),
+(15, 'Parmesan', 'images/constructor/crudites/parmesan.svg', 'salé'),
+(17, 'Cornichon', 'images/constructor/crudites/cornichon.svg', 'salé'),
+(18, 'Origan', 'images/constructor/crudites/origan.svg', 'salé'),
+(19, 'Persil', 'images/constructor/crudites/persil.svg', 'salé'),
+(21, 'Champignon', 'images/constructor/crudites/champignon.svg', 'salé'),
+(22, 'Doritos', 'images/constructor/crudites/doritos.svg', 'salé'),
+(24, 'Clémentine', 'images/constructor/toppings/clémentine.svg', 'sucré'),
+(25, 'Coriande', 'images/constructor/crudites/coriande.svg', 'salé'),
+(26, 'Oeuf', 'images/constructor/crudites/oeuf.svg', 'salé');
 
 -- --------------------------------------------------------
 
@@ -499,7 +511,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `description` text NOT NULL,
   `admin` int NOT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `users`
@@ -510,7 +522,8 @@ INSERT INTO `users` (`id_user`, `login`, `mdp`, `photo`, `description`, `admin`)
 (3, 'Lohan', '$2y$10$acMN1dNLzLnFvieiPcI2F.pOppFerwMM/xsQMjumere2KhcxQu7ba', 'images/pp/cc5dc6aaf38ff13796563e46.jpg', '', 0),
 (4, 'MXS_MMS', '$2y$10$KVogGBlsdOvwNW6PsFMaZeFvDaRIva1cifciaD0jSWLfKbPiB.aEK', 'images/pp/92235e754a0796a4ae838de1.png', 'spécialisé dans les compos de détraqué (ig : max_ens8)', 0),
 (5, 'paul', '$2y$10$CifqOor2SiO4YeYgt80B3ecm.Phy88tpC1Pr90192f2C1Rrlhx4Yq', '', '', 0),
-(15, 'Fatima', '$2y$10$3/rmRvct13WZyfEw29h6BuJSORvFWs4QqBjwQjrL8h/WqXE4xdc2y', 'images/pp/6fc470099fd0d563f8cf75f2.webp', '', 0);
+(15, 'Fatima', '$2y$10$3/rmRvct13WZyfEw29h6BuJSORvFWs4QqBjwQjrL8h/WqXE4xdc2y', 'images/pp/6fc470099fd0d563f8cf75f2.webp', '', 0),
+(16, 'Ines', '$2y$10$bu0NZPcDAygrVK2tBzsnsulBfLiLOck6ZVfqe.JZhEDvzzyQSY7l2', 'images/pp/83131364396a7fdf3942b5ec.jpg', '', 0);
 
 --
 -- Contraintes pour les tables déchargées

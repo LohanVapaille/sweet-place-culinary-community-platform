@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         .connecter {
-            margin-top: 40px;
+            margin-top: 120px;
             display: flex;
             justify-content: center;
             align-items: center;

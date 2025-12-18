@@ -1,5 +1,7 @@
 <div class="onecard-container">
-    <div data-id="<?= htmlspecialchars($donut['id_composition']) ?>" class="card userdonuts">
+    <div class="card userdonuts" data-id="<?= $donut['id_composition'] ?>" data-type="<?= $donut['type'] ?>"
+        data-nblike="<?= $donut['likes'] ?>" data-note="<?= $donut['note_moyenne'] ?? 0 ?>"
+        data-prix="<?= $donut['prix'] ?>" data-name="<?= htmlspecialchars($donut['donut_name']) ?>">
 
         <div class="top">
             <div>
@@ -38,20 +40,20 @@
             </div>
 
             <div class="info">
-                <p><?php if (!empty($donut['name_fourrage'])): ?>
-                        <?= $donut['name_fourrage'] ?>
-                    <?php endif; ?>
-                </p>
+                <?php if (!empty($donut['name_fourrage'])): ?>
+                    <p><?= $donut['name_fourrage'] ?></p>
+                <?php endif; ?>
 
-                <p><?php if (!empty($donut['name_glacage'])): ?>
-                        <?= $donut['name_glacage'] ?>
-                    <?php endif; ?>
-                </p>
 
-                <p><?php if (!empty($donut['name_topping'])): ?>
-                        <?= $donut['name_topping'] ?>
-                    <?php endif; ?>
-                </p>
+                <?php if (!empty($donut['name_glacage'])): ?>
+                    <p> <?= $donut['name_glacage'] ?></p>
+                <?php endif; ?>
+
+
+                <?php if (!empty($donut['name_topping'])): ?>
+                    <p><?= $donut['name_topping'] ?></p>
+                <?php endif; ?>
+
             </div>
 
 

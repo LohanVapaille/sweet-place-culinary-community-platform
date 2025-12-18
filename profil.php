@@ -56,30 +56,24 @@ $likedDonuts = getLikedCompositions($pdo, $creator_id);
 <body>
     <?php include 'header/header.php'; ?>
 
-
-    <div class="infoprofil">
-        <div class="allinfoprofil">
+    <main>
+        <div class="infoprofil">
             <div class="left">
                 <img src="<?= !empty($user['photo']) ? htmlspecialchars($user['photo'], ENT_QUOTES) : 'images/design/profil.webp' ?>"
                     alt="photo profil">
-
-                <p class="onlyphone"><?= htmlspecialchars($user['login'], ENT_QUOTES) ?></p>
             </div>
-
-            <div class="right">
-
-                <div class="infos">
-                    <p class='onlydesk'><?= htmlspecialchars($user['login'], ENT_QUOTES) ?></p>
-                    <p><span class="chiffre"><?= $total_follow ?> </span><span class="ecrit">Followers</span></p>
+            <div class="allinfosprofil">
+                <p class="pseudo"><?= htmlspecialchars($user['login'], ENT_QUOTES) ?></p>
+                <div class="stats">
                     <p><span class="chiffre"><?= count($compositions) ?> </span><span class="ecrit">Compos<span
                                 class='onlydesk'>itions</span></span>
-                    </p>
+                    <p><span class="chiffre"><?= $total_follow ?> </span><span class="ecrit">Followers</span></p>
+
                     <p><span class="chiffre"><?= $total_likes ?> </span><span class="ecrit">Likes <span
                                 class='onlydesk'>Obtenus</span></span></p>
-
                 </div>
 
-                <div class="btnprofil onlydesk">
+                <div class="btnprofil ">
                     <?php if ($user_id === $creator_id): ?>
                         <a href='modifprofil.php' class="btn edit-profile">Modifier le profil</a>
                     <?php else: ?>
@@ -93,79 +87,68 @@ $likedDonuts = getLikedCompositions($pdo, $creator_id);
                 </div>
 
 
-
-                <p><?php echo $user['description'] ?></p>
             </div>
         </div>
-        <div class="btnprofil onlyphone onlyphonebtnprofil">
-            <?php if ($user_id === $creator_id): ?>
-                <a href='modifprofil.php' class="btn edit-profile">Modifier le profil</a>
+
+
+
+
+
+
+
+        <?php
+        // ... (code précédent)
+        
+        $donuts = getCompoByUser($pdo, $creator_id, $user_id);
+
+        // Déterminer la classe CSS pour la grille
+        $grid_class = '';
+        if (count($donuts) === 1) {
+            // Si une seule carte, on ajoute une classe spécifique
+            $grid_class = ' single-item';
+        }
+
+        // ... (code suivant)
+        ?>
+
+        <div class='tendances '>
+            <hr>
+
+            <h2>Compositions de <?= htmlspecialchars($user['login'], ENT_QUOTES) ?></h2>
+
+            <?php if (!empty($compositions)): ?>
+                <div class="cards-container profildonuts<?= $grid_class ?>">
+                    <?php foreach ($compositions as $donut): ?>
+                        <?php
+                        include 'views/_donuts_users.php' ?>
+                    <?php endforeach; ?>
+                </div>
             <?php else: ?>
-                <button class="btn follow subscribe-btn <?= $is_following ? 'following' : '' ?>"
-                    data-user="<?= $creator_id ?>">
-                    <?= $is_following ? 'Suivit' : "Suivre" ?>
-                </button>
+                <p class="rienpourlemoment">Aucune composition pour le moment.</p>
             <?php endif; ?>
-            <a href='profil.php?id=<?php echo $creator_id ?>#likeddonuts' class="btn edit-profile">Donuts
-                Enregistrés</a>
         </div>
-    </div>
+
+        <div class="liked">
+            <h2>Donuts Enregistrés</h2>
+
+
+            <div class="liked-donuts-container" id="likeddonuts">
+                <?php foreach ($likedDonuts as $donut): ?>
+                    <div class="donut-card">
+                        <?php if (!empty($donut['image'])): ?>
+                            <img src="<?php echo htmlspecialchars($donut['image'], ENT_QUOTES); ?>"
+                                alt="<?php echo htmlspecialchars($donut['title'], ENT_QUOTES); ?>">
+                        <?php endif; ?>
+                        <h3><?php echo htmlspecialchars($donut['title'], ENT_QUOTES); ?></h3>
 
 
 
-
-
-    <?php
-    // ... (code précédent)
-    
-    $donuts = getCompoByUser($pdo, $creator_id, $user_id);
-
-    // Déterminer la classe CSS pour la grille
-    $grid_class = '';
-    if (count($donuts) === 1) {
-        // Si une seule carte, on ajoute une classe spécifique
-        $grid_class = ' single-item';
-    }
-
-    // ... (code suivant)
-    ?>
-
-    <div class='tendances'>
-        <h2>Compositions de <?= htmlspecialchars($user['login'], ENT_QUOTES) ?></h2>
-
-        <?php if (!empty($compositions)): ?>
-            <div class="cards-container <?= $grid_class ?>">
-                <?php foreach ($compositions as $donut): ?>
-                    <?php
-                    include 'views/_donuts_users.php' ?>
+                    </div>
                 <?php endforeach; ?>
             </div>
-        <?php else: ?>
-            <p class="rienpourlemoment">Aucune composition pour le moment.</p>
-        <?php endif; ?>
-    </div>
 
-    <div class="liked">
-        <h2>Donuts Enregistrés</h2>
-
-
-        <div class="liked-donuts-container" id="likeddonuts">
-            <?php foreach ($likedDonuts as $donut): ?>
-                <div class="donut-card">
-                    <?php if (!empty($donut['image'])): ?>
-                        <img src="<?php echo htmlspecialchars($donut['image'], ENT_QUOTES); ?>"
-                            alt="<?php echo htmlspecialchars($donut['title'], ENT_QUOTES); ?>">
-                    <?php endif; ?>
-                    <h3><?php echo htmlspecialchars($donut['title'], ENT_QUOTES); ?></h3>
-
-
-
-                </div>
-            <?php endforeach; ?>
         </div>
-
-    </div>
-
+    </main>
     <?php include 'footer/footer.php'; ?>
 
     <script src='js/subscribe.js'></script>

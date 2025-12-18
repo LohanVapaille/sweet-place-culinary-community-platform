@@ -1,23 +1,46 @@
 :root {
   --mainfont: "Modak", system-ui;
   --textfont: "Mada", sans-serif;
-  --maincolor: #cbffbf;
-  --textcolor: #660505;
-}
-.infoprofil {
-  background-color: whitesmoke;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  padding-left: 120px;
+  --white: #f1f8f5;
+  --whiterose: #faf4f0;
+  --brown: #4e3626;
+  --green: #089b65;
+  --rose: #ff9298;
 }
 
-.allinfoprofil {
+main {
+  width: 80%;
+  margin: auto;
+  margin-top: 160px;
+}
+
+.infoprofil {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--brown);
+}
+
+.allinfosprofil {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.pseudo {
+  font-family: var(--mainfont);
+  font-weight: 100;
+  font-size: 1.6rem;
+}
+.tendances {
+  width: 100%;
+}
+
+.stats {
   background-color: whitesmoke;
   display: flex;
   align-items: center;
-  padding: 20px;
 
   gap: 50px;
 }
@@ -29,24 +52,20 @@
   border-radius: 50%;
 }
 
-.infos {
-  display: flex;
-  justify-content: space-between;
-  font-size: 1.3rem;
-  font-family: var(--mainfont);
-  font-weight: 100;
-  color: var(--textcolor);
-  gap: 30px;
-}
-
 .btnprofil {
   display: flex;
   gap: 20px;
   font-family: var(--textfont);
+  padding: 0px;
+  justify-content: center;
 }
 
 .btn {
   font-family: var(--textfont);
+  margin: 0px;
+  background-color: var(--brown);
+  width: 100%;
+  text-align: center;
 }
 
 .following {
@@ -70,7 +89,7 @@
 }
 
 .liked-donuts-container {
-  width: 80%;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 8px;
@@ -93,6 +112,18 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.cards-container {
+  border: none;
+}
+
+hr {
+  border: none; /* enlève le style natif */
+  height: 2px; /* épaisseur */
+  background-color: var(--rose); /* rose (ton thème) */
+  width: 100%; /* longueur */
+  margin: 30px 0; /* espace autour */
 }
 
 .left {

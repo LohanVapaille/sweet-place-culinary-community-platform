@@ -6,7 +6,7 @@ function getDonutsUsers(PDO $pdo, int $userId = 0, int $limit = 0, bool $random 
         c.id_composition,
         c.donut_name,
         c.description,
-        c.type AS composition_type,
+        c.type ,
         c.prix,
 
         u.id_user,

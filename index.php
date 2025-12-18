@@ -39,13 +39,14 @@ $donutsUsers = getDonutsUsers($pdo, $userId, 5, true);
 
     <div class="presentation-container">
         <div class="concept">
-            <h2>Imagine une compo, on s'occupe de la consititué</h2>
+            <h2>Imagine une compo, on s'occupe de la faire !</h2>
             <p><span class="logo logodesign">SWEETPLA<span class="rose">C</span>E</span>, c'est un concept remplit de
-                gourmandise.
-                Sur cette
-                plateforme tu
-                peux concevoir
-                et partager tes compositions avec les autres, et les commander si tu veux les gouter !</p>
+                gourmandise. Sur cette plateforme tu peux concevoir et partager tes compositions avec les autres, et les
+                commander si tu veux les gouter. <br><br>De plus, si une personne commande une de tes compositions,
+                tu
+                gagneras
+                des
+                points dans ta cagnotte !</p>
             <a href="creersondonuts.php" class="btn">Commencer à créer mes compositions</a>
         </div>
         <img src="https://lagazette-yvelines.fr/wp-content/uploads/2025/04/640-Juziers-championnat-de-france-Donut-Gwenaelle-Beaumont.jpg"

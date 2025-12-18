@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 require 'config.php';
 
 // ---------- PROTECTION BASIQUE ----------
@@ -12,8 +11,7 @@ $user = (int) $_SESSION['id'];
 
 // Si on a un id en GET qui n'est pas l'id de session => redirection
 if (!isset($_GET['id']) || (int) $_GET['id'] !== $user) {
-  $redirect = 'panier.php?id=' . $user;
-  header('Location: ' . $redirect);
+  header('Location: panier.php?id=' . $user);
   exit;
 }
 
@@ -50,11 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $pdo->prepare("UPDATE fk_panier SET quantite = :quantite WHERE id_fk_panier = :id_fk_panier AND id_users = :id_users");
     $stmt->execute([':quantite' => $newQty, ':id_fk_panier' => $id_fk_panier, ':id_users' => $user]);
 
-    if ($stmt->rowCount() > 0) {
-      echo json_encode(['success' => true, 'quantite' => $newQty]);
-    } else {
-      echo json_encode(['success' => false, 'msg' => 'Mise à jour non autorisée ou donnée inchangée']);
-    }
+    echo json_encode(['success' => $stmt->rowCount() > 0, 'quantite' => $newQty]);
     exit;
   }
 
@@ -64,14 +58,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 require 'models/panier_user.php';
 
-$panierModel = new PanierModel($pdo);
-$items = $panierModel->getItemsByUser($user);
-
-
-
-
-
-
+// Récupération du panier avec les images superposables
+$panier = getUserPanier($pdo, $user);
+// var_dump($panier);
 
 ?>
 <!doctype html>
@@ -83,60 +72,68 @@ $items = $panierModel->getItemsByUser($user);
   <title>Panier - Mon Donuts</title>
   <?php include 'css/links.php'; ?>
   <link rel="stylesheet" href="css/panier.css">
+  <style>
+    .composition {
+      position: relative;
+      width: 150px;
+      height: 150px;
+    }
 
+    .composition img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
 </head>
 
 <body>
   <?php include 'header/header.php'; ?>
+
   <div class="paniercontent">
     <h1>Mon panier</h1>
-    <?php if (empty($items)): ?>
+    <?php if (empty($panier)): ?>
       <p class="empty rienpourlemoment">Ton panier est vide.</p>
     <?php else: ?>
-
-
-    </div>
-
-
-    <div class='cards-container' id="cart-list">
-      <?php foreach ($items as $it): ?>
-        <div class="card cart-item"
-          data-id_fk_panier="<?php echo htmlspecialchars($it['id_fk_panier'] ?? '', ENT_QUOTES); ?>">
-          <?php if (!empty($it['image'])): ?>
-            <img src="<?php echo htmlspecialchars($it['image'], ENT_QUOTES); ?>"
-              alt="<?php echo htmlspecialchars($it['title'] ?? '', ENT_QUOTES); ?>">
-          <?php endif; ?>
-
-          <div class="item-info">
-            <div><strong><?php echo htmlspecialchars($it['title'] ?? '', ENT_QUOTES); ?></strong></div>
-            <div><?php echo htmlspecialchars($it['description'] ?? '', ENT_QUOTES); ?></div>
-            <div style="font-size:0.85rem;color:#888;margin-top:6px">Provenance:
-              <?php echo htmlspecialchars($it['source_table'] ?? '', ENT_QUOTES); ?>
+      <div class='cards-container' id="cart-list">
+        <?php foreach ($panier as $it): ?>
+          <div class="card cart-item" data-id_fk_panier="<?php echo (int) $it['panier_id']; ?>">
+            <div class="composition">
+              <?php foreach ($it['images'] as $img): ?>
+                <img src="<?php echo htmlspecialchars($img, ENT_QUOTES); ?>" alt="">
+              <?php endforeach; ?>
             </div>
 
+            <div class="item-info">
+              <div><strong><?php echo htmlspecialchars($it['donut_name'], ENT_QUOTES); ?></strong></div>
+              <?php if (!empty($it['description'])): ?>
+                <div><?php echo htmlspecialchars($it['description'], ENT_QUOTES); ?></div>
+              <?php endif; ?>
+            </div>
 
-
-          </div>
-          <div class="actions">
-            <div class="qty-control">
-              <button class="decrease" aria-label="décrémenter">−</button>
-              <div class="qty" data-quantite="<?php echo (int) $it['quantite']; ?>"><?php echo (int) $it['quantite']; ?>
+            <div class="actions">
+              <div class="qty-control">
+                <button class="decrease" aria-label="décrémenter">−</button>
+                <div class="qty" data-quantite="<?php echo (int) $it['quantite']; ?>">
+                  <?php echo (int) $it['quantite']; ?>
+                </div>
+                <button class="increase" aria-label="incrémenter">+</button>
               </div>
-              <button class="increase" aria-label="incrémenter">+</button>
+              <button class="remove" title="Supprimer"><i class='bx bxs-trash'></i></button>
             </div>
-            <button class="remove" title="Supprimer"><i class='bx bxs-trash'></i></button>
           </div>
-        </div>
-      <?php endforeach; ?>
-      <a class="btn confirmpanier" href="#">Valider le panier</a>
-    </div>
-  <?php endif; ?>
+        <?php endforeach; ?>
 
 
+        <a class="btn confirmpanier" href="#">Valider le panier</a>
+      </div>
+    <?php endif; ?>
+  </div>
 
   <script src="js/quantitepanier.js"></script>
   <script src="js/header.js"></script>
-
 </body>
 
 </html>

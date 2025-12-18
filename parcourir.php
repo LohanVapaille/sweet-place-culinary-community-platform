@@ -33,6 +33,39 @@ $donuts = getDonutsUsers($pdo, $userId); // TOUS LES DONUTS
         </div>
     </div>
 
+    <div class="filter-container">
+        <select id="filterType">
+            <option value="all">Tous les types</option>
+            <option value="sucré">Sucré</option>
+            <option value="salé">Salé</option>
+        </select>
+
+        <select id="filterPrice">
+            <option value="default">Prix par défaut</option>
+            <option value="priceAsc">Compo à - de 4€</option>
+            <option value="priceDesc">Compo à 4€</option>
+        </select>
+
+        <select id="filterLikes">
+            <option value="default">Popularité</option>
+            <option value="likesDesc">Plus populaires</option>
+            <option value="likesAsc">Moins poulaires</option>
+        </select>
+
+        <select id="filterNote">
+            <option value="default">Notes</option>
+            <option value="noteDesc">Les mieux noté</option>
+            <option value="noteAsc">Les moins bien noté</option>
+        </select>
+
+        <select id="filterName">
+            <option value="default">Nom</option>
+            <option value="nameAsc">A → Z</option>
+            <option value="nameDesc">Z → A</option>
+        </select>
+    </div>
+
+
 
 
     <div class="tendances">
@@ -47,6 +80,7 @@ $donuts = getDonutsUsers($pdo, $userId); // TOUS LES DONUTS
 
     <script src="js/like.js"></script>
     <script src="js/header.js"></script>
+    <script src="js/filtresDonutsUser.js"></script>
 
 </body>
 

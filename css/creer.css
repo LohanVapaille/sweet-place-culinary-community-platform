@@ -1,19 +1,15 @@
 :root {
   --mainfont: "Modak", system-ui;
   --textfont: "Mada", sans-serif;
-  --maincolor: #cbffbf;
-  --textcolor: #660505;
+  --white: #f1f8f5;
+  --whiterose: #faf4f0;
+  --brown: #4e3626;
+  --green: #089b65;
+  --rose: #ff9298;
 }
-
-.creer {
-  background-color: whitesmoke;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
 main {
-  width: 100%;
+  width: 80%;
+  margin: auto;
 }
 h1 {
   margin: auto;
@@ -23,9 +19,11 @@ h1 {
   margin-right: 20px;
 }
 
-.content {
+main .content {
   width: 100%;
   display: flex;
+  flex-direction: row-reverse;
+  gap: 40px;
   justify-content: center;
   /* background-color: #660505; */
   padding: 50px;
@@ -35,24 +33,25 @@ h1 {
   margin-bottom: 20px;
 }
 
-.content form {
+main .content form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 75%;
-  justify-content: center;
+  align-items: left;
+
+  justify-content: right;
   gap: 10px;
 }
 
 label {
   font-family: var(--textfont);
-  font-size: 1.7rem;
+  font-size: 1.2rem;
 }
 
 .beignet-switch {
   display: flex;
   gap: 50px;
   align-items: center;
+  margin-top: 25px;
 }
 
 .beignet-switch div {
@@ -86,7 +85,7 @@ label {
   -webkit-appearance: none;
   -moz-appearance: none;
 
-  background-color: var(--maincolor); /* ton fond blanc */
+  background-color: var(--whiterose); /* ton fond blanc */
   color: #4e3626; /* ou la couleur de ton texte */
   padding: 10px 40px 10px 15px; /* espace pour la nouvelle flèche */
   border-radius: 20px;
@@ -94,6 +93,7 @@ label {
   font-size: 1.2rem;
   font-weight: 400;
   width: 300px;
+  border: 1px solid var(--rose);
 
   /* Chevron blanc personnalisé */
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><polygon points='0,0 14,0 7,8' fill='black'/></svg>");
@@ -118,18 +118,24 @@ label {
 
 input,
 textarea {
-  border: 2px solid #660505;
+  border: 1px solid var(--rose);
   border-radius: 300px;
   width: 100%;
   height: 58px;
   margin-bottom: 20px;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   padding: 15px;
+  font-family: var(--textfont);
+}
+
+input[type="radio"] {
+  accent-color: var(--rose);
 }
 
 textarea {
-  height: 100px;
+  height: 120px;
   border-radius: 25px;
+  resize: vertical;
 }
 
 .content form input[type="submit"] {
@@ -139,8 +145,12 @@ textarea {
   padding-left: 20px;
   padding-right: 20px;
   margin-left: auto;
-  font-family: "Modak", system-ui;
-  font-weight: 100 !important;
+
+  font-weight: 800;
+}
+
+form p {
+  font-size: 1.4rem;
 }
 
 .input-object {
@@ -213,6 +223,7 @@ textarea {
 .img-consutructor img {
   position: absolute;
   left: 50%;
+  top: 110px;
   transform: translateX(-50%);
   width: 500px;
 }

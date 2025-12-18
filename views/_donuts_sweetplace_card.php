@@ -21,7 +21,7 @@
                 <img src="<?php echo $donut['img'] ?>" alt="<?php echo $donut['imgAlt'] ?>">
             </div>
 
-            <div class="info">
+            <div class=" desparagraphe">
                 <p><?php echo $donut['description'] ?>
                 </p>
             </div>
