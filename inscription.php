@@ -49,10 +49,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php include './css/links.php'; ?>
 
     <style>
+        :root {
+            --mainfont: "Modak", system-ui;
+            --textfont: "Mada", sans-serif;
+            --white: #f1f8f5;
+            --whiterose: #faf4f0;
+            --brown: #4e3626;
+            --green: #089b65;
+            --rose: #ff9298;
+        }
+
         body {
 
             background-color: white;
         }
+
+
+
+
 
         .connecter {
             margin-top: 40px;
@@ -60,17 +74,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            padding: 50px;
         }
 
         .connecter p {
 
-            color: #660505;
+            color: var(--brown);
             font-size: 1.2rem;
             font-weight: 600;
         }
 
         a {
-            color: #660505;
+            color: var(--green);
         }
 
         form {
@@ -80,14 +95,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         label {
-            font-family: "Modak", system-ui;
-            color: #660505;
+            font-family: "Mada", sans-serif;
+            color: var(--brown);
             font-size: 1.5rem;
+            font-weight: 600;
         }
 
         input {
 
-            border: 2px solid #660505;
+            border: 2px solid var(--brown);
             border-radius: 30px;
             width: 100%;
             height: 58px;
@@ -101,8 +117,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             padding-top: 0px;
             padding-bottom: 0px;
             margin-left: auto;
-            font-family: "Modak", system-ui;
-            font-weight: 100 !important;
+            font-family: "Mada", sans-serif;
+            font-weight: 700 !important;
+        }
+
+        .flash-message p {
+
+            font-family: "Mada", sans-serif;
+            color: #660505;
+        }
+
+        h1 {
+            color: var(--brown);
         }
     </style>
 

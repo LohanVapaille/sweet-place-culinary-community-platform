@@ -18,6 +18,10 @@
   position: relative;
 }
 
+.banner > * {
+  margin-top: 70px;
+}
+
 .banner::before {
   content: "";
   position: absolute;

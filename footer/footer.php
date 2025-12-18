@@ -11,6 +11,8 @@
 
             <h3><a href="">Crédits</a></h3>
 
+            <h3><a href="logout.php">Déco</a></h3>
+
         </div>
     </div>
 

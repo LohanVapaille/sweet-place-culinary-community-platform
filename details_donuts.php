@@ -146,6 +146,8 @@ if ($info['type'] === 'composition' && $comp['composition_type'] === 'sucré') {
                             href="profil.php?id=<?php echo $comp['creator_id'] ?>"><?php echo $comp['creator_login'] ?></a>
                     </p>
 
+                    <a href="addpanier?id=<?php echo $comp['id_composition'] ?>" class="btn">Ajouter au panier</a>
+
                 </div>
 
                 <div class=" base-compo-container">
@@ -154,7 +156,7 @@ if ($info['type'] === 'composition' && $comp['composition_type'] === 'sucré') {
                         <a class="btn back" href="parcourir.php"> <i class='bx bx-arrow-back'></i>Retour</a>
                         <p class=" nblike"><?php echo $nb_like; ?> autres personnes ont likés ce produits</p>
 
-                        <a href="addpanier?id=<?php echo $comp['id_composition'] ?>" class="btn">Ajouter au panier</a>
+
                     </div>
                     <h2>
                         <?php echo $comp['donut_name']; ?>

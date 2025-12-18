@@ -44,7 +44,7 @@
             </div>
             <!-- Bouton panier -->
             <a href="addpanier.php?id=<?= $donut['id_donuts_de_base'] ?>" class="useraddcart">
-                <i class='bx bx-cart-add'></i>
+                + Ajouter au panier
             </a>
         </div>
 
