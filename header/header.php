@@ -19,6 +19,7 @@
               <a href="index.php"><i class='bx bxs-home-alt-2'></i></a>
               <a href="panier.php?id=<?php echo $_SESSION['id'] ?>"><i class='bx bxs-basket'></i></a>
               <a href="profil.php?id=<?php echo $_SESSION['id'] ?>"><i class='bx bxs-user-circle'></i></a>
+              <a href="creersondonuts.php"><i class='bx bx-buoy'></i></a>
 
             </div>
           </div>

@@ -140,7 +140,7 @@ function select($name, $items)
 
                         <div><label for="bagel">Bagel (salé)</label>
                             <input id='bagel' type="radio" name="beignet" value="2"
-                                data-img="images/constructor/beignets/bagel.svg">
+                                data-img="images/constructor/beignets/bagel coupe.svg">
                         </div>
 
 
@@ -150,7 +150,6 @@ function select($name, $items)
                     <input type="hidden" name="type_final" id="type_final" value="sucré">
 
 
-                    <!-- SELECTS -->
 
 
                     <label for="fourrage">Fourrage</label>

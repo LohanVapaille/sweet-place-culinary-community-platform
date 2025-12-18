@@ -17,7 +17,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--white);
+  background-color: var(--whiterose);
   font-family: var(--textfont);
 }
 
@@ -69,7 +69,7 @@ p {
   height: auto;
 
   inset: 0;
-  background: rgba(0, 0, 0, 0.5); /* intensité du film noir */
+  background: rgba(0, 0, 0, 0.35); /* intensité du film noir */
   z-index: 0;
 }
 
@@ -214,9 +214,17 @@ h3 {
 }
 
 .prix {
-  color: var(--rose);
+  color: var(--brown);
   font-size: 1.4rem;
   font-weight: 600;
+}
+
+.useraddcart {
+  background-color: var(--green);
+  border-radius: 35px;
+  padding: 5px 10px;
+  color: var(--whiterose);
+  text-decoration: none;
 }
 
 .onecard-container:hover {
@@ -298,9 +306,10 @@ h3 {
 
 .interaction {
   justify-content: space-between;
-  padding: 5px 20px 5px 20px;
+  padding: 8px 20px 8px 20px;
   z-index: 22;
-  background-color: whitesmoke;
+  background-color: var(--whiterose);
+  border-top: var(--rose) solid 2px;
   border-left: 2px solid #ccc;
   border-bottom: 2px solid #ccc;
   border-right: 2px solid #ccc;
@@ -329,7 +338,7 @@ h3 {
 
 .like i {
   font-size: 2rem;
-  color: var(--textcolor);
+  color: var(--rose);
 }
 
 .like i:hover {

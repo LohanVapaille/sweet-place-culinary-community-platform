@@ -57,9 +57,6 @@
 
         </div>
 
-
-
-
     </div>
     <div class="interaction">
 
@@ -74,7 +71,7 @@
             </div>
             <!-- Bouton panier -->
             <a href="addpanier.php?id=<?= $donut['id_composition'] ?>" class="useraddcart">
-                <i class='bx bx-cart-add'></i>
+                + Ajouter au panier
             </a>
         </div>
 
