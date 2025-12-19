@@ -69,9 +69,14 @@ main {
 }
 
 .following {
-  background-color: whitesmoke;
+  background-color: var(--whiterose);
   color: var(--textcolor);
-  border: var(--textcolor) 2px solid;
+  border: var(--brown) 2px solid;
+}
+
+.following:hover {
+  background-color: whitesmoke;
+  color: var(--brown);
 }
 
 .subscribe-btn:hover {
@@ -149,8 +154,10 @@ hr {
 }
 
 @media (max-width: 768px) {
+  main {
+    width: 95%;
+  }
   .infoprofil {
-    gap: 10px;
     justify-content: center;
     align-items: center;
     padding: 20px;
@@ -162,12 +169,6 @@ hr {
 
   .infos {
     gap: 10px;
-  }
-
-  .infoprofil .right .infos,
-  .btnprofil .btn,
-  .infoprofil {
-    font-size: 1rem;
   }
 
   .onlydesk {
@@ -202,5 +203,17 @@ hr {
 @media (min-width: 789px) {
   .onlyphone {
     display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .infoprofil .left {
+    display: none;
+  }
+}
+
+@media (max-width: 370px) {
+  .infoprofil {
+    font-size: 1rem;
   }
 }

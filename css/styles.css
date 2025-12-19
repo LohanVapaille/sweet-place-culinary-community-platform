@@ -20,6 +20,9 @@ body {
   background-color: var(--whiterose);
   font-family: var(--textfont);
 }
+h1 {
+  text-align: center;
+}
 
 h1,
 h2 {
@@ -170,7 +173,12 @@ h3 {
   gap: 10px;
 }
 
-.filter-container > * {
+.filter-container > div {
+  display: flex;
+  gap: 10px;
+}
+
+.filter-container > div select {
   background-color: var(--rose);
   padding: 10px;
   padding-inline: 20px;
@@ -480,10 +488,6 @@ h3 {
   .welcome {
     text-align: center;
   }
-
-  .cards-container {
-    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-  }
 }
 
 @media (min-width: 789px) {
@@ -491,15 +495,83 @@ h3 {
     display: none;
   }
 }
+@media (max-width: 320px) {
+  .tendances {
+    padding-inline: 5px;
+  }
+
+  .start {
+    font-size: 0.9rem;
+    margin: auto;
+    padding-inline: 5px;
+  }
+}
+
+@media (max-width: 850px) {
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  .slogan {
+    font-size: 0.95rem;
+  }
+}
 
 @media (max-width: 426px) {
   .content .info p {
     font-size: 0.7rem;
+  }
+
+  .cta-usercommu h3 {
+    font-size: 1.4rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    text-align: center;
   }
 }
 
 @media (max-width: 1122px) {
   .presentation-container img {
     display: none;
+  }
+
+  .presentation-container .concept {
+    width: 100%;
+  }
+
+  .filter-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .filter-container div {
+    justify-content: center;
+  }
+
+  .filter-container select {
+    width: 30%;
+  }
+}
+
+@media (max-width: 1303px) {
+  .presentation-container img {
+    display: none;
+  }
+}
+
+.sweetplacedonuts .content {
+  gap: 20px;
+}
+
+.sweetplacedonuts .content .desparagraphe {
+  width: 60%;
+}
+
+@media (max-width: 511px) {
+  .cards-container {
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    padding-inline: 0px;
   }
 }

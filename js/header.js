@@ -1,9 +1,10 @@
-// document.querySelector('.menubg').addEventListener('click', function() {
-//     const phone = document.querySelector('.phone');
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
 
-//     if (phone.style.display === 'flex') {
-//         phone.style.display = 'none';
-//     } else {
-//         phone.style.display = 'flex';
-//     }
-// });
+burger.addEventListener('click', () => {
+    if (mobileMenu.style.display === 'flex') {
+        mobileMenu.style.display = 'none';
+    } else {
+        mobileMenu.style.display = 'flex';
+    }
+});

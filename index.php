@@ -47,7 +47,8 @@ $donutsUsers = getDonutsUsers($pdo, $userId, 5, true);
                 gagneras
                 des
                 points dans ta cagnotte !</p>
-            <a href="creersondonuts.php" class="btn">Commencer à créer mes compositions</a>
+            <a href="creersondonuts.php" class="btn btncta start">Commencer à créer mes compos<span
+                    class="onlydesk">itions</span></a>
         </div>
         <img src="https://lagazette-yvelines.fr/wp-content/uploads/2025/04/640-Juziers-championnat-de-france-Donut-Gwenaelle-Beaumont.jpg"
             alt="">

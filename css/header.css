@@ -14,7 +14,7 @@ header {
   left: 42%;
   transform: translateX(-50%);
   display: flex;
-  width: 75%;
+  width: 70%;
   height: 70px;
   justify-content: space-between;
   align-items: center;
@@ -26,6 +26,7 @@ header {
   border: var(--white) 2px solid;
   border-radius: 60px;
   z-index: 1000;
+  text-align: center;
 }
 
 .noconnect {
@@ -200,4 +201,54 @@ header .nav:hover::after {
 
 .rose {
   color: var(--rose);
+}
+
+/* Burger caché par défaut */
+.burger {
+  display: none;
+  font-size: 32px;
+  cursor: pointer;
+  color: var(--whiterose);
+}
+
+/* Menu mobile caché */
+.mobile-menu {
+  display: none;
+  position: absolute;
+  top: 70px; /* ajuste selon la hauteur du header */
+  left: 0;
+  width: 100%;
+  background: white;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  z-index: 1000;
+}
+
+/* Responsive */
+@media (max-width: 1183px) {
+  header .nav {
+    display: none;
+  }
+
+  .connect {
+    width: 50%;
+  }
+
+  .burger {
+    display: block;
+  }
+}
+
+/* Responsive */
+@media (max-width: 769px) {
+  .donut-hover-zone {
+    display: none;
+  }
+
+  .connect {
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
