@@ -1,15 +1,17 @@
-<header>
+<header <?php if (!isset($_SESSION['id'])): ?> class="noconnect" <?php endif; ?>">
 
   <a href="index.php" class="logo">SWEETPLA<span class="rose">C</span>E.</a>
   <a class='nav' href="donuts_sweetplace.php">Donuts Sweet Place</a>
   <a class='nav' href="parcourir.php">Parcourir les créateurs</a>
   <a class='nav' href="creersondonuts.php">Créer mon donuts</a>
+  <?php if (!isset($_SESSION['id'])): ?>
+    <a class="nav" href="connexion.php">Connexion</a>
+
+  <?php endif; ?>
 
 
   <div class="right">
-    <?php if (!isset($_SESSION['id'])): ?>
-      <a href="connexion.php" class="login">Se connecter</a>
-    <?php else: ?>
+    <?php if (isset($_SESSION['id'])): ?>
       <div class="donut-hover-zone">
         <div class="donut-wrapper">
           <img src="images/design/menudonuts.svg" class="donut">

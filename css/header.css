@@ -28,6 +28,12 @@ header {
   z-index: 1000;
 }
 
+.noconnect {
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+}
+
 .logo {
   text-decoration: none;
 }
