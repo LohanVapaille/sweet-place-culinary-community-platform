@@ -51,6 +51,8 @@ try {
     exit;
 }
 
+$_SESSION['comment_added'] = true;
+
 // Redirection vers la page du donuts
-header("Location: details_donuts.php?id=" . $id_donuts);
+header("Location: details_donuts.php?id=" . $id_donuts . '#comment');
 exit;

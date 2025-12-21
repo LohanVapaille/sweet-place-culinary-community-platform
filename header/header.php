@@ -1,3 +1,14 @@
+<?php if (isset($_SESSION['panier_added'])): ?>
+  <div id="toast-panier">🍩 Ajouté au panier !</div>
+
+  <script>
+    sessionStorage.setItem('panierNotif', 'true');
+  </script>
+
+  <?php unset($_SESSION['panier_added']); ?>
+<?php endif; ?>
+
+
 <header class="<?php echo isset($_SESSION['id']) ? 'connect' : 'noconnect'; ?>">
 
 
@@ -13,6 +24,8 @@
   <div class="burger" id="burger">
     <i class='bx bx-menu'></i>
   </div>
+
+
 
   <div class="mobile-menu" id="mobileMenu">
     <a href="donuts_sweetplace.php">Donuts Sweet Place</a>
@@ -31,59 +44,37 @@
     <?php if (isset($_SESSION['id'])): ?>
       <div class="donut-hover-zone">
         <div class="donut-wrapper">
-          <img src="images/design/menudonuts.svg" class="donut">
+          <span class="notif-dot"></span>
+          <img src="images/design/menudonuts.svg" class="donut" id="donutTrigger">
 
           <div class="donut-icons">
-            <a href="index.php"><i class='bx bxs-home-alt-2'></i></a>
-            <a href="panier.php?id=<?php echo $_SESSION['id'] ?>"><i class='bx bxs-basket'></i></a>
-            <a href="profil.php?id=<?php echo $_SESSION['id'] ?>"><i class='bx bxs-user-circle'></i></a>
-            <a href="creersondonuts.php"><i class='bx bx-buoy'></i></a>
+
+            <a href="index.php" class="donut-icon" data-label="Accueil">
+              <i class='bx bxs-home-alt-2'></i>
+            </a>
+
+            <a href="panier.php?id=<?php echo $_SESSION['id'] ?>" class="donut-icon" data-label="Panier">
+              <i class='bx bxs-basket'></i>
+            </a>
+
+            <a href="profil.php?id=<?php echo $_SESSION['id'] ?>" class="donut-icon" data-label="Profil">
+              <i class='bx bxs-user-circle'></i>
+            </a>
+
+            <a href="creersondonuts.php" class="donut-icon" data-label="La fabrique">
+              <i class='bx bx-buoy'></i>
+            </a>
 
           </div>
-        </div>
-      </div>
 
-    <?php endif; ?>
+        </div>
+
+      </div>
+    </div>
+
+  <?php endif; ?>
   </div>
 
 
 
 </header>
-
-
-
-
-
-<script>
-  const logo = document.getElementById('logoTrigger');
-  const megaMenu = document.getElementById('megaMenu');
-
-  const donut = document.getElementById('donutTrigger');
-  const donutIcons = donut ? donut.querySelector('.donut-icons') : null;
-
-
-
-  // DONUT ICONS
-  if (donut) {
-    donut.addEventListener('mouseenter', () => {
-      donutIcons.style.display = 'block';
-    });
-
-    donut.addEventListener('mouseleave', () => {
-      donutIcons.style.display = 'none';
-    });
-  }
-
-  if (donut) {
-    donut.addEventListener('mouseenter', () => {
-      donutIcons.style.opacity = '1';
-      donutIcons.style.pointerEvents = 'auto';
-    });
-
-    donut.addEventListener('mouseleave', () => {
-      donutIcons.style.opacity = '0';
-      donutIcons.style.pointerEvents = 'none';
-    });
-  }
-
-</script>

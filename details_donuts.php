@@ -41,6 +41,7 @@ if ($info['type'] === 'composition' && $comp['composition_type'] === 'sucré') {
 }
 
 
+
 ?>
 
 
@@ -59,6 +60,14 @@ if ($info['type'] === 'composition' && $comp['composition_type'] === 'sucré') {
     <?php include 'header/header.php'; ?>
 
     <main>
+
+        <?php if (isset($_SESSION['comment_added'])): ?>
+            <div id="toast-panier">Commentaire ajouté !</div>
+
+
+
+            <?php unset($_SESSION['comment_added']); ?>
+        <?php endif; ?>
         <!-- si le donuts est un donuts de base -->
         <?php if ($info['type'] === 'base'): ?>
             <div class="banner" style="background-image: url('<?php echo $bannerImage ?>');">
@@ -167,7 +176,7 @@ if ($info['type'] === 'composition' && $comp['composition_type'] === 'sucré') {
                     <div class="btn-container">
 
                     </div>
-                    <div class="addcomment-container">
+                    <div id='comment' class="addcomment-container">
                         <?php if (!empty($_SESSION['id'])): ?>
                             <form action="addcomment.php" method="post">
                                 <input type="hidden" name="id_donuts" value="<?php echo (int) $id_donuts; ?>">

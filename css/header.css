@@ -29,6 +29,28 @@ header {
   text-align: center;
 }
 
+.notif-dot {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 12px;
+  height: 12px;
+  background: #ff3b3b;
+  border-radius: 50%;
+  display: none;
+}
+
+.basket-notif::after {
+  content: "";
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 10px;
+  height: 10px;
+  background: red;
+  border-radius: 50%;
+}
+
 .noconnect {
   left: 50%;
   transform: translateX(-50%);
@@ -110,6 +132,7 @@ header .nav:hover::after {
   align-items: center;
   justify-content: flex-end;
   padding-right: 40px;
+  padding-bottom: 20px;
 }
 
 .donut-icons {
@@ -123,6 +146,29 @@ header .nav:hover::after {
   pointer-events: none;
   transition: opacity 0.25s ease;
   z-index: 200;
+}
+
+/* Tooltip */
+.donut-icon::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: -26px;
+  background: #222;
+  color: #fff;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* Affichage au hover */
+.donut-icon:hover::after {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .donut-icons a {

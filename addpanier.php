@@ -94,7 +94,8 @@ if ($existing) {
     }
 }
 
-// Redirection vers la page précédente ou feed
+$_SESSION['panier_added'] = true;
+
 $back = $_SERVER['HTTP_REFERER'] ?? 'index.php';
 header('Location: ' . $back);
 exit;

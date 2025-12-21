@@ -105,12 +105,12 @@ function select($name, $items)
 
     <div class="welcome">
         <div class="content">
-            <h1>Créer sa composition</h1>
+            <h1>La Fabrique à Donuts</h1>
             <?php if ($error): ?>
                 <p class="error"><?= htmlspecialchars($error) ?></p>
             <?php endif; ?>
 
-            <p class='connect'>
+            <p class='connectinfo'>
                 Vous êtes connecté en tant que
                 <?php echo isset($_SESSION['login']) ? htmlspecialchars($_SESSION['login']) : 'Invité'; ?>
             </p>
@@ -128,6 +128,8 @@ function select($name, $items)
                 <img id="img-glacage" src="" alt="">
                 <img id="img-topping" src="" alt="">
             </div>
+
+
 
             <!-- FORM -->
             <form method="POST" id="form-compo">
@@ -155,7 +157,8 @@ function select($name, $items)
                 <input type="hidden" name="type_final" id="type_final" value="sucré">
 
 
-
+                <p class="formprix">Prix : <span id="prix-affichage">2€</span></p>
+                <input type="hidden" name="prix" id="prix" value="2">
 
                 <label for="fourrage">Fourrage</label>
                 <?php select('fourrage', $fourrages); ?>
@@ -164,8 +167,7 @@ function select($name, $items)
                 <label id='labelTopping' for="topping">Topping</label>
                 <?php select('topping', $toppings); ?>
 
-                <p class="formprix">Prix : <span id="prix-affichage">2€</span></p>
-                <input type="hidden" name="prix" id="prix" value="2">
+
 
                 <label for="componame">Nomme ta composition</label>
                 <input id='componame' type="text" name="name" placeholder="Nom de la composition" required>

@@ -164,6 +164,37 @@ h3 {
   width: 60%;
 }
 
+#toast-panier {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #ff6fa5;
+  color: #fff;
+  padding: 14px 22px;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  animation: slideUp 0.4s ease, fadeOut 0.4s ease 2.6s forwards;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
 .filter-container {
   display: flex;
   width: 100%;

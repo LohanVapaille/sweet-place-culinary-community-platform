@@ -22,21 +22,23 @@ h1 {
 main .content {
   width: 100%;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
   gap: 40px;
   justify-content: center;
   /* background-color: #660505; */
   padding: 50px;
 }
 
-.connect {
+.connectinfo {
   margin-bottom: 20px;
+  margin: auto;
+  text-align: center;
 }
 
 main .content form {
   display: flex;
   flex-direction: column;
-  align-items: left;
+  align-items: center;
 
   justify-content: right;
   gap: 10px;
@@ -101,10 +103,6 @@ label {
   background-repeat: no-repeat;
   background-position: right 12px center;
   background-size: 14px;
-}
-
-.lateral-barre img {
-  transition: opacity 0.25s ease;
 }
 
 /* Pour IE/Edge */
@@ -217,13 +215,27 @@ form p {
 
 .img-consutructor {
   position: relative;
-  width: 50%;
+  width: 100%;
+  height: 400px;
 }
 
 .img-consutructor img {
   position: absolute;
   left: 50%;
-  top: 110px;
+
   transform: translateX(-50%);
   width: 500px;
+}
+
+@media (max-width: 581px) {
+  .img-consutructor {
+    height: 250px;
+  }
+  .img-consutructor img {
+    width: 300px;
+  }
+
+  .content form input {
+    width: 100%;
+  }
 }
