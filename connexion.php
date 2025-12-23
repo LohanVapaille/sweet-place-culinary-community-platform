@@ -93,6 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             color: var(--brown);
             font-size: 1.5rem;
             font-weight: 600;
+            margin-top: 20px;
         }
 
         input {
@@ -101,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             border-radius: 30px;
             width: 100%;
             height: 58px;
-            margin-bottom: 20px;
+
             font-size: 1.4rem;
             padding: 15px;
         }
@@ -123,6 +124,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         h1 {
             color: var(--brown);
+        }
+
+        .password-field {
+            width: 100%;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .password-field i {
+
+            font-size: 2rem;
         }
     </style>
 
@@ -155,7 +167,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" id="login" name="login" required>
 
                 <label for="mdp">Mot de passe</label>
-                <input type="password" id="mdp" name="mdp" required>
+
+                <div class="password-field">
+                    <input type="password" name="mdp" id="mdp" required>
+                    <i class="bx bx-low-vision toggle-pw"></i>
+                </div>
 
                 <input class="btn" type="submit" value="Me connecter">
             </form>
@@ -165,5 +181,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </body>
 
 <script src="js/header.js"></script>
+<script src="js/affichemdp.js"></script>
 
 </html>

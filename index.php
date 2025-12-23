@@ -50,8 +50,10 @@ $donutsUsers = getDonutsUsers($pdo, $userId, 5, true);
             <a href="creersondonuts.php" class="btn btncta start">Commencer à créer mes compos<span
                     class="onlydesk">itions</span></a>
         </div>
-        <img src="https://lagazette-yvelines.fr/wp-content/uploads/2025/04/640-Juziers-championnat-de-france-Donut-Gwenaelle-Beaumont.jpg"
+        <img src="https://www.knnidiomas.com.br/_next/image?url=https%3A%2F%2Fwp.knnidiomas.com.br%2Fwp-content%2Fuploads%2F2020%2F06%2Fbagel-vs-donut-qual-a-diferenca-1553710782.png&w=3840&q=75"
             alt="">
+
+        <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDWLZCPNG7dzLIwEJ0fhpkbPgbq6r22dbHQ&s" alt=""> -->
 
     </div>
     <!-- <img class="degouline" src="images/design/degouline.jpg" alt=""> -->

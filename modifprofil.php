@@ -186,12 +186,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="hidden" name="csrf_token" value="<?= $csrf ?>">
                     <h3>Changer mot de passe</h3>
                     <label for="current_password">Mot de passe actuel</label>
-                    <input type="password" name="current_password" id="current_password">
+                    <div class="password-field">
+
+                        <input type="password" name="current_password" id="current_password">
+                        <i class="bx bx-low-vision toggle-pw"></i>
+                    </div>
                     <label for="new_password">Nouveau mot de passe</label>
-                    <input type="password" name="new_password" id="new_password">
+                    <div class="password-field">
+                        <input type="password" name="new_password" id="new_password">
+                        <i class="bx bx-low-vision toggle-pw"></i>
+                    </div>
                     <label for="confirm_password">Confirmer le nouveau mot de passe</label>
-                    <input type="password" name="confirm_password" id="confirm_password">
-                    <button type="submit" name="password_submit" class="btn">Modifier mot de passe</button>
+                    <div class="password-field">
+                        <input type="password" name="confirm_password" id="confirm_password">
+                        <i class="bx bx-low-vision toggle-pw"></i>
+                    </div>
+
+                    <button type="submit" name="password_submit" class="btn">Confirmer le changement</button>
                     <?php if ($messages['password']): ?>
                         <p class="msg"><?= htmlspecialchars($messages['password']) ?></p><?php endif; ?>
                 </form>
@@ -200,6 +211,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </main>
 
     <script src="js/header.js"></script>
+    <script src="js/affichemdp.js"></script>
 </body>
 
 </html>

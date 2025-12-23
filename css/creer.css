@@ -85,6 +85,11 @@ label {
   font-size: 1.2rem;
 }
 
+.oblige {
+  font-size: 2rem;
+  color: red;
+}
+
 .beignet-switch {
   display: flex;
   gap: 50px;

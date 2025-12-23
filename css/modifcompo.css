@@ -1,0 +1,155 @@
+:root {
+  --mainfont: "Modak", system-ui;
+  --textfont: "Mada", sans-serif;
+  --white: #f1f8f5;
+  --brown: #4e3626;
+  --rose: #ff9298;
+}
+
+main {
+  width: 80%;
+  margin: auto;
+  margin-top: 150px;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  color: var(--brown);
+}
+
+.compodetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.compodetails .info {
+  margin-top: 200px;
+}
+
+.img-container img {
+  width: 250px;
+}
+
+.info {
+  display: flex;
+  flex-wrap: wrap; /* permet aux éléments de passer à la ligne si besoin */
+  align-items: center;
+  justify-content: center;
+  gap: 5px; /* espace entre les ingrédients */
+}
+
+.info p {
+  background-color: var(--whiterose);
+  border: var(--rose) 1px solid;
+  padding: 10px;
+  border-radius: 20px;
+  font-weight: 800;
+  white-space: nowrap; /* empêche le texte de revenir à la ligne à l'intérieur du p */
+  min-width: 80px; /* largeur minimale du p */
+  max-width: 150px; /* largeur max avant de passer à la ligne suivante */
+  overflow: hidden;
+  text-overflow: ellipsis; /* met "..." si le texte est trop long */
+  text-align: center;
+}
+
+main form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 50px;
+}
+
+/* Labels */
+main label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* Inputs */
+main input[type="text"],
+main textarea {
+  width: 300px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 0.95rem;
+  margin-bottom: 18px;
+  transition: border 0.2s, box-shadow 0.2s;
+  font-family: var(--textfont);
+}
+
+main textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Focus */
+main input:focus,
+main textarea:focus {
+  border-color: #ff7a00;
+  box-shadow: 0 0 0 2px rgba(255, 122, 0, 0.15);
+}
+
+/* Bouton principal */
+main button[name="update"] {
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, green, rgb(36, 198, 36));
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  margin: auto;
+}
+
+main button[name="update"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(255, 122, 0, 0.35);
+}
+
+/* Séparateur */
+main hr {
+  margin: 30px 0;
+  border: none;
+  height: 1px;
+  background: #eee;
+}
+
+.delete {
+  margin-top: 0px;
+}
+/* Bouton suppression */
+main button[name="delete"] {
+  width: fit-content;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, var(--rose), #ff6b6b);
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  margin-bottom: 20px;
+}
+
+main button[name="delete"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(230, 57, 70, 0.35);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  main {
+    margin: 40px 16px;
+    padding: 22px;
+  }
+}

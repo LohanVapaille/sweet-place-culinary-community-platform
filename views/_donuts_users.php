@@ -10,14 +10,21 @@
                     Par <span class='green'><?= htmlspecialchars($donut['login'] ?? '', ENT_QUOTES) ?></span>
                 </a>
             </div>
-            <p class="note"><i class='bx bx-star'></i>
-                <?php if (!empty($donut['note_moyenne'])): ?>
-                    <?= $donut['note_moyenne'] ?> / 5
-                <?php else: ?>
-                    0 avis
-                <?php endif; ?>
-            </p>
+            <div class="top-right">
+                <p class="note"><i class='bx bx-star'></i>
+                    <?php if (!empty($donut['note_moyenne'])): ?>
+                        <?= $donut['note_moyenne'] ?> / 5
+                    <?php else: ?>
+                        0 avis
+                    <?php endif; ?>
+                </p>
 
+                <?php if ($_SESSION['id'] == (int) $donut['id_user']): ?>
+                    <a href="modif-compo.php?id=<?= $donut['id_composition'] ?>" class=" modifcompo">
+                        Modifier
+                    </a>
+                <?php endif; ?>
+            </div>
         </div>
 
 
@@ -73,8 +80,12 @@
             </div>
             <!-- Bouton panier -->
             <a href="addpanier.php?id=<?= $donut['id_composition'] ?>" class="useraddcart">
-                + Ajouter au panier
+                + <span class="onlydesk">Ajouter au p</span><span class="onlyphone">P</span>anier
             </a>
+
+
+
+
         </div>
 
         <p class="prix"><?= $donut['prix'] ?>€</p>

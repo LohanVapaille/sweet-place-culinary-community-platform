@@ -330,6 +330,7 @@ h3 {
   padding: 7px 15px;
   color: var(--whiterose);
   text-decoration: none;
+  width: fit-content;
 }
 .useraddcart:hover {
   background-color: rgb(85, 128, 85);
@@ -369,14 +370,14 @@ h3 {
   position: relative;
   width: 35%;
 }
-.card .img-container img {
+.img-container img {
   position: absolute;
   top: 0px;
   width: 100px;
   left: 50%;
   transform: translateX(-50%);
 }
-.card .info {
+.info {
   display: flex;
   flex-wrap: wrap; /* permet aux éléments de passer à la ligne si besoin */
   align-items: center;
@@ -384,7 +385,7 @@ h3 {
   gap: 5px; /* espace entre les ingrédients */
 }
 
-.card .info p {
+.info p {
   background-color: var(--whiterose);
   border: var(--rose) 1px solid;
   padding: 10px;
@@ -398,12 +399,14 @@ h3 {
   text-align: center;
 }
 
-.desparagraphe {
-  text-align: left;
+.top .top-right {
+  display: flex;
+  flex-direction: row;
+  gap: 3px;
 }
 
-.card img {
-  width: 150px;
+.desparagraphe {
+  text-align: left;
 }
 
 .brown {
@@ -446,6 +449,7 @@ h3 {
   display: flex;
   align-items: center;
   gap: 30px;
+  width: 75%;
 }
 
 .addcart i,
@@ -494,6 +498,20 @@ h3 {
   margin-bottom: 15px;
 }
 
+.modifcompo {
+  padding: 8px 15px;
+  background-color: var(--whiterose);
+  color: var(--brown);
+  border: 1px solid var(--brown);
+  border-radius: 20px;
+  text-decoration: none;
+}
+
+.modifcompo:hover {
+  background-color: var(--brown);
+  color: var(--whiterose);
+}
+
 .logodesign {
   color: var(--brown) !important;
 }
@@ -505,6 +523,31 @@ h3 {
 
 .tendances .ctasweetplace {
   margin: auto;
+}
+
+.password-field {
+  position: relative;
+  display: flex;
+  width: 60%;
+}
+
+.password-field input {
+  width: 100%;
+  padding-right: 60px;
+}
+
+.password-field i {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 2rem;
+  color: #777;
+}
+
+.password-field i:hover {
+  color: #000;
 }
 
 @media (max-width: 789px) {

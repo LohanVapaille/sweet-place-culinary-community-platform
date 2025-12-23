@@ -172,10 +172,10 @@ function select($name, $items)
 
 
 
-                <label for="componame">Nomme ta composition</label>
+                <label for="componame">Nomme ta composition <span class="oblige">*</span></label>
                 <input id='componame' type="text" name="name" placeholder="Nom de la composition" required>
 
-                <label for="compodesc">Décrit en quelques mots ta composition</label>
+                <label for="compodesc">Décrit en quelques mots ta composition <span class="oblige">*</span></label>
                 <textarea id='compodesc' name="description" maxlength="300"
                     placeholder="Description (50 mots max)"></textarea>
 

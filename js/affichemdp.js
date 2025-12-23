@@ -1,15 +1,15 @@
-document.querySelectorAll('.toggle-pw').forEach(function (icon) {
-    icon.addEventListener('click', function () {
-        const input = this.previousElementSibling;
+document.querySelectorAll('.toggle-pw').forEach(icon => {
+    icon.addEventListener('click', () => {
+        const input = icon.previousElementSibling;
+
+        if (!input || input.tagName !== 'INPUT') return;
+
         if (input.type === 'password') {
             input.type = 'text';
-            this.classList.remove('bx-low-vision');
-            this.classList.add('bx-show-alt');
+            icon.classList.replace('bx-low-vision', 'bx-show-alt');
         } else {
             input.type = 'password';
-            this.classList.remove('bx-show-alt');
-            this.classList.add('bx-low-vision');
+            icon.classList.replace('bx-show-alt', 'bx-low-vision');
         }
     });
 });
-
