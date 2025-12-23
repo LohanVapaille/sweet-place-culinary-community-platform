@@ -122,11 +122,14 @@ function select($name, $items)
     <main>
         <div class="content">
 
-            <div class="img-consutructor">
-                <img id="img-beignet" src="images/constructor/beignets/donuts.svg" alt="">
-                <img id="img-fourrage" src="" alt="">
-                <img id="img-glacage" src="" alt="">
-                <img id="img-topping" src="" alt="">
+            <div class="imgconstructor-container">
+                <div class="img-consutructor">
+                    <img id="img-beignet" src="images/constructor/beignets/donuts.svg" alt="">
+                    <img id="img-fourrage" src="" alt="">
+                    <img id="img-glacage" src="" alt="">
+                    <img id="img-topping" src="" alt="">
+                </div>
+                <p class="formprix">Prix : <span id="prix-affichage"> 2€</span></p>
             </div>
 
 
@@ -157,7 +160,7 @@ function select($name, $items)
                 <input type="hidden" name="type_final" id="type_final" value="sucré">
 
 
-                <p class="formprix">Prix : <span id="prix-affichage">2€</span></p>
+
                 <input type="hidden" name="prix" id="prix" value="2">
 
                 <label for="fourrage">Fourrage</label>
@@ -179,8 +182,12 @@ function select($name, $items)
 
 
 
+                <div class="btnform">
+                    <button type="button" class="btn reset" id="resetForm">Réinitialiser</button>
 
-                <input class="btn" type="submit" value="Publier"></input>
+
+                    <input class="btn" type="submit" value="Publier"></input>
+                </div>
 
             </form>
         </div>
@@ -234,6 +241,28 @@ function select($name, $items)
             // calcul initial
             calculerPrix();
         });
+
+
+
+        document.getElementById('resetForm').addEventListener('click', () => {
+            const form = document.getElementById('form-compo');
+            form.reset();
+
+            // 🔄 reset images
+            document.getElementById('img-beignet').src = 'images/constructor/beignets/donuts.svg';
+            document.getElementById('img-fourrage').src = '';
+            document.getElementById('img-glacage').src = '';
+            document.getElementById('img-topping').src = '';
+
+            // 🔄 reset prix
+            document.getElementById('prix-affichage').textContent = '2€';
+            document.getElementById('prix').value = '2';
+
+            // 🔄 reset type
+            document.getElementById('type_final').value = 'sucré';
+        });
+
+
     </script>
 
 

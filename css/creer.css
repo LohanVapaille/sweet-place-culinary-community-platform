@@ -44,6 +44,42 @@ main .content form {
   gap: 10px;
 }
 
+.reset {
+  height: 58px;
+  font-family: var(--textfont);
+  font-weight: 800;
+  background-color: var(--whiterose);
+  border: 2px var(--green) solid;
+  color: var(--brown);
+}
+
+.reset:hover {
+  height: 58px;
+  font-family: var(--textfont);
+  font-weight: 800;
+  background-color: var(--white);
+  border: 2px var(--green) solid;
+  color: var(--brown);
+}
+
+.imgconstructor-container {
+  position: relative;
+}
+.formprix {
+  position: absolute;
+  left: 47%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  background-color: var(--brown);
+  padding: 6px;
+  color: white;
+  border-radius: 20px;
+  padding-inline: 10px;
+  bottom: -45px;
+  width: fit-content;
+  border: var(--whiterose) 2px solid;
+}
+
 label {
   font-family: var(--textfont);
   font-size: 1.2rem;

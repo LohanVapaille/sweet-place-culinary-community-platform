@@ -1,135 +1,93 @@
-/* Fusionner ton CSS de base + styles complémentaires */
+:root {
+  --mainfont: "Modak", system-ui;
+  --textfont: "Mada", sans-serif;
+  --white: #f1f8f5;
+  --brown: #4e3626;
+  --rose: #ff9298;
+}
+
 main {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1.5rem;
-  margin: 0 auto;
-  max-width: 900px;
+  margin: 150px auto 30px auto;
+  width: 85%;
   background-color: white;
   border: 2px solid #660505;
   border-radius: 50px;
-  margin-bottom: 30px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
 }
+
 h1 {
-  margin: auto;
+  text-align: center;
+  color: var(--brown);
+  margin-bottom: 2rem;
 }
+
 .container {
   display: flex;
-  gap: 40px;
-  position: relative;
-  justify-content: center;
   flex-direction: column;
+  flex-wrap: wrap;
+  gap: 40px;
+  width: 100%;
+  justify-content: center;
   align-items: center;
+  margin: auto;
 }
 
-#photo {
-    font-size: 0;
-    border: none;
+img {
+  width: 150px;
+  border-radius: 50%;
 }
-#photo::file-selector-button {
-    font-size: 15px;
-    padding: 8px 14px;
-    border-radius: 20px;
-    border: none;
-    background: #660505;
-    color: white;
-    border: 2px solid #660505;
-    cursor: pointer;
-    font-weight: 500;
-}
-#photo::file-selector-button:hover {
-    background-color: white;
-    color: #660505;
-}
-.left {
-  width: 260px;
+
+form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  top: 50px;
-  gap: 10px;
-}
-.left img {
-  width: 100%;
-  height: auto;
-  border-radius: 100px;
-  object-fit: cover;
-}
-.right {
-  flex: 1;
-}
-.messages .error {
-  color: #b00020;
-  margin-bottom: 0.25rem;
-}
-.messages .success {
-  color: #006600;
-  margin-bottom: 0.25rem;
+  align-items: flex-start;
+  gap: 0.5rem;
 }
 
-form.edit-profile {
-  display: grid;
-  gap: 0.75rem;
-}
-label {
-  font-weight: 600;
-}
 input[type="text"],
 input[type="password"],
-textarea {
+textarea,
+input[type="file"] {
   border: 2px solid #660505;
   border-radius: 300px;
+  padding: 12px 15px;
+  font-size: 1.2rem;
   width: 100%;
-  height: 58px;
-  margin-bottom: 20px;
-  font-size: 1.4rem;
-  padding: 15px;
-}
-
-input[type="password"] {
-  padding-right: 50px;
+  font-family: var(--textfont);
 }
 
 textarea {
-  height: 60px;
+  height: 150px;
+  resize: vertical;
+  border-radius: 20px;
+}
+.allform {
+  width: 60%;
 }
 
 .btn {
-  margin-left: auto;
+  width: fit-content;
+  padding: 8px 16px;
+  border: none;
+  background-color: var(--rose);
+  color: white;
+  font-weight: bold;
+  border-radius: 20px;
+  cursor: pointer;
 }
-.profile-preview {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
+
+.btn:hover {
+  background-color: #e07275;
 }
-.profile-preview img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 50%;
+
+.msg {
+  font-size: 0.9rem;
+  color: green;
 }
-.pw-preview {
-  font-family: monospace;
-  background: #f4f4f4;
-  padding: 0.35rem 0.5rem;
-  border-radius: 6px;
-  display: inline-block;
-}
-.small {
+
+p.small {
   font-size: 0.9rem;
   color: #666;
-}
-
-.password-wrapper {
-  display: flex;
-  position: relative;
-  align-items: center;
-}
-
-.password-wrapper i {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(calc(-50% - 10px));
 }
