@@ -550,6 +550,21 @@ h3 {
   color: #000;
 }
 
+.back {
+  background-color: var(--whiterose);
+  border: var(--brown) 2px solid;
+  color: var(--brown);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.back:hover {
+  border: var(--rose) 2px solid;
+  background-color: var(--whiterose);
+  color: var(--rose);
+}
+
 @media (max-width: 789px) {
   .onlydesk {
     display: none;

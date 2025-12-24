@@ -11,7 +11,8 @@
 main {
   width: 80%;
   margin: auto;
-  margin-top: 160px;
+  margin-top: 200px;
+  position: relative;
 }
 
 .infoprofil {
@@ -68,6 +69,25 @@ main {
   text-align: center;
 }
 
+.back {
+  background-color: var(--whiterose);
+  border: var(--brown) 2px solid;
+  color: var(--brown);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: fit-content;
+  position: absolute;
+  top: -70px;
+  left: 20px;
+}
+
+.back:hover {
+  border: var(--rose) 2px solid;
+  background-color: var(--whiterose);
+  color: var(--rose);
+}
+
 .following {
   background-color: var(--whiterose);
   color: var(--textcolor);
@@ -97,7 +117,7 @@ main {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 8px;
+  gap: 10px;
   justify-items: center;
 }
 
@@ -106,10 +126,9 @@ main {
 }
 
 .donut-card {
-  background: #fff;
   padding: 1rem;
   border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  position: relative;
   text-align: center;
   height: 110px;
   width: 200px;
@@ -117,12 +136,32 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  transition: all ease 0.2s;
+}
+
+.donuts_liked_name {
+  position: absolute;
+  bottom: -8px;
+  z-index: 100;
+}
+
+.donut-card:hover {
+  transform: translateY(-5px);
+  cursor: pointer;
+}
+
+.base .donut-img-base {
+  width: 100px;
 }
 
 .cards-container {
   border: none;
 }
 
+.img-container-liked {
+  width: 100%;
+  height: 100%;
+}
 hr {
   border: none; /* enlève le style natif */
   height: 2px; /* épaisseur */
@@ -143,14 +182,6 @@ hr {
   display: flex;
   flex-direction: column;
   gap: 20px;
-}
-.donut-card img {
-  max-height: 70%;
-  border-radius: 8px;
-}
-
-.donut-card h3 {
-  font-size: 1rem;
 }
 
 @media (max-width: 768px) {
@@ -207,8 +238,11 @@ hr {
 }
 
 @media (max-width: 520px) {
-  .infoprofil .left {
-    display: none;
+  .infoprofil {
+    flex-direction: column;
+  }
+  .infoprofil img {
+    width: 100%;
   }
 }
 

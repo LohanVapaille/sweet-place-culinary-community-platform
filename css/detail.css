@@ -85,10 +85,6 @@ h1 {
   padding: 60px;
 }
 
-.base-contentsweetplace {
-  flex-direction: row;
-}
-
 .base-content .base-left {
   display: flex;
   flex-direction: column;
@@ -121,6 +117,10 @@ h1 {
   font-size: 1rem;
   color: white;
   margin-bottom: 15px;
+}
+
+.nblikebase {
+  width: fit-content;
 }
 
 .back {
@@ -224,5 +224,32 @@ h1 {
 @media (max-width: 768px) {
   .commentcontainer {
     grid-template-columns: 1fr; /* 1 par ligne sur petit écran */
+  }
+}
+
+/* Responsive mobile */
+@media (max-width: 1000px) {
+  .base-content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .base-content div,
+  .base-content .base-compo-container {
+    width: 100%;
+    align-items: center;
+  }
+
+  .top {
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  .back {
+    position: absolute;
+    top: 310px;
+    left: 50px;
+    z-index: 100;
   }
 }

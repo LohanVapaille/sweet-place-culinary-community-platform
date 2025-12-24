@@ -48,41 +48,63 @@ function getTotalFollowers(PDO $pdo, int $userId): int
 function getLikedCompositions(PDO $pdo, int $userId): array
 {
     $sql = "
-       SELECT 
-            c.id_composition AS id,
-            c.donut_name AS title,
-            NULL AS image,
-            c.description AS description
+        /* =========================
+           Compositions utilisateurs
+        ========================== */
+        SELECT 
+            c.id_composition            AS id,
+            'composition'               AS source,
+            c.donut_name                AS title,
+            c.description               AS description,
+
+            b.img_beignets               AS img_beignet,
+            f.img_fourrage               AS img_fourrage,
+            g.img_glacage                AS img_glacage,
+            t.img_topping                AS img_topping,
+
+            NULL                         AS img_base
+
         FROM fk_like l
-        JOIN compositions_donuts c ON l.id_compositions_donuts = c.id_composition
+        JOIN compositions_donuts c ON c.id_composition = l.id_compositions_donuts
+        JOIN beignets b            ON b.id_beignet = c.id_beignet
+        LEFT JOIN fourrages f      ON f.id_fourrage = c.id_fourrage
+        LEFT JOIN glacages g       ON g.id_glacage = c.id_glacage
+        LEFT JOIN topping t        ON t.id_topping = c.id_topping
         WHERE l.id_users = ?
 
         UNION ALL
 
-        SELECT 
-            n.id_donuts_de_base AS id,
-            n.title AS title,
-            n.img AS image,
-            n.description AS description
+        /* =========================
+           Donuts de base
+        ========================== */
+        SELECT
+            n.id_donuts_de_base          AS id,
+            'base'                      AS source,
+            n.title                     AS title,
+            n.description               AS description,
+
+            NULL                        AS img_beignet,
+            NULL                        AS img_fourrage,
+            NULL                        AS img_glacage,
+            NULL                        AS img_topping,
+
+            n.img                       AS img_base
+
         FROM fk_like_base l
-        JOIN nos_donuts n ON l.id_donuts_de_base = n.id_donuts_de_base
+        JOIN nos_donuts n ON n.id_donuts_de_base = l.id_donuts_de_base
         WHERE l.id_users = ?
 
         ORDER BY id DESC
-
     ";
+
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$userId, $userId]);
+
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 
-/**
- * Récupère les compositions créées par un utilisateur, avec nb_likes et already_liked.
- */
-/**
- * Récupère les compositions créées par un utilisateur, avec nb_likes et already_liked.
- */
+
 function getCompoByUser(PDO $pdo, int $creatorId, int $currentUser = 0, int $limit = 0, bool $random = false): array
 {
     $sql = "

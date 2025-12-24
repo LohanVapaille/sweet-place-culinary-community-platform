@@ -19,11 +19,12 @@
                     <?php endif; ?>
                 </p>
 
-                <?php if ($_SESSION['id'] == (int) $donut['id_user']): ?>
-                    <a href="modif-compo.php?id=<?= $donut['id_composition'] ?>" class=" modifcompo">
+                <?php if (isset($_SESSION['id']) && $_SESSION['id'] == (int) $donut['id_user']): ?>
+                    <a href="modif-compo.php?id=<?= $donut['id_composition'] ?>" class="modifcompo">
                         Modifier
                     </a>
                 <?php endif; ?>
+
             </div>
         </div>
 

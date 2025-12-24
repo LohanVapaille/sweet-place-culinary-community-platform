@@ -38,6 +38,8 @@ $compositions = getCompoByUser($pdo, $creator_id, $user_id);
 
 $likedDonuts = getLikedCompositions($pdo, $creator_id);
 
+// var_dump($likedDonuts);
+
 
 ?>
 
@@ -58,6 +60,9 @@ $likedDonuts = getLikedCompositions($pdo, $creator_id);
 
     <main>
         <div class="infoprofil">
+            <button class="btn back" id="btn-back">
+                <i class='bx bx-arrow-back'></i>Retour
+            </button>
             <div class="left">
                 <img src="<?= !empty($user['photo']) ? htmlspecialchars($user['photo'], ENT_QUOTES) : 'images/design/profil.webp' ?>"
                     alt="photo profil">
@@ -83,7 +88,7 @@ $likedDonuts = getLikedCompositions($pdo, $creator_id);
                         </button>
                     <?php endif; ?>
                     <a href='profil.php?id=<?php echo $creator_id ?>#likeddonuts' class="btn edit-profile">Donuts
-                        Enregistrés</a>
+                        Likés</a>
                 </div>
 
 
@@ -129,32 +134,91 @@ $likedDonuts = getLikedCompositions($pdo, $creator_id);
         </div>
 
         <div class="liked">
-            <h2>Donuts Enregistrés</h2>
+            <h2>Donuts Likés</h2>
 
 
             <div class="liked-donuts-container" id="likeddonuts">
-                <?php foreach ($likedDonuts as $donut): ?>
-                    <div class="donut-card">
-                        <?php if (!empty($donut['image'])): ?>
-                            <img src="<?php echo htmlspecialchars($donut['image'], ENT_QUOTES); ?>"
-                                alt="<?php echo htmlspecialchars($donut['title'], ENT_QUOTES); ?>">
+
+                <?php if (!empty($likedDonuts)): ?>
+
+                    <?php foreach ($likedDonuts as $donut): ?>
+
+                        <?php if ($donut['source'] === 'base'): ?>
+
+                            <div class="donut-card base" data-id-donuts="<?= (int) $donut['id'] ?>">
+                                <?php if (!empty($donut['img_base'])): ?>
+                                    <img src="<?= htmlspecialchars($donut['img_base'], ENT_QUOTES) ?>"
+                                        alt="<?= htmlspecialchars($donut['title'], ENT_QUOTES) ?>" class="donut-img-base">
+                                <?php endif; ?>
+
+                                <p class="donuts_liked_name">
+                                    <?= htmlspecialchars($donut['title'], ENT_QUOTES) ?>
+                                </p>
+                            </div>
+
+                        <?php elseif ($donut['source'] === 'composition'): ?>
+
+                            <div class="donut-card compo" data-id-donuts="<?= (int) $donut['id'] ?>">
+                                <div class="img-container img-container-liked">
+                                    <?php if (!empty($donut['img_beignet'])): ?>
+                                        <img src="<?= htmlspecialchars($donut['img_beignet'], ENT_QUOTES) ?>" class="layer beignet">
+                                    <?php endif; ?>
+
+                                    <?php if (!empty($donut['img_fourrage'])): ?>
+                                        <img src="<?= htmlspecialchars($donut['img_fourrage'], ENT_QUOTES) ?>" class="layer fourrage">
+                                    <?php endif; ?>
+
+                                    <?php if (!empty($donut['img_glacage'])): ?>
+                                        <img src="<?= htmlspecialchars($donut['img_glacage'], ENT_QUOTES) ?>" class="layer glacage">
+                                    <?php endif; ?>
+
+                                    <?php if (!empty($donut['img_topping'])): ?>
+                                        <img src="<?= htmlspecialchars($donut['img_topping'], ENT_QUOTES) ?>" class="layer topping">
+                                    <?php endif; ?>
+                                </div>
+
+                                <p class="donuts_liked_name">
+                                    <?= htmlspecialchars($donut['title'], ENT_QUOTES) ?>
+                                </p>
+                            </div>
+
                         <?php endif; ?>
-                        <h3><?php echo htmlspecialchars($donut['title'], ENT_QUOTES); ?></h3>
 
+                    <?php endforeach; ?>
 
+                <?php else: ?>
 
-                    </div>
-                <?php endforeach; ?>
+                    <p class="rienpourlemoment">Pas encore de donuts enregistrés.</p>
+
+                <?php endif; ?>
+
             </div>
+
 
         </div>
     </main>
     <?php include 'footer/footer.php'; ?>
 
     <script src='js/subscribe.js'></script>
-
+    <script src="js/back.js"></script>
     <script src="js/like.js"></script>
     <script src="js/header.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.donut-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const id = card.dataset.idDonuts;
+
+                    if (id) {
+                        window.location.href = `details_donuts.php?id=${id}`;
+                    }
+                });
+            });
+        });
+    </script>
+
+
 
 
 </body>

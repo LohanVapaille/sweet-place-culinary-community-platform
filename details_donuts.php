@@ -79,19 +79,29 @@ if ($info['type'] === 'composition' && $comp['composition_type'] === 'sucré') {
 
 
 
-            <div class="base-content base-contentsweetplace">
-                <div class="base-left base-leftsweetplace">
+            <div class="base-content">
+                <div class="base-left ">
                     <img src="<?php echo $comp['img'] ?>" alt="">
-                    <p>Proposé par SweetPlace</p>
+                    <p>Proposé par <a class='green' href="#">SweetPlace</a></p>
 
                 </div>
 
                 <div class="base-compo-container">
+
+
+                    <div class="top">
+                        <button class="btn back" id="btn-back">
+                            <i class='bx bx-arrow-back'></i>Retour
+                        </button>
+                        <p class=" nblike"><?php echo $nb_like; ?> autres personnes ont likés ce produits</p>
+
+
+                    </div>
                     <h2>
                         <?php echo $comp['title']; ?>
                     </h2>
                     <?php echo $comp['description']; ?>
-                    <p><?php echo $nb_like; ?> autres personnes ont likés ce produits</p>
+
 
                     <div class="btn-container">
 
@@ -135,20 +145,20 @@ if ($info['type'] === 'composition' && $comp['composition_type'] === 'sucré') {
                     </div>
 
                     <div class="info">
-                        <p><?php if (!empty($comp['name_fourrage'])): ?>
-                                <?= $comp['name_fourrage'] ?>
-                            <?php endif; ?>
-                        </p>
+                        <?php if (!empty($comp['name_fourrage'])): ?>
+                            <p><?= $comp['name_fourrage'] ?></p>
+                        <?php endif; ?>
 
-                        <p><?php if (!empty($comp['name_glacage'])): ?>
-                                <?= $comp['name_glacage'] ?>
-                            <?php endif; ?>
-                        </p>
 
-                        <p><?php if (!empty($comp['name_topping'])): ?>
-                                <?= $comp['name_topping'] ?>
-                            <?php endif; ?>
-                        </p>
+                        <?php if (!empty($comp['name_glacage'])): ?>
+                            <p><?= $comp['name_glacage'] ?></p>
+                        <?php endif; ?>
+
+
+                        <?php if (!empty($comp['name_topping'])): ?>
+                            <p> <?= $comp['name_topping'] ?></p>
+                        <?php endif; ?>
+
                     </div>
 
                     <p>Proposé par <a class="green"
@@ -162,7 +172,10 @@ if ($info['type'] === 'composition' && $comp['composition_type'] === 'sucré') {
                 <div class=" base-compo-container">
 
                     <div class="top">
-                        <a class="btn back" href="parcourir.php"> <i class='bx bx-arrow-back'></i>Retour</a>
+                        <button class="btn back" id="btn-back">
+                            <i class='bx bx-arrow-back'></i>Retour
+                        </button>
+
                         <p class=" nblike"><?php echo $nb_like; ?> autres personnes ont likés ce produits</p>
 
 
@@ -256,6 +269,7 @@ if ($info['type'] === 'composition' && $comp['composition_type'] === 'sucré') {
 
     <?php include 'footer/footer.php'; ?>
     <script src="js/header.js"></script>
+    <script src="js/back.js"></script>
 
     <script>const stars = document.querySelectorAll('#star-rating i');
         const noteInput = document.getElementById('note');
@@ -294,6 +308,7 @@ if ($info['type'] === 'composition' && $comp['composition_type'] === 'sucré') {
             });
         });
     </script>
+
 
 </body>
 

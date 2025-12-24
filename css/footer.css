@@ -1,13 +1,30 @@
+:root {
+  --mainfont: "Modak", system-ui;
+  --textfont: "Mada", sans-serif;
+  --white: #f1f8f5;
+  --whiterose: #faf4f0;
+  --brown: #4e3626;
+  --green: #089b65;
+  --rose: #ff9298;
+}
+
+.link-imgfooter {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
 .imgfooter {
   width: 100%;
+  margin: 0px;
 }
 
 footer {
-  background-color: var(--maincolor);
-  color: var(--textcolor);
+  background-color: var(--rose);
+  color: var(--whiterose);
   font-family: var(--textfont);
   padding: 40px 20px 20px 20px;
   font-size: 0.9rem;
+  margin: 0px;
 }
 
 footer a {
@@ -20,13 +37,13 @@ footer a:hover {
 }
 
 footer h3 {
-  font-family: var(--mainfont);
+  font-family: var(--textfont);
   font-size: 1.3rem;
   margin-bottom: 15px;
 }
 
 footer h4 {
-  font-family: var(--mainfont);
+  font-family: var(--textfont);
   font-size: 1.1rem;
   margin-bottom: 10px;
 }

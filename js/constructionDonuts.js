@@ -5,6 +5,10 @@ document.addEventListener("DOMContentLoaded", function () {
         topping: document.getElementById('topping')
     };
 
+    const labelGlacage = document.getElementById('labelGlacage');
+    const labelTopping = document.getElementById('labelTopping');
+
+
     const options = {};
     for (const key in selects) {
         options[key] = Array.from(selects[key].options).map(opt => ({
@@ -56,7 +60,18 @@ document.addEventListener("DOMContentLoaded", function () {
         // déterminer le type pour filtrer les selects
         const type = (checked.value === '1') ? 'sucré' : 'salé';
         document.getElementById('type_final').value = type;
+
+        // 🔁 Changement des labels selon le type
+        if (type === 'salé') {
+            labelGlacage.textContent = 'Sauce';
+            labelTopping.textContent = 'Crudité';
+        } else {
+            labelGlacage.textContent = 'Glaçage';
+            labelTopping.textContent = 'Topping';
+        }
+
         filterSelects(type);
+
 
         // réinitialiser les selects
         Object.keys(selects).forEach(key => {
