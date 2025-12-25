@@ -17,7 +17,7 @@
         </div>
 
         <div class="footer-bottom">
-            © 2025 SweetPlace — Projet étudiant réalisé par Adam Kassioui, Paul-Emmanuel Cesar, Bleu-Cissoko Yan et
+            © 2025 SweetPlace - Projet étudiant réalisé par Adam Kassioui, Paul-Emmanuel Cesar, Bleu-Cissoko Yan et
             Lohan
             Vapaille
         </div>
