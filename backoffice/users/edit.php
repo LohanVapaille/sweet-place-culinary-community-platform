@@ -3,7 +3,7 @@ include "../config.php";
 
 
 $table = "users";
-$columns = ["id_user", "login", "mdp", "photo", "description", "admin"];
+$columns = ["id_user", "login", "photo", "description", "admin"];
 $id_col = "id_user"; // Nom de la colonne ID
 
 $id = $_GET['id'];
@@ -18,6 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: list.php");
 }
 ?>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
 
 <div class="container mt-5">
     <h2>Modifier <?= $table ?></h2>

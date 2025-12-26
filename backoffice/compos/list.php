@@ -23,44 +23,62 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="../css/backoffice.css">
+    <link href="https://fonts.googleapis.com/css2?family=Mada:wght@200..900&family=Modak&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="shortcut icon" href="images/design/menudonuts.svg" type="image/x-icon">
+
 </head>
 
 <body>
     <header class="bg-dark text-white p-3 mb-4">
         <div class="container">
-            <h1 class="h3">Backoffice - <?= ucfirst($table) ?></h1>
+            <h1 class="">Backoffice - <?= ucfirst($table) ?></h1>
         </div>
     </header>
 
     <main class="container">
         <h2 class="mb-4">Liste des <strong><?= ucfirst($table) ?></strong></h2>
-
+        <a href="../backoffice.php" class="btn btn-secondary mb-3">
+            <i class="bi bi-arrow-left-circle"></i> Retour au backoffice
+        </a>
         <div class="table-responsive shadow-sm rounded">
             <table class="table table-striped table-hover align-middle">
+
+
                 <thead class="table-dark">
                     <tr>
-                        <?php foreach (array_keys($rows[0]) as $col): ?>
-                            <th scope="col"><?= ucfirst(str_replace("_", " ", $col)) ?></th>
-                        <?php endforeach; ?>
+                        <?php if (!empty($rows)): ?>
+                            <?php foreach (array_keys($rows[0]) as $col): ?>
+                                <th scope="col"><?= ucfirst(str_replace("_", " ", $col)) ?></th>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
+
                 <tbody>
-                    <?php foreach ($rows as $row): ?>
+                    <?php if (!empty($rows)): ?>
+                        <?php foreach ($rows as $row): ?>
+                            <tr>
+                                <?php foreach ($row as $value): ?>
+                                    <td><?= htmlspecialchars($value ?? "Rien", ENT_QUOTES, 'UTF-8') ?></td>
+                                <?php endforeach; ?>
+                                <td>
+                                    <a href="edit.php?id=<?= $row[array_keys($row)[0]] ?>" class="btn btn-sm btn-warning me-1">
+                                        <i class="bi bi-pencil-square"></i> Modifier
+                                    </a>
+                                    <a href="delete.php?id=<?= $row[array_keys($row)[0]] ?>" class="btn btn-sm btn-danger">
+                                        <i class="bi bi-trash"></i> Supprimer
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
                         <tr>
-                            <?php foreach ($row as $value): ?>
-                                <td><?= htmlspecialchars($value) ?></td>
-                            <?php endforeach; ?>
-                            <td>
-                                <a href="edit.php?id=<?= $row[array_keys($row)[0]] ?>" class="btn btn-sm btn-warning me-1">
-                                    <i class="bi bi-pencil-square"></i> Modifier
-                                </a>
-                                <a href="delete.php?id=<?= $row[array_keys($row)[0]] ?>" class="btn btn-sm btn-danger">
-                                    <i class="bi bi-trash"></i> Supprimer
-                                </a>
-                            </td>
+                            <td colspan="100%" class="text-center">Aucune donnée trouvée</td>
                         </tr>
-                    <?php endforeach; ?>
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>

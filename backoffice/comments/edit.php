@@ -1,26 +1,35 @@
 <?php
 include "../config.php";
 
-
-$table = "compositions_donuts";
-$columns = ["donut_name", "id_createur", "description", "type", "prix"];
-$id_col = "id_composition"; // Nom de la colonne ID
+$table = "commentaires";
+$columns = ["text-comment", "note", "id_auteur"];
+$id_col = "id_commentaire";
 
 $id = $_GET['id'];
-$stmt = $pdo->prepare("SELECT * FROM $table WHERE $id_col=?");
+
+$stmt = $pdo->prepare("SELECT * FROM `$table` WHERE `$id_col`=?");
 $stmt->execute([$id]);
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $set = implode(',', array_map(fn($c) => "$c=?", $columns));
-    $stmt = $pdo->prepare("UPDATE $table SET $set WHERE $id_col=?");
-    $stmt->execute([...array_map(fn($c) => $_POST[$c], $columns), $id]);
+
+    $set = implode(',', array_map(fn($c) => "`$c`=?", $columns));
+
+    $stmt = $pdo->prepare("UPDATE `$table` SET $set WHERE `$id_col`=?");
+
+    $values = array_map(fn($c) => $_POST[$c], $columns);
+    $values[] = $id;
+
+    $stmt->execute($values);
+
     header("Location: list.php");
+    exit;
 }
 ?>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
 
 <div class="container mt-5">
     <h2>Modifier <?= $table ?></h2>

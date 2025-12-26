@@ -69,7 +69,7 @@ $panier = getUserPanier($pdo, $user);
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Panier - Mon Donuts</title>
+  <title>Mon Panier </title>
   <?php include 'css/links.php'; ?>
   <link rel="stylesheet" href="css/panier.css">
   <style>
@@ -131,6 +131,8 @@ $panier = getUserPanier($pdo, $user);
       </div>
     <?php endif; ?>
   </div>
+
+  <?php include 'footer/footer.php'; ?>
 
   <script src="js/quantitepanier.js"></script>
   <script src="js/header.js"></script>

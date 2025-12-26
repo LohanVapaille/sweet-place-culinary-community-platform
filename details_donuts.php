@@ -211,7 +211,7 @@ if ($info['type'] === 'composition' && $comp['composition_type'] === 'sucré') {
                                 <input class="btn" type="submit" value="Poster"></input>
                             </form>
                         <?php else: ?>
-                            <p>Tu dois être connecté pour poster un commentaire. <a href="connexion.php">Se
+                            <p>Tu dois être connecté pour poster un commentaire. <br><br><a class='btn' href="connexion.php">Se
                                     connecter</a></p>
                         <?php endif; ?>
                     </div>

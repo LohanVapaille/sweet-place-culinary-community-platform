@@ -141,9 +141,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="container">
 
             <?php if (!empty($info_user['photo']) && is_file(__DIR__ . '/' . $info_user['photo'])): ?>
-                <img src="<?= htmlspecialchars($info_user['photo']) ?>" alt="Photo profil">
+                <img class="pp" src="<?= htmlspecialchars($info_user['photo']) ?>" alt="Photo profil">
             <?php else: ?>
-                <img src="images/design/profil.webp" alt="Photo profil par défaut">
+                <img class="pp" src="images/design/profil.webp" alt="Photo profil par défaut">
             <?php endif; ?>
             <p class="small">Login actuel : <strong><?= htmlspecialchars($info_user['login']) ?></strong></p>
 
@@ -207,8 +207,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <p class="msg"><?= htmlspecialchars($messages['password']) ?></p><?php endif; ?>
                 </form>
             </div>
+
+            <a class='btn deco' href="logout.php">Se déconnecter</a>
         </div>
     </main>
+
+    <?php include 'footer/footer.php'; ?>
 
     <script src="js/header.js"></script>
     <script src="js/affichemdp.js"></script>

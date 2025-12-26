@@ -34,6 +34,12 @@ h1 {
   margin: auto;
 }
 
+.pp {
+  width: 150px;
+  height: auto;
+  border-radius: 50%;
+}
+
 form img {
   width: 150px;
   border-radius: 50%;
@@ -90,4 +96,8 @@ textarea {
 p.small {
   font-size: 0.9rem;
   color: #666;
+}
+
+.deco {
+  background-color: red;
 }

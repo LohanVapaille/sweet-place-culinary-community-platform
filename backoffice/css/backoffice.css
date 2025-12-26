@@ -1,0 +1,35 @@
+:root {
+  --mainfont: "Modak", system-ui;
+  --textfont: "Mada", sans-serif;
+  --white: #f1f8f5;
+  --whiterose: #faf4f0;
+  --brown: #4e3626;
+  --green: #089b65;
+  --rose: #ff9298;
+}
+
+body {
+  font-family: var(--textfont);
+  background-color: var(--whiterose);
+}
+
+h1 {
+  font-family: var(--mainfont);
+}
+.green {
+  color: var(--green);
+}
+
+.rose {
+  color: var(--rose);
+}
+
+.green-bg {
+  background-color: var(--green);
+  border-color: #4e3626;
+}
+
+.green-bg:hover {
+  background-color: var(--rose);
+  border-color: #4e3626;
+}

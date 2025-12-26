@@ -194,10 +194,9 @@ function select($name, $items)
     </main>
 
 
-    <script>
+    <?php include 'footer/footer.php'; ?>
 
 
-    </script>
     <script src="js/header.js"></script>
     <script src="js/constructionDonuts.js"></script>
 

@@ -178,6 +178,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
             </button>
         </form>
     </main>
+
+    <?php include 'footer/footer.php'; ?>
+
 </body>
 
 </html>
