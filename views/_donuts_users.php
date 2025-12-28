@@ -97,6 +97,17 @@
 </div>
 
 <script>
+
+    document.addEventListener('keydown', (e) => {
+        const heart = e.target.closest('.userdonuts');
+        if (!heart) return;
+
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault(); // Empêche scroll avec espace
+            heart.click(); // Déclenche ton handler de clic existant
+        }
+    });
+
     document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.userdonuts').forEach(card => {
             card.addEventListener('click', () => {

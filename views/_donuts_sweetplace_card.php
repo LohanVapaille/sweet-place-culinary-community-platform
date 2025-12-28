@@ -55,6 +55,16 @@
 </div>
 
 <script>
+
+    document.addEventListener('keydown', (e) => {
+        const heart = e.target.closest('.sweetplacedonuts');
+        if (!heart) return;
+
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault(); // Empêche scroll avec espace
+            heart.click(); // Déclenche ton handler de clic existant
+        }
+    });
     document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.sweetplacedonuts').forEach(card => {
             card.addEventListener('click', () => {
