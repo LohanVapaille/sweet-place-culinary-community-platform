@@ -37,7 +37,7 @@ $donutsUsers = getDonutsUsers($pdo, $userId, 5, true);
         </div>
     </div>
 
-    <div class="presentation-container">
+    <div id="main-content" class="presentation-container">
         <div class="concept">
             <h2>Imagine une compo, on la réalise !</h2>
             <p><span class="logo logodesign">SWEETPLA<span class="rose">C</span>E</span>, c'est un concept remplit de

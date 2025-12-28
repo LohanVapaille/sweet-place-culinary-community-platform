@@ -1,7 +1,8 @@
 <div class="onecard-container">
-    <div class="card userdonuts" data-id="<?= $donut['id_composition'] ?>" data-type="<?= $donut['type'] ?>"
-        data-nblike="<?= $donut['likes'] ?>" data-note="<?= $donut['note_moyenne'] ?? 0 ?>"
-        data-prix="<?= $donut['prix'] ?>" data-name="<?= htmlspecialchars($donut['donut_name']) ?>">
+    <div tabindex='0' class="card userdonuts" data-id="<?= $donut['id_composition'] ?>"
+        data-type="<?= $donut['type'] ?>" data-nblike="<?= $donut['likes'] ?>"
+        data-note="<?= $donut['note_moyenne'] ?? 0 ?>" data-prix="<?= $donut['prix'] ?>"
+        data-name="<?= htmlspecialchars($donut['donut_name']) ?>">
 
         <div class="top">
             <div>
@@ -72,7 +73,7 @@
 
         <div class="int-left">
             <div class="like">
-                <i class="btnlike bx <?= $donut['already_liked'] ? 'bxs-heart' : 'bx-heart' ?>"
+                <i tabindex='0' class="btnlike bx <?= $donut['already_liked'] ? 'bxs-heart' : 'bx-heart' ?>"
                     data-id="<?= $donut['id_composition'] ?>"
                     data-liked="<?= $donut['already_liked'] ? '1' : '0' ?>"></i>
 

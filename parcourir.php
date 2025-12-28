@@ -33,7 +33,7 @@ $donuts = getDonutsUsers($pdo, $userId); // TOUS LES DONUTS
         </div>
     </div>
 
-    <div class="filter-container">
+    <div id="main-content" class="filter-container">
         <div>
             <select id="filterType">
                 <option value="all">Types</option>

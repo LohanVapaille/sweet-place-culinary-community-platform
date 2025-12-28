@@ -59,7 +59,7 @@ if ($info['type'] === 'composition' && $comp['composition_type'] === 'sucré') {
 <body>
     <?php include 'header/header.php'; ?>
 
-    <main>
+    <main id="main-content">
 
         <?php if (isset($_SESSION['comment_added'])): ?>
             <div id="toast-panier">Commentaire ajouté !</div>
@@ -80,11 +80,7 @@ if ($info['type'] === 'composition' && $comp['composition_type'] === 'sucré') {
 
 
             <div class="base-content">
-                <div class="base-left ">
-                    <img src="<?php echo $comp['img'] ?>" alt="">
-                    <p>Proposé par <a class='green' href="#">SweetPlace</a></p>
 
-                </div>
 
                 <div class="base-compo-container">
 
@@ -109,6 +105,12 @@ if ($info['type'] === 'composition' && $comp['composition_type'] === 'sucré') {
 
                 </div>
 
+                <div class="base-left ">
+                    <img src="<?php echo $comp['img'] ?>" alt="">
+                    <p>Proposé par <a class='green' href="#">SweetPlace</a></p>
+
+                </div>
+
             <?php endif; ?>
 
         </div>
@@ -127,6 +129,57 @@ if ($info['type'] === 'composition' && $comp['composition_type'] === 'sucré') {
 
 
             <div class="base-content">
+
+
+                <div class=" base-compo-container">
+
+                    <div class="top">
+                        <button class="btn back" id="btn-back">
+                            <i class='bx bx-arrow-back'></i>Retour
+                        </button>
+
+                        <p class=" nblike"><?php echo $nb_like; ?> autres personnes ont likés ce produits</p>
+
+
+                    </div>
+                    <h2>
+                        <?php echo $comp['donut_name']; ?>
+                    </h2>
+                    <?php echo $comp['description']; ?>
+
+
+                    <div class="btn-container">
+
+                    </div>
+                    <div id='comment' class="addcomment-container">
+                        <?php if (!empty($_SESSION['id'])): ?>
+                            <form action="addcomment.php" method="post">
+                                <input type="hidden" name="id_donuts" value="<?php echo (int) $id_donuts; ?>">
+
+                                <label for="addComment">Qu'en as-tu pensé ?</label><br>
+                                <textarea id="addComment" name="comment_text" rows="4" maxlength="100" required></textarea><br>
+
+                                <label for="rating">Note :</label>
+                                <div class="star-rating" id="star-rating">
+                                    <i tabindex="0" class='bx bx-star' data-value="1"></i>
+                                    <i tabindex="0" class='bx bx-star' data-value="2"></i>
+                                    <i tabindex="0" class='bx bx-star' data-value="3"></i>
+                                    <i tabindex="0" class='bx bx-star' data-value="4"></i>
+                                    <i tabindex="0" class='bx bx-star' data-value="5"></i>
+                                </div>
+                                <input type="hidden" name="note" id="note" required>
+
+
+                                <input class="btn" type="submit" value="Poster"></input>
+                            </form>
+                        <?php else: ?>
+                            <p>Tu dois être connecté pour poster un commentaire. <br><br><a class='btn' href="connexion.php">Se
+                                    connecter</a></p>
+                        <?php endif; ?>
+                    </div>
+
+                </div>
+
                 <div class="base-left">
                     <div class="img-container">
                         <img src="./<?= $comp['img_beignets'] ?>" alt="">
@@ -166,55 +219,6 @@ if ($info['type'] === 'composition' && $comp['composition_type'] === 'sucré') {
                     </p>
 
                     <a href="addpanier?id=<?php echo $comp['id_composition'] ?>" class="btn">Ajouter au panier</a>
-
-                </div>
-
-                <div class=" base-compo-container">
-
-                    <div class="top">
-                        <button class="btn back" id="btn-back">
-                            <i class='bx bx-arrow-back'></i>Retour
-                        </button>
-
-                        <p class=" nblike"><?php echo $nb_like; ?> autres personnes ont likés ce produits</p>
-
-
-                    </div>
-                    <h2>
-                        <?php echo $comp['donut_name']; ?>
-                    </h2>
-                    <?php echo $comp['description']; ?>
-
-
-                    <div class="btn-container">
-
-                    </div>
-                    <div id='comment' class="addcomment-container">
-                        <?php if (!empty($_SESSION['id'])): ?>
-                            <form action="addcomment.php" method="post">
-                                <input type="hidden" name="id_donuts" value="<?php echo (int) $id_donuts; ?>">
-
-                                <label for="addComment">Qu'en as-tu pensé ?</label><br>
-                                <textarea id="addComment" name="comment_text" rows="4" maxlength="100" required></textarea><br>
-
-                                <label for="rating">Note :</label>
-                                <div class="star-rating" id="star-rating">
-                                    <i class='bx bx-star' data-value="1"></i>
-                                    <i class='bx bx-star' data-value="2"></i>
-                                    <i class='bx bx-star' data-value="3"></i>
-                                    <i class='bx bx-star' data-value="4"></i>
-                                    <i class='bx bx-star' data-value="5"></i>
-                                </div>
-                                <input type="hidden" name="note" id="note" required>
-
-
-                                <input class="btn" type="submit" value="Poster"></input>
-                            </form>
-                        <?php else: ?>
-                            <p>Tu dois être connecté pour poster un commentaire. <br><br><a class='btn' href="connexion.php">Se
-                                    connecter</a></p>
-                        <?php endif; ?>
-                    </div>
 
                 </div>
 
@@ -273,6 +277,18 @@ if ($info['type'] === 'composition' && $comp['composition_type'] === 'sucré') {
 
     <script>const stars = document.querySelectorAll('#star-rating i');
         const noteInput = document.getElementById('note');
+
+        // Gestion clavier (Enter / Space => clic simulé)
+        document.addEventListener('keydown', (e) => {
+            const heart = e.target.closest('#star-rating i');
+            if (!heart) return;
+
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault(); // Empêche scroll avec espace
+                heart.click(); // Déclenche ton handler de clic existant
+            }
+        });
+
 
         stars.forEach(star => {
             star.addEventListener('click', () => {

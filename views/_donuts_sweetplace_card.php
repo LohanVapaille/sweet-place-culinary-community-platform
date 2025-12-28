@@ -1,5 +1,5 @@
 <div class="onecard-container ">
-    <div data-id="<?= htmlspecialchars($donut['id_donuts_de_base']) ?>" class="card sweetplacedonuts ">
+    <div tabindex='0' data-id="<?= htmlspecialchars($donut['id_donuts_de_base']) ?>" class="card sweetplacedonuts ">
 
         <div class="top">
             <div>

@@ -119,7 +119,7 @@ function select($name, $items)
 
 
 
-    <main>
+    <main id="main-content">
         <div class="content">
 
             <div class="imgconstructor-container">

@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
 <body>
 
     <?php include 'header/header.php' ?>
-    <main>
+    <main id="main-content">
 
 
         <h1>Modifier ma composition</h1>

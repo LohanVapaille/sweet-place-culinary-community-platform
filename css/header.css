@@ -25,7 +25,7 @@ header {
   gap: 15px;
   border: var(--white) 2px solid;
   border-radius: 60px;
-  z-index: 1000;
+  z-index: 50;
   text-align: center;
 }
 
@@ -140,12 +140,15 @@ header .nav:hover::after {
   top: 20%;
   left: 29%;
   transform: translate(-50%, -50%); /* ✅ CENTRE EXACT DU DONUT */
-  width: 0;
-  height: 0;
+
   opacity: 0;
-  pointer-events: none;
+
   transition: opacity 0.25s ease;
   z-index: 200;
+}
+
+.donut-icons.active {
+  visibility: visible;
 }
 
 /* Tooltip */
@@ -159,15 +162,16 @@ header .nav:hover::after {
   padding: 4px 8px;
   border-radius: 6px;
   white-space: nowrap;
-  opacity: 0;
+  display: none;
   transform: translateY(-4px);
   pointer-events: none;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 /* Affichage au hover */
-.donut-icon:hover::after {
-  opacity: 1;
+.donut-icon:hover::after,
+.donut-icon:focus::after {
+  display: block;
   transform: translateY(0);
 }
 
@@ -240,9 +244,18 @@ header .nav:hover::after {
   text-decoration: none;
   color: var(--whiterose);
 }
-.donut-hover-zone:hover .donut-icons {
+
+.donut-icons {
+  opacity: 0;
+
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.donut-hover-zone:hover .donut-icons,
+.donut-icons.active {
   opacity: 1;
   pointer-events: auto;
+  visibility: visible;
 }
 
 .rose {

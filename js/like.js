@@ -1,5 +1,17 @@
 // like.js (universel, gère classes bx / bxs et hover)
 document.addEventListener('DOMContentLoaded', () => {
+
+  // Gestion clavier (Enter / Space => clic simulé)
+  document.addEventListener('keydown', (e) => {
+    const heart = e.target.closest('.btnlike');
+    if (!heart) return;
+
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault(); // Empêche scroll avec espace
+      heart.click(); // Déclenche ton handler de clic existant
+    }
+  });
+
   // Delegated click handler
   document.addEventListener('click', async (e) => {
     const heart = e.target.closest('.btnlike');

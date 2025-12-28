@@ -12,47 +12,37 @@ if (burger && mobileMenu) {
 }
 
 // ==========================
-// DONUT MENU + NOTIFICATIONS
+// DONUT MENU + NOTIFICATIONS + ACCESSIBILITÉ CLAVIER
 // ==========================
 document.addEventListener('DOMContentLoaded', () => {
 
-    const wrapper = document.querySelector('.donut-hover-zone'); // zone hover
+    const wrapper = document.querySelector('.donut-hover-zone');
+    const trigger = document.getElementById('donutTrigger');
     const donutIcons = document.querySelector('.donut-icons');
-    const notifDot = document.querySelector('.notif-dot');
-    const basketIcon = donutIcons?.querySelector('.bxs-basket');
+    const links = donutIcons?.querySelectorAll('a');
 
-    if (!wrapper || !donutIcons) return;
+    if (!wrapper || !donutIcons || !trigger) return;
 
-    // 🔔 Afficher notif donut si ajout panier
-    if (notifDot && sessionStorage.getItem('panierNotif') === 'true') {
-        notifDot.style.display = 'block';
-    }
+    const showMenu = () => {
+        donutIcons.classList.add('active');
+    };
 
-    // 🟢 OUVERTURE MENU (hover sur TOUTE la zone)
-    wrapper.addEventListener('mouseenter', () => {
-        donutIcons.style.display = 'block';
-        donutIcons.style.opacity = '1';
-        donutIcons.style.pointerEvents = 'auto';
+    const hideMenu = () => {
+        donutIcons.classList.remove('active');
+    };
 
-        // badge panier
-        if (basketIcon && sessionStorage.getItem('panierNotif') === 'true') {
-            basketIcon.classList.add('basket-notif');
-        }
+    // Souris
+    wrapper.addEventListener('mouseenter', showMenu);
+    wrapper.addEventListener('mouseleave', hideMenu);
 
-        // retirer point rouge du donut
-        if (notifDot) {
-            notifDot.style.display = 'none';
-        }
+    // Focus clavier sur le donut
+    trigger.addEventListener('focus', showMenu);
+
+    // Focus clavier sur les liens
+    links.forEach(link => link.addEventListener('focus', showMenu));
+
+    // Si focus sort du menu → fermer
+    donutIcons.addEventListener('focusout', (e) => {
+        if (!wrapper.contains(e.relatedTarget)) hideMenu();
     });
-
-    // 🔴 FERMETURE MENU (quand on quitte TOUTE la zone)
-    wrapper.addEventListener('mouseleave', () => {
-        donutIcons.style.opacity = '0';
-        donutIcons.style.pointerEvents = 'none';
-
-        setTimeout(() => {
-            donutIcons.style.display = 'none';
-        }, 200);
-    });
-
 });

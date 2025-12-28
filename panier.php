@@ -92,47 +92,48 @@ $panier = getUserPanier($pdo, $user);
 <body>
   <?php include 'header/header.php'; ?>
 
-  <div class="paniercontent">
-    <h1>Mon panier</h1>
-    <?php if (empty($panier)): ?>
-      <p class="empty rienpourlemoment">Ton panier est vide.</p>
-    <?php else: ?>
-      <div class='cards-container' id="cart-list">
-        <?php foreach ($panier as $it): ?>
-          <div class="card cart-item" data-id_fk_panier="<?php echo (int) $it['panier_id']; ?>">
-            <div class="composition">
-              <?php foreach ($it['images'] as $img): ?>
-                <img src="<?php echo htmlspecialchars($img, ENT_QUOTES); ?>" alt="">
-              <?php endforeach; ?>
-            </div>
-
-            <div class="item-info">
-              <div><strong><?php echo htmlspecialchars($it['donut_name'], ENT_QUOTES); ?></strong></div>
-              <?php if (!empty($it['description'])): ?>
-                <div><?php echo htmlspecialchars($it['description'], ENT_QUOTES); ?></div>
-              <?php endif; ?>
-            </div>
-
-            <div class="actions">
-              <div class="qty-control">
-                <button class="decrease" aria-label="décrémenter">−</button>
-                <div class="qty" data-quantite="<?php echo (int) $it['quantite']; ?>">
-                  <?php echo (int) $it['quantite']; ?>
-                </div>
-                <button class="increase" aria-label="incrémenter">+</button>
+  <main>
+    <div id="main-content" class="paniercontent">
+      <h1>Mon panier</h1>
+      <?php if (empty($panier)): ?>
+        <p class="empty rienpourlemoment">Ton panier est vide.</p>
+      <?php else: ?>
+        <div class='cards-container' id="cart-list">
+          <?php foreach ($panier as $it): ?>
+            <div class="card cart-item" data-id_fk_panier="<?php echo (int) $it['panier_id']; ?>">
+              <div class="composition">
+                <?php foreach ($it['images'] as $img): ?>
+                  <img src="<?php echo htmlspecialchars($img, ENT_QUOTES); ?>" alt="">
+                <?php endforeach; ?>
               </div>
-              <button class="remove" title="Supprimer"><i class='bx bxs-trash'></i></button>
+
+              <div class="item-info">
+                <div><strong><?php echo htmlspecialchars($it['donut_name'], ENT_QUOTES); ?></strong></div>
+                <?php if (!empty($it['description'])): ?>
+                  <div><?php echo htmlspecialchars($it['description'], ENT_QUOTES); ?></div>
+                <?php endif; ?>
+              </div>
+
+              <div class="actions">
+                <div class="qty-control">
+                  <button class="decrease" aria-label="décrémenter">−</button>
+                  <div class="qty" data-quantite="<?php echo (int) $it['quantite']; ?>">
+                    <?php echo (int) $it['quantite']; ?>
+                  </div>
+                  <button class="increase" aria-label="incrémenter">+</button>
+                </div>
+                <button class="remove" title="Supprimer"><i class='bx bxs-trash'></i></button>
+              </div>
             </div>
-          </div>
-        <?php endforeach; ?>
+          <?php endforeach; ?>
 
 
-        <a class="btn confirmpanier" href="#">Valider le panier</a>
-      </div>
-    <?php endif; ?>
-  </div>
+          <a class="btn confirmpanier" href="#">Valider le panier</a>
+        </div>
+      <?php endif; ?>
+    </div>
+  </main>
 
-  <?php include 'footer/footer.php'; ?>
 
   <script src="js/quantitepanier.js"></script>
   <script src="js/header.js"></script>

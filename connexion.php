@@ -136,6 +136,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             font-size: 2rem;
         }
+
+        @media (max-width: 768px) {
+            .phrase {
+
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+
+            }
+        }
     </style>
 
 </head>
@@ -144,10 +154,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php include './header/header.php'; ?>
 
     <main>
-        <div class="connecter">
+        <div id="main-content" class="connecter">
             <h1>Me connecter</h1>
             <?php if (!$flash): ?>
-                <p>Si tu n’as pas de compte, <a href="inscription.php">Crée-en un !</a></p>
+
+                <p class="phrase">Si tu n’as pas de compte, <a href="inscription.php">Crée-en un !</a></p>
+
             <?php endif; ?>
 
 

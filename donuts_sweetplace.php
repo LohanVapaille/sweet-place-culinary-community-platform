@@ -34,7 +34,7 @@ $donuts = getDonutsSweetplace($pdo, $userId); // TOUS LES DONUTS
     </div>
 
 
-    <div class="tendances">
+    <div id="main-content" class="tendances">
         <div class="cards-container">
             <?php foreach ($donuts as $donut): ?>
                 <?php include 'views/_donuts_sweetplace_card.php'; ?>

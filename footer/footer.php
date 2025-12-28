@@ -4,7 +4,7 @@
         <div class="footer-container">
 
             <div class="footer-left">
-                <h3><a href="mentionslegales">Mentions légales</a></h3>
+                <h3><a href="mentionslegales.php">Mentions légales</a></h3>
                 <?php
 
                 require_once 'models/stats.php';
@@ -12,7 +12,7 @@
                 if (isset($_SESSION['id'])) {
                     $userId = $_SESSION['id'];
                     $admin = getInfosUser($pdo, $userId);
-                    if ($admin['admin'] === 1) {
+                    if ($admin['admin'] == 1) {
 
                         echo "<h3><a href='backoffice/backoffice.php'>Accéder au backoffice</a></h3>";
                     }

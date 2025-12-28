@@ -18,7 +18,7 @@
             <h1>Mentions Légales & Crédits</h1>
         </div>
     </div>
-    <main>
+    <main id="main-content">
 
         <section>
             <h2>Mentions Légales</h2>

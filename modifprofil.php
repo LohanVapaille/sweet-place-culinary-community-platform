@@ -135,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <?php include 'header/header.php'; ?>
 
-    <main>
+    <main id="main-content">
         <h1>Modifier mon profil</h1>
 
         <div class="container">

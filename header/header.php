@@ -8,11 +8,13 @@
   <?php unset($_SESSION['panier_added']); ?>
 <?php endif; ?>
 
-
+<a href="#main-content" class="skip-link">Aller au contenu</a>
 <header class="<?php echo isset($_SESSION['id']) ? 'connect' : 'noconnect'; ?>">
 
 
-  <a href="index.php" class="logo">SWEETPLA<span class="rose">C</span>E.</a>
+  <a href="index.php" title="Retour à l'accueil" class="logo">SWEETPLA<span class="rose">C</span>E<span
+      class="sr-only">Retour à
+      l'Accueil</span></a>
   <a class='nav' href="donuts_sweetplace.php">Donuts Sweet Place</a>
   <a class='nav' href="parcourir.php">Parcourir les créations</a>
   <a class='nav' href="creersondonuts.php">Créer mon donuts</a>
@@ -49,20 +51,25 @@
 
           <div class="donut-icons">
 
-            <a href="index.php" class="donut-icon" data-label="Accueil">
+            <a tabindex='0' href="index.php" class="donut-icon" data-label="Accueil">
               <i class='bx bxs-home-alt-2'></i>
+              <span class="sr-only">Retour à l'Accueil</span>
+
             </a>
 
-            <a href="panier.php?id=<?php echo $_SESSION['id'] ?>" class="donut-icon" data-label="Panier">
+            <a tabindex='0' href="panier.php?id=<?php echo $_SESSION['id'] ?>" class="donut-icon" data-label="Panier">
               <i class='bx bxs-basket'></i>
+              <span class="sr-only">Mon panier</span>
             </a>
 
-            <a href="profil.php?id=<?php echo $_SESSION['id'] ?>" class="donut-icon" data-label="Profil">
+            <a tabindex='0' href="profil.php?id=<?php echo $_SESSION['id'] ?>" class="donut-icon" data-label="Profil">
               <i class='bx bxs-user-circle'></i>
+              <span class="sr-only">Mon profil</span>
             </a>
 
-            <a href="creersondonuts.php" class="donut-icon" data-label="La fabrique">
+            <a tabindex='0' href="creersondonuts.php" class="donut-icon" data-label="La fabrique">
               <i class='bx bx-buoy'></i>
+              <span class="sr-only">La fabrique à donuts</span>
             </a>
 
           </div>

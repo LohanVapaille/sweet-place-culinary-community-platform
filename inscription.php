@@ -142,6 +142,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         h1 {
             color: var(--brown);
         }
+
+        @media (max-width: 768px) {
+            .phrase {
+
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+
+            }
+        }
     </style>
 
 </head>
@@ -151,9 +161,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <?php include './header/header.php'; ?>
 
-    <div class="connecter">
+    <div id="main-content" class="connecter">
         <h1>S'inscrire</h1>
-        <p>Si tu as déjà un compte, <a href="connexion.php">Connecte-toi</a></p>
+        <p class="phrase">Si tu as déjà un compte, <a href="connexion.php">Connecte-toi</a></p>
 
         <?php if ($message): ?>
             <div class="message"><?= htmlspecialchars($message) ?></div>

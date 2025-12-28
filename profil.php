@@ -58,7 +58,7 @@ $likedDonuts = getLikedCompositions($pdo, $creator_id);
 <body>
     <?php include 'header/header.php'; ?>
 
-    <main>
+    <main id="main-content">
         <div class="infoprofil">
             <button class="btn back" id="btn-back">
                 <i class='bx bx-arrow-back'></i>Retour
@@ -145,7 +145,7 @@ $likedDonuts = getLikedCompositions($pdo, $creator_id);
 
                         <?php if ($donut['source'] === 'base'): ?>
 
-                            <div class="donut-card base" data-id-donuts="<?= (int) $donut['id'] ?>">
+                            <div tabindex='0' class="donut-card base" data-id-donuts="<?= (int) $donut['id'] ?>">
                                 <?php if (!empty($donut['img_base'])): ?>
                                     <img src="<?= htmlspecialchars($donut['img_base'], ENT_QUOTES) ?>"
                                         alt="<?= htmlspecialchars($donut['title'], ENT_QUOTES) ?>" class="donut-img-base">
@@ -158,7 +158,7 @@ $likedDonuts = getLikedCompositions($pdo, $creator_id);
 
                         <?php elseif ($donut['source'] === 'composition'): ?>
 
-                            <div class="donut-card compo" data-id-donuts="<?= (int) $donut['id'] ?>">
+                            <div tabindex='0' class="donut-card compo" data-id-donuts="<?= (int) $donut['id'] ?>">
                                 <div class="img-container img-container-liked">
                                     <?php if (!empty($donut['img_beignet'])): ?>
                                         <img src="<?= htmlspecialchars($donut['img_beignet'], ENT_QUOTES) ?>" class="layer beignet">
@@ -206,6 +206,17 @@ $likedDonuts = getLikedCompositions($pdo, $creator_id);
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+
+
+            document.addEventListener('keydown', (e) => {
+                const heart = e.target.closest('.donut-card');
+                if (!heart) return;
+
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault(); // Empêche scroll avec espace
+                    heart.click(); // Déclenche ton handler de clic existant
+                }
+            });
             document.querySelectorAll('.donut-card').forEach(card => {
                 card.addEventListener('click', () => {
                     const id = card.dataset.idDonuts;
