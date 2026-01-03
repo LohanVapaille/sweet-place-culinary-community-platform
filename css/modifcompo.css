@@ -90,29 +90,9 @@ main textarea {
 }
 
 /* Focus */
-main input:focus,
-main textarea:focus {
-  border-color: #ff7a00;
-  box-shadow: 0 0 0 2px rgba(255, 122, 0, 0.15);
-}
-
-/* Bouton principal */
-main button[name="update"] {
-  padding: 12px;
-  border-radius: 12px;
-  border: none;
-  background: linear-gradient(135deg, green, rgb(36, 198, 36));
-  color: white;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: transform 0.15s, box-shadow 0.15s;
-  margin: auto;
-}
 
 main button[name="update"]:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(255, 122, 0, 0.35);
 }
 
 /* Séparateur */
@@ -137,13 +117,12 @@ main button[name="delete"] {
   font-weight: bold;
   font-size: 1rem;
   cursor: pointer;
-  transition: transform 0.15s, box-shadow 0.15s;
+  transition: transform 0.15s;
   margin-bottom: 20px;
 }
 
 main button[name="delete"]:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(230, 57, 70, 0.35);
 }
 
 /* Responsive */

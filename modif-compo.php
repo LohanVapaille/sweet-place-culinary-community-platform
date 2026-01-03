@@ -167,7 +167,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
                 <label>Description</label>
                 <textarea name="description"><?= htmlspecialchars($compo['description']) ?></textarea>
             </div>
-            <button type="submit" name="update">Enregistrer</button>
+            <button class="btn" type="submit" name="update">Enregistrer</button>
         </form>
 
         <hr>

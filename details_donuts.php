@@ -107,7 +107,7 @@ if ($info['type'] === 'composition' && $comp['composition_type'] === 'sucré') {
 
                 <div class="base-left ">
                     <img src="<?php echo $comp['img'] ?>" alt="">
-                    <p>Proposé par <a class='green' href="#">SweetPlace</a></p>
+                    <p>Proposé par <a class='green' href="quisommesnous.php">SweetPlace</a></p>
 
                 </div>
 

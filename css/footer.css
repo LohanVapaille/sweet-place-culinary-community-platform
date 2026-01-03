@@ -8,23 +8,13 @@
   --rose: #ff9298;
 }
 
-.link-imgfooter {
-  display: flex;
-  flex-direction: column;
-  gap: 0px;
-}
-.imgfooter {
-  width: 100%;
-  margin: 0px;
-}
-
 footer {
   background-color: var(--rose);
   color: var(--whiterose);
   font-family: var(--textfont);
   padding: 40px 20px 20px 20px;
   font-size: 0.9rem;
-  margin: 0px;
+  margin-top: 50px;
 }
 
 footer a {
@@ -50,26 +40,22 @@ footer h4 {
 
 .footer-container {
   display: flex;
-
-  /* flex-wrap: wrap; */
-
   gap: 30px;
 }
 
 .footer-container > div {
-  flex: 1 1 300px; /* minimum 300px, puis flexible */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  text-align: center;
 }
 
 .footer-column {
   margin-bottom: 20px;
 }
 
-.footer-right,
-.footer-left {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 .footer-column ul {
   list-style: none;
   padding: 0;
@@ -121,5 +107,9 @@ footer .dropdown:hover .dropdown-menu {
   .footer-container {
     flex-direction: column;
     gap: 20px;
+  }
+
+  .footer-container > div {
+    flex-direction: column;
   }
 }

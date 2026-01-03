@@ -1,3 +1,8 @@
+<?php
+session_start();
+require_once 'config.php';
+require_once 'models/detail_donuts.php'; ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -28,10 +33,10 @@
                 <h3>Informations</h3>
 
                 <ul>
-                    <li>SweetPlace est une plateforme collaborative sur laquelle vous pouvez partagez vos compositions
-                        de
-                        donuts/bagels avec les autres, testez des mélanges et découvrez les compositions des autres.
-                        Concoctez vous un panier parmi toutes les compositions proposées sur la plateforme !</li>
+                    <li>SweetPlace est une plateforme collaborative sur laquelle vous pouvez partager vos compositions
+                        de donuts et de bagels avec les autres utilisateurs, tester de nouveaux mélanges et découvrir
+                        les créations de la communauté. Composez votre panier parmi toutes les recettes proposées sur la
+                        plateforme !</li>
                     <br>
                     <li><strong>Éditeur :</strong></li>
                     <li>Raison sociale : Université Gustave Eiffel</li>

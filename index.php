@@ -40,7 +40,7 @@ $donutsUsers = getDonutsUsers($pdo, $userId, 5, true);
     <div id="main-content" class="presentation-container">
         <div class="concept">
             <h2>Imagine une compo, on la réalise !</h2>
-            <p><span class="logo logodesign">SWEETPLA<span class="rose">C</span>E</span>, c'est un concept remplit de
+            <p><span class="logo logodesign">Sweetpla<span class="rose">c</span>e</span>, c'est un concept remplit de
                 gourmandise. Sur cette plateforme tu peux concevoir et partager tes compositions avec les autres, et les
                 commander si tu veux les gouter. <br><br>De plus, si une personne commande une de tes compositions,
                 tu
@@ -53,11 +53,8 @@ $donutsUsers = getDonutsUsers($pdo, $userId, 5, true);
         <img src="https://www.knnidiomas.com.br/_next/image?url=https%3A%2F%2Fwp.knnidiomas.com.br%2Fwp-content%2Fuploads%2F2020%2F06%2Fbagel-vs-donut-qual-a-diferenca-1553710782.png&w=3840&q=75"
             alt="">
 
-        <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTDWLZCPNG7dzLIwEJ0fhpkbPgbq6r22dbHQ&s" alt=""> -->
 
     </div>
-    <!-- <img class="degouline" src="images/design/degouline.jpg" alt=""> -->
-    <!-- SECTION : compositions populaires -->
     <div class="tendances mt-30">
         <h2>Les compos de la communauté</h2>
         <div class="cards-container">
@@ -66,14 +63,15 @@ $donutsUsers = getDonutsUsers($pdo, $userId, 5, true);
             <?php endforeach; ?>
             <div class="cta-usercommu">
                 <h3>Toi aussi, créé ta composition maintenant</h3>
-                <a href="creersondonuts.php"><i class='bx bx-plus'></i></a>
+                <a href="creersondonuts.php"><i class='bx bx-plus'></i> <span class="sr-only">Toi aussi, créé ta
+                        composition maintenant</span></a>
             </div>
         </div>
     </div>
 
     <!-- SECTION : nos donuts (compos Sweet Place) -->
     <div class="tendances nosdonuts mt-30">
-        <h2>Les compos Sweet Place</h2>
+        <h2>Les compos SweetPlace </h2>
         <div class="cards-container">
             <?php foreach ($donutsSweetplace as $donut): ?>
                 <?php include 'views/_donuts_sweetplace_card.php'; ?>

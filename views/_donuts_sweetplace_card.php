@@ -4,9 +4,9 @@
         <div class="top">
             <div>
                 <h3><?= htmlspecialchars($donut['title']) ?></h3>
-                <a class="#">
-                    Par <span class='green'>Sweeplace</span>
-                </a>
+                <p>
+                    Par <a href="quisommesnous.php" class='green'>Sweeplace</a>
+                </p>
             </div>
 
 

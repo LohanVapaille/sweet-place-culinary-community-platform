@@ -12,7 +12,7 @@
 <header class="<?php echo isset($_SESSION['id']) ? 'connect' : 'noconnect'; ?>">
 
 
-  <a href="index.php" title="Retour à l'accueil" class="logo">SWEETPLA<span class="rose">C</span>E<span
+  <a href="index.php" title="Retour à l'accueil" class="logo">SweetPla<span class="rose">c</span>e<span
       class="sr-only">Retour à
       l'Accueil</span></a>
   <a class='nav' href="donuts_sweetplace.php">Donuts Sweet Place</a>
