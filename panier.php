@@ -70,6 +70,8 @@ $panier = getUserPanier($pdo, $user);
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Mon Panier </title>
+  <meta name="description"
+    content="Accédez à votre panier SweetPlace et commander les compositions de donuts et/ou de bagels que vous y avez ajouté">
   <?php include 'css/links.php'; ?>
   <link rel="stylesheet" href="css/panier.css">
   <style>
@@ -137,6 +139,8 @@ $panier = getUserPanier($pdo, $user);
 
   <script src="js/quantitepanier.js"></script>
   <script src="js/header.js"></script>
+
+  <?php include 'cookies/cookies.php'; ?>
 </body>
 
 </html>

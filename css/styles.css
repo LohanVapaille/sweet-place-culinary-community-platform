@@ -26,6 +26,42 @@
   border: 0;
 }
 
+.cookies-container {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+  width: 30%;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  border: var(--green) 2px solid;
+  border-radius: 20px;
+  bottom: 30px;
+  right: 10px;
+  padding: 20px;
+}
+
+.cookies-container h1 {
+  color: var(--brown);
+  font-size: 1rem;
+  text-shadow: none;
+}
+
+.cookies-container p {
+  width: 80%;
+  padding-bottom: 8px;
+}
+
+.cookies-container button {
+  position: absolute;
+  left: 50%;
+
+  transform: translateX(-50%);
+  bottom: -30px;
+}
+
 .skip-link {
   position: absolute;
   top: -40px;
@@ -259,9 +295,9 @@ h3 {
   background-position: right 12px center;
   background-size: 14px;
 }
-.filter-buttons > *:hover {
-  background-color: var(--green);
+.filter-container > div select:hover {
   cursor: pointer;
+  border: var(--green) 1px solid;
 }
 
 .presentation-container h2 {

@@ -16,6 +16,7 @@ $donuts = getDonutsUsers($pdo, $userId); // TOUS LES DONUTS
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez toutes les compositions conçues par les utilisateurs de SweetPlace">
     <title>Feed</title>
     <?php include 'css/links.php'; ?>
 
@@ -83,9 +84,11 @@ $donuts = getDonutsUsers($pdo, $userId); // TOUS LES DONUTS
 
     <?php include 'footer/footer.php'; ?>
 
+
     <script src="js/like.js"></script>
     <script src="js/header.js"></script>
     <script src="js/filtresDonutsUser.js"></script>
+    <?php include 'cookies/cookies.php'; ?>
 
 </body>
 

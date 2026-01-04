@@ -325,6 +325,8 @@ if ($info['type'] === 'composition' && $comp['composition_type'] === 'sucré') {
         });
     </script>
 
+    <?php include 'cookies/cookies.php'; ?>
+
 
 </body>
 

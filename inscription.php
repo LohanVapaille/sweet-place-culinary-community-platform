@@ -44,6 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Inscrivez vous et découvrez les dernières créations de donuts personnalisés. Notez et partagez vos compositions préférées !">
     <title>M'inscrire</title>
 
     <?php include './css/links.php'; ?>

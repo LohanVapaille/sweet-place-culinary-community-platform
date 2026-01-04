@@ -50,6 +50,8 @@ $likedDonuts = getLikedCompositions($pdo, $creator_id);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Découvrer le profil de <?= htmlspecialchars($user['login'], ENT_QUOTES) ?> et parcourez ses compositions de donuts et bagels">
     <title>Profil de <?= htmlspecialchars($user['login'], ENT_QUOTES) ?></title>
     <?php include 'css/links.php'; ?>
     <link rel="stylesheet" href="css/profil.css">
@@ -229,7 +231,7 @@ $likedDonuts = getLikedCompositions($pdo, $creator_id);
         });
     </script>
 
-
+    <?php include 'cookies/cookies.php'; ?>
 
 
 </body>

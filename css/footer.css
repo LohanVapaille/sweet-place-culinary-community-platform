@@ -104,6 +104,12 @@ footer .dropdown:hover .dropdown-menu {
 
 /* Responsive */
 @media (max-width: 1050px) {
+  footer a {
+    font-size: 1rem;
+  }
+}
+/* Responsive */
+@media (max-width: 700px) {
   .footer-container {
     flex-direction: column;
     gap: 20px;

@@ -43,9 +43,15 @@ require_once 'models/detail_donuts.php'; ?>
                         <li>Créer sa propre compositions de donuts ou bagels : <a href="creersondonuts.php">La
                                 Fabrique</a></li><br>
                         <?php if (isset($_SESSION['id'])) {
-                            echo "<li>Accéder à mon profil : <a href='profil.php?id=" . $_SESSION['id'] . "'>Mon profil</a></li>";
+                            echo "<li>Accéder à mon profil : <a href='profil.php?id=" . $_SESSION['id'] . "'>Mon profil</a></li><br>";
+                            echo "<li>Accéder à mon panier : <a href='panier.php?id=" . $_SESSION['id'] . "'>Mon panier</a></li><br>";
 
                         } ?>
+                        <li>SweetPlace, qui sommes nous ? : <a href="quisommesnous.php">Qui sommes nous ?</a>
+                        </li><br>
+                        <li>Conditions générales d'utilisations : <a href="cgu.php">CGU</a></li><br>
+                        <li>Mentions légales & Crédits : <a href="mentionslegales.php">Mentions légales & Crédits</a>
+                        </li><br>
                     </ul>
                 </div>
 
@@ -69,6 +75,7 @@ require_once 'models/detail_donuts.php'; ?>
     </main>
 
     <?php include 'footer/footer.php'; ?>
+    <?php include 'cookies/cookies.php'; ?>
 </body>
 
 </html>

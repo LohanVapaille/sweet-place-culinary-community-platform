@@ -96,6 +96,8 @@ function select($name, $items)
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Créer mon donuts</title>
+    <meta name="description"
+        content="Fabriquez un donuts ou un bagel personnalisé à partir des ingrédients proposés par SweetPlace, ensuite,partagez et commander le !">
     <?php include 'css/links.php'; ?>
     <link rel="stylesheet" href="css/creer.css">
 </head>
@@ -264,7 +266,7 @@ function select($name, $items)
 
     </script>
 
-
+    <?php include 'cookies/cookies.php'; ?>
 </body>
 
 

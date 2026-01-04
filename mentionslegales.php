@@ -10,8 +10,9 @@ require_once 'models/detail_donuts.php'; ?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Mentions Légales</title>
+    <meta name="description" content="Informez-vous sur les mentions légales de SweetPlace">
     <?php include 'css/links.php'; ?>
-    <link rel="stylesheet" href="css/mentionslegales.css">
+    <link rel=" stylesheet" href="css/mentionslegales.css">
 </head>
 
 <?php include 'header/header.php' ?>
@@ -142,6 +143,7 @@ require_once 'models/detail_donuts.php'; ?>
     </main>
 
     <?php include 'footer/footer.php'; ?>
+    <?php include 'cookies/cookies.php'; ?>
 </body>
 
 </html>

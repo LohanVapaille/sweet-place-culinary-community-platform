@@ -5,6 +5,7 @@
             <h3><a href="mentionslegales.php">Mentions légales & Crédits</a></h3>
             <h3><a href="siteplan.php">Plan du site</a></h3>
             <h3><a href="quisommesnous.php">Qui sommes nous ?</a></h3>
+            <h3><a href="cgu.php">Conditions générales d'utilisation</a></h3>
             <?php
 
             require_once 'models/stats.php';
@@ -33,9 +34,10 @@
     </div>
 
     <div class="footer-bottom">
-        © 2025 SweetPlace - Projet étudiant réalisé par Adam Kassioui, Paul-Emmanuel Cesar, Bleu-Cissoko Yan et
-        Lohan
-        Vapaille
+        © 2025 SweetPlace <span class='onlydesk'>- Projet étudiant réalisé par Adam Kassioui, Paul-Emmanuel Cesar,
+            Bleu-Cissoko Yan et
+            Lohan
+            Vapaille</span>
     </div>
 </footer>
 </div>

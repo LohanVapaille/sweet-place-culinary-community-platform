@@ -10,6 +10,8 @@ require_once 'models/detail_donuts.php'; ?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Qui sommes nous ?</title>
+    <meta name="description"
+        content="Découvrez SweetPlace, la première plateforme de création et de partage de compositions personnalisées de donuts & bagels">
     <?php include 'css/links.php'; ?>
     <link rel="stylesheet" href="css/mentionslegales.css">
 </head>
@@ -100,6 +102,7 @@ require_once 'models/detail_donuts.php'; ?>
     </main>
 
     <?php include 'footer/footer.php'; ?>
+    <?php include 'cookies/cookies.php'; ?>
 </body>
 
 </html>

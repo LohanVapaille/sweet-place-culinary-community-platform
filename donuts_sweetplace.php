@@ -46,6 +46,8 @@ $donuts = getDonutsSweetplace($pdo, $userId); // TOUS LES DONUTS
 
     <script src="js/like.js"></script>
     <script src="js/header.js"></script>
+
+    <?php include 'cookies/cookies.php'; ?>
 </body>
 
 </html>

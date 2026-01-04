@@ -180,6 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
     </main>
 
     <?php include 'footer/footer.php'; ?>
+    <?php include 'cookies/cookies.php'; ?>
 
 </body>
 

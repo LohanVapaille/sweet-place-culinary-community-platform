@@ -8,7 +8,7 @@ $userId = $_SESSION['id'] ?? 0;
 
 $donutsSweetplace = getDonutsSweetplace($pdo, $userId, 6, true); // 6 random
 
-$donutsUsers = getDonutsUsers($pdo, $userId, 5, true);
+$donutsUsers = getDonutsUsers($pdo, $userId, 5, false);
 
 // var_dump($donutsUsers);
 
@@ -21,8 +21,10 @@ $donutsUsers = getDonutsUsers($pdo, $userId, 5, true);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Découvrez les dernières créations de donuts et bagels personnalisés à partir de plus de 50 ingrédients. Notez et partagez vos compositions préférées !">
     <?php include 'css/links.php'; ?>
-    <title>Sweet Place</title>
+    <title>Sweet Place | Accueil</title>
 </head>
 
 <?php include 'header/header.php'; ?>
@@ -31,10 +33,13 @@ $donutsUsers = getDonutsUsers($pdo, $userId, 5, true);
     <div class="welcome">
         <div class="content">
             <h1>L’endroit où la douceur prend forme</h1>
-
-
-
+            <?php if (isset($_SESSION['id'])): ?>
+                <p class='connectinfo'>
+                    Bienvenue sur SweetPlace, <?php echo htmlspecialchars($_SESSION['login']); ?> !
+                </p>
+            <?php endif; ?>
         </div>
+
     </div>
 
     <div id="main-content" class="presentation-container">
@@ -87,7 +92,7 @@ $donutsUsers = getDonutsUsers($pdo, $userId, 5, true);
     <script src="js/like.js"></script>
     <script src="js/header.js"></script>
 
-
+    <?php include 'cookies/cookies.php'; ?>
 </body>
 
 </html>

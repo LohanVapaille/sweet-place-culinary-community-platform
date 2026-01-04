@@ -216,6 +216,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <script src="js/header.js"></script>
     <script src="js/affichemdp.js"></script>
+
+    <?php include 'cookies/cookies.php'; ?>
 </body>
 
 </html>
