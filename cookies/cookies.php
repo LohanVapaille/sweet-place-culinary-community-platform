@@ -1,8 +1,8 @@
 <?php if (!isset($_COOKIE['accept_cookies'])): ?>
     <div id="cookie-banner" class="cookies-container">
         <h1>On fait des donuts, mais on aime aussi les cookies !</h1>
-        <p>Ce site utilise des cookes pour vous offrir la
-            meilleure expérience</p>
+        <p>Ce site utilise des cookies pour vous offrir la
+            meilleure expérience utilisateur</p>
         <button id="btn-accept-cookies" class="btn">D'accord
             !</button>
     </div>
