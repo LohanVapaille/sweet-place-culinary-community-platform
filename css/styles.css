@@ -659,6 +659,10 @@ h3 {
   .welcome {
     text-align: center;
   }
+
+  .cookies-container {
+    width: 50%;
+  }
 }
 
 @media (min-width: 789px) {
@@ -744,6 +748,13 @@ h3 {
   .cards-container {
     grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
     padding-inline: 0px;
+  }
+
+  .cookies-container {
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
   }
 
   .modifcompo {

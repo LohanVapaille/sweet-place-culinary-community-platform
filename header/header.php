@@ -29,18 +29,7 @@
 
 
 
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="donuts_sweetplace.php">Donuts Sweet Place</a>
-    <a href="parcourir.php">Parcourir les créations</a>
-    <a href="creersondonuts.php">Créer mon donuts</a>
 
-    <?php if (!isset($_SESSION['id'])): ?>
-      <a href="connexion.php">Connexion</a>
-    <?php else: ?>
-      <a href="profil.php?id=<?php echo $_SESSION['id'] ?>">Mon profil</a>
-      <a href="panier.php?id=<?php echo $_SESSION['id'] ?>">Panier</a>
-    <?php endif; ?>
-  </div>
 
   <div class="right">
     <?php if (isset($_SESSION['id'])): ?>
@@ -85,3 +74,18 @@
 
 
 </header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="donuts_sweetplace.php">Donuts Sweet Place</a>
+  <a href="parcourir.php">Parcourir les créations</a>
+  <a href="creersondonuts.php">Créer mon donuts</a>
+
+  <?php if (!isset($_SESSION['id'])): ?>
+    <a href="connexion.php">Connexion</a>
+  <?php else: ?>
+    <a href="profil.php?id=<?php echo $_SESSION['id'] ?>">Mon profil</a>
+    <a href="panier.php?id=<?php echo $_SESSION['id'] ?>">Panier</a>
+  <?php endif; ?>
+
+  <i class='cross bx bx-x'></i>
+</div>

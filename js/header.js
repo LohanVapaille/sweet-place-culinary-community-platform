@@ -11,6 +11,13 @@ if (burger && mobileMenu) {
     });
 }
 
+const cross = document.querySelector('.cross');
+
+cross.addEventListener('click', () => {
+    mobileMenu.style.display = 'none';
+
+});
+
 // ==========================
 // DONUT MENU + NOTIFICATIONS + ACCESSIBILITÉ CLAVIER
 // ==========================

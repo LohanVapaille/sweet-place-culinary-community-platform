@@ -273,9 +273,10 @@ header .nav:hover::after {
 
 /* Menu mobile caché */
 .mobile-menu {
+  padding-top: 20px;
   display: none;
   position: absolute;
-  top: 70px; /* ajuste selon la hauteur du header */
+  top: 0; /* ajuste selon la hauteur du header */
   left: 0;
   width: 100%;
   background: white;
@@ -283,6 +284,23 @@ header .nav:hover::after {
   gap: 20px;
   padding: 20px;
   z-index: 1000;
+  color: var(--green);
+}
+
+.mobile-menu a {
+  color: var(--green);
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+}
+
+.cross {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 2rem;
+  color: #000000;
+  padding: 10px;
 }
 
 /* Responsive */
