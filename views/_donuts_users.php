@@ -33,18 +33,18 @@
 
         <div class="content">
             <div class="img-container">
-                <img src="./<?= $donut['img_beignets'] ?>" alt="">
+                <img src="./<?= $donut['img_beignets'] ?>" alt="<?= $donut['name_beignet'] ?>">
 
                 <?php if (!empty($donut['img_fourrage'])): ?>
-                    <img src="./<?= $donut['img_fourrage'] ?>" alt="">
+                    <img src="./<?= $donut['img_fourrage'] ?>" alt="<?= $donut['name_fourrage'] ?>">
                 <?php endif; ?>
 
                 <?php if (!empty($donut['img_glacage'])): ?>
-                    <img src="./<?= $donut['img_glacage'] ?>" alt="">
+                    <img src="./<?= $donut['img_glacage'] ?>" alt="<?= $donut['name_glacage'] ?>">
                 <?php endif; ?>
 
                 <?php if (!empty($donut['img_topping'])): ?>
-                    <img src="./<?= $donut['img_topping'] ?>" alt="">
+                    <img src="./<?= $donut['img_topping'] ?>" alt="<?= $donut['name_topping'] ?>">
                 <?php endif; ?>
             </div>
 

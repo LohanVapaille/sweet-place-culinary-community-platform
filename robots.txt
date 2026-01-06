@@ -1,0 +1,19 @@
+# Autorise tous les robots (Google, Bing, DuckDuckGo, etc.)
+User-agent: *
+
+# Interdire l'accès aux pages privées et techniques
+# On ne veut pas que le panier ou le profil soient sur Google
+Disallow: /panier.php
+Disallow: /profil.php
+Disallow: /config.php
+Disallow: /models/
+Disallow: /css/
+Disallow: /header/
+Disallow: /footer/
+Disallow: /cookies/
+
+# Autoriser l'indexation de tout le reste
+Allow: /
+
+# Indiquer l'emplacement du sitemap XML pour les moteurs de recherche
+Sitemap: https://sweetplace.shop/sitemap.xml
