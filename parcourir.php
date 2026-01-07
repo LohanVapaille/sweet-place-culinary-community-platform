@@ -51,7 +51,7 @@ $donuts = getDonutsUsers($pdo, $userId); // TOUS LES DONUTS
             <select id="filterLikes">
                 <option value="default">Popularité</option>
                 <option value="likesDesc">Plus populaires</option>
-                <option value="likesAsc">Moins poulaires</option>
+                <option value="likesAsc">Moins populaires</option>
             </select>
         </div>
 

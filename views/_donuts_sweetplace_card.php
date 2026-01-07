@@ -5,7 +5,7 @@
             <div>
                 <h3><?= htmlspecialchars($donut['title']) ?></h3>
                 <p>
-                    Par <a href="quisommesnous.php" class='green'>Sweeplace</a>
+                    Par <a href="quisommesnous.php" class='green'>Sweetplace</a>
                 </p>
             </div>
 

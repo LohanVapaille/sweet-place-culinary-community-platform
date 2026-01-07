@@ -230,7 +230,7 @@ h1 {
 /* Responsive mobile */
 @media (max-width: 1000px) {
   .base-content {
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
     justify-content: center;
   }

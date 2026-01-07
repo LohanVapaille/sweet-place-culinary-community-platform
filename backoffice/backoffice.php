@@ -81,7 +81,7 @@ if (!isset($_SESSION['id'])) {
                     <div class="shadow-sm bg-white p-4 text-center dashboard-card">
                         <i class="bi bi-bag-heart-fill fs-1 text-danger"></i>
                         <h5 class="mt-3">Compositions Donuts</h5>
-                        <p class="text-muted">Ajouter, modifier, supprimer</p>
+                        <p class="text-muted">Modifier, supprimer</p>
                     </div>
                 </a>
             </div>
