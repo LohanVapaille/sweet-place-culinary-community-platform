@@ -48,9 +48,7 @@ function getTotalFollowers(PDO $pdo, int $userId): int
 function getLikedCompositions(PDO $pdo, int $userId): array
 {
     $sql = "
-        /* =========================
-           Compositions utilisateurs
-        ========================== */
+    
         SELECT 
             c.id_composition            AS id,
             'composition'               AS source,
@@ -140,7 +138,7 @@ function getCompoByUser(PDO $pdo, int $creatorId, int $currentUser = 0, int $lim
         LEFT JOIN fourrages f ON c.id_fourrage = f.id_fourrage
         LEFT JOIN glacages g ON c.id_glacage = g.id_glacage
         LEFT JOIN topping t ON c.id_topping = t.id_topping
-        LEFT JOIN users u ON c.id_createur = u.id_user  -- C'EST LA LIGNE CORRIGÉE
+        LEFT JOIN users u ON c.id_createur = u.id_user  
         WHERE c.id_createur = :creator
     ";
 
