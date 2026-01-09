@@ -15,6 +15,6 @@
         date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
         document.cookie = "accept_cookies=true; expires=" + date.toUTCString() + "; path=/";
 
-        // Cache la bannière
+
         document.getElementById('cookie-banner').style.display = 'none';
     });</script>

@@ -1,10 +1,10 @@
 <?php
-include "../config.php";
+require "../../config.php";
 
 
 $table = "users";
 $columns = ["id_user", "login", "photo", "description", "admin"];
-$id_col = "id_user"; // Nom de la colonne ID
+$id_col = "id_user";
 
 $id = $_GET['id'];
 $stmt = $pdo->prepare("SELECT * FROM $table WHERE $id_col=?");
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php foreach ($columns as $col): ?>
             <div class="mb-3">
                 <label><?= $col ?></label>
-                <input type="text" name="<?= $col ?>" class="form-control" value="<?= $row[$col] ?>" required>
+                <input type="text" name="<?= $col ?>" class="form-control" value="<?= $row[$col] ?>">
             </div>
         <?php endforeach; ?>
         <button class="btn btn-warning">Modifier</button>

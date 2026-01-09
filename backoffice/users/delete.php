@@ -1,8 +1,8 @@
 <?php
-include "../config.php";
+require "../../config.php";
 
 $table = "users";
-$id_col = "id_user"; // Remplacer par le nom de la colonne ID
+$id_col = "id_user";
 $id = $_GET['id'];
 
 $stmt = $pdo->prepare("DELETE FROM fk_like WHERE id_users=?");

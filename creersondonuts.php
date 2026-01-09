@@ -15,7 +15,7 @@ $success = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Type de beignet
-    $type = 'sucré'; // valeur par défaut
+    $type = 'sucré';
     if (isset($_POST['beignet'])) {
         $type = ($_POST['beignet'] == '1') ? 'sucré' : 'salé';
     }
@@ -23,11 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name'] ?? '');
     $description = trim($_POST['description'] ?? '');
 
-    // Validation obligatoire
+
     if ($name === '' || $description === '') {
         $error = "Le nom et la description sont obligatoires.";
     } else {
-        // Conversion en int ou NULL si vide
+
         $id_beignet = !empty($_POST['beignet']) ? (int) $_POST['beignet'] : null;
         $id_fourrage = !empty($_POST['fourrage']) ? (int) $_POST['fourrage'] : null;
         $id_glacage = !empty($_POST['glacage']) ? (int) $_POST['glacage'] : null;
@@ -70,8 +70,8 @@ function select($name, $items)
     echo "<select name='$name' id='$name'>";
 
     foreach ($items as $i) {
-        // Utilise le vrai type de l'ingrédient
-        $type_col = 'type_' . $name; // ex: type_fourrage
+
+        $type_col = 'type_' . $name;
         $img_col = 'img_' . $name;
         $name_col = 'name_' . $name;
         $id_col = 'id_' . $name;
@@ -249,17 +249,17 @@ function select($name, $items)
             const form = document.getElementById('form-compo');
             form.reset();
 
-            // 🔄 reset images
+            // reset images
             document.getElementById('img-beignet').src = 'images/constructor/beignets/donuts.svg';
             document.getElementById('img-fourrage').src = '';
             document.getElementById('img-glacage').src = '';
             document.getElementById('img-topping').src = '';
 
-            // 🔄 reset prix
+            // reset prix
             document.getElementById('prix-affichage').textContent = '2€';
             document.getElementById('prix').value = '2';
 
-            // 🔄 reset type
+            // reset type
             document.getElementById('type_final').value = 'sucré';
         });
 

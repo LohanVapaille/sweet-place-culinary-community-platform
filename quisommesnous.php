@@ -48,13 +48,7 @@ require_once 'models/detail_donuts.php'; ?>
                         malheureusement jamais fabriqués.
                     </li>
                 </ul>
-
-
-
             </div>
-
-
-
         </section>
 
         <section>
@@ -89,15 +83,6 @@ require_once 'models/detail_donuts.php'; ?>
                 </ul>
             </div>
         </section>
-
-
-
-
-
-
-
-
-
 
     </main>
 

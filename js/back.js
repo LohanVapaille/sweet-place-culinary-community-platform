@@ -1,4 +1,4 @@
 document.getElementById('btn-back')?.addEventListener('click', () => {
     window.history.back();
-    console.log("zaza");
+    // console.log("test");
 });

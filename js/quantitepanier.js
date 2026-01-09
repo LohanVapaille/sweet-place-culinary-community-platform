@@ -19,12 +19,11 @@
 
     document.getElementById('cart-list')?.addEventListener('click', async function (e) {
         const target = e.target;
-        // Trouver l'élément .cart-item parent
+
         const itemEl = findAncestor(target, '.cart-item');
         if (!itemEl) return;
 
-        // Trouver le bouton réel cliquable : increase / decrease / remove
-        // On cherche les éléments qui portent ces classes ou un bouton (fallback)
+
         const actionBtn = target.closest('.increase, .decrease, .remove, button');
         if (!actionBtn) return;
 
@@ -63,7 +62,7 @@
             return;
         }
 
-        // Supprimer (corbeille)
+
         if (actionBtn.classList.contains('remove')) {
             if (!confirm('Supprimer cet article du panier ?')) return;
             const res = await postJSON({ action: 'update_quantity', id_fk_panier: id_fk_panier, quantite: 0 });
@@ -78,6 +77,6 @@
             return;
         }
 
-        // Si on clique sur un <button> sans classes spécifiques, on ne fait rien
+
     });
 })();

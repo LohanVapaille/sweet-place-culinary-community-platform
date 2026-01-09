@@ -1,5 +1,5 @@
 <?php
-include "../config.php";
+require "../../config.php";
 
 $table = "commentaires";
 $columns = ["text-comment", "note", "id_auteur"];

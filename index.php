@@ -74,7 +74,7 @@ $donutsUsers = getDonutsUsers($pdo, $userId, 5, false);
         </div>
     </div>
 
-    <!-- SECTION : nos donuts (compos Sweet Place) -->
+
     <div class="tendances nosdonuts mt-30">
         <h2>Les compos SweetPlace </h2>
         <div class="cards-container">

@@ -28,7 +28,7 @@
   height: auto;
 
   inset: 0;
-  background: rgba(0, 0, 0, 0.5); /* intensité du film noir */
+  background: rgba(0, 0, 0, 0.5);
   z-index: 2;
 }
 
@@ -175,7 +175,7 @@ h1 {
 .comment {
   background-color: #fff;
   border-radius: 15px;
-  padding: 20px; /* un peu plus large */
+  padding: 20px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
 }
@@ -220,14 +220,12 @@ h1 {
   line-height: 1.4;
 }
 
-/* Responsive mobile */
 @media (max-width: 768px) {
   .commentcontainer {
-    grid-template-columns: 1fr; /* 1 par ligne sur petit écran */
+    grid-template-columns: 1fr;
   }
 }
 
-/* Responsive mobile */
 @media (max-width: 1000px) {
   .base-content {
     flex-direction: column-reverse;

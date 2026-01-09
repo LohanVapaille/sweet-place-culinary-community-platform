@@ -1,8 +1,9 @@
 <?php
-// config.php doit contenir la connexion PDO
-include "../config.php";
 
-// Nom de la table
+require "../../config.php";
+
+
+
 $table = "commentaires";
 
 $stmt = $pdo->query("SELECT * FROM $table");
@@ -16,12 +17,11 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste de <?= ucfirst($table) ?></title>
 
-    <!-- Bootstrap CSS -->
-    <!-- Bootstrap CSS (v5.3.8) -->
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
-    <!-- Bootstrap Icons -->
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/backoffice.css">
     <link href="https://fonts.googleapis.com/css2?family=Mada:wght@200..900&family=Modak&display=swap" rel="stylesheet">
@@ -76,7 +76,7 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         &copy; <?= date("Y") ?> Backoffice
     </footer>
 
-    <!-- Bootstrap JS Bundle (Popper inclus) -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-QF3k5Uq6CkT9rF1r6I0wM9W1qGzt1GZm+DlHs6c8/w1AwE+0Q5PjF3qzZ+9tF4Vp"
         crossorigin="anonymous"></script>

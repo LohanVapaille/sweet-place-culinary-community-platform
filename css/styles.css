@@ -122,8 +122,8 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative; /* 🔴 essentiel */
-  overflow: hidden; /* 🔴 empêche tout débordement */
+  position: relative;
+  overflow: hidden;
   background-image: url("../images/design/donutsetbagel.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -136,7 +136,7 @@ p {
   height: auto;
 
   inset: 0;
-  background: rgba(0, 0, 0, 0.35); /* intensité du film noir */
+  background: rgba(0, 0, 0, 0.35);
   z-index: 0;
 }
 
@@ -168,10 +168,10 @@ p {
   font-weight: 600;
   font-size: 1.5rem;
   padding: 8px 15px;
-  border: 3px solid transparent; /* <-- ajoute ceci */
+  border: 3px solid transparent;
   border-radius: 20px;
   margin-top: 20px;
-  transition: 0.2s ease; /* optionnel mais propre */
+  transition: 0.2s ease;
   margin-bottom: 15px;
 }
 
@@ -278,9 +278,9 @@ h3 {
   -webkit-appearance: none;
   -moz-appearance: none;
 
-  background-color: var(--whiterose); /* ton fond blanc */
-  color: #4e3626; /* ou la couleur de ton texte */
-  padding: 10px 40px 10px 15px; /* espace pour la nouvelle flèche */
+  background-color: var(--whiterose);
+  color: #4e3626;
+  padding: 10px 40px 10px 15px;
   border-radius: 20px;
   font-family: var(--textfont);
   font-size: 1.2rem;
@@ -290,7 +290,6 @@ h3 {
 
   /* Chevron blanc personnalisé */
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><polygon points='0,0 14,0 7,8' fill='black'/></svg>");
-
   background-repeat: no-repeat;
   background-position: right 12px center;
   background-size: 14px;
@@ -327,7 +326,7 @@ h3 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 2fr));
   gap: 40px;
-  align-items: stretch; /* étire les enfants */
+  align-items: stretch;
   width: min(100%, 1290px);
   margin: 0 auto;
   padding: 20px;
@@ -368,11 +367,11 @@ h3 {
   display: inline-block;
   color: var(--green);
   font-size: 6rem;
-  transition: transform 0.3s ease; /* mieux que transition: all */
+  transition: transform 0.3s ease;
 }
 
 .cta-usercommu a:hover {
-  transform: scale(1.2); /* +3% */
+  transform: scale(1.2);
 }
 .onecard-container {
   transition: 0.2s ease;
@@ -456,10 +455,10 @@ h3 {
 }
 .info {
   display: flex;
-  flex-wrap: wrap; /* permet aux éléments de passer à la ligne si besoin */
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 5px; /* espace entre les ingrédients */
+  gap: 5px;
 }
 
 .info p {
@@ -468,9 +467,9 @@ h3 {
   padding: 10px;
   border-radius: 20px;
   font-weight: 800;
-  white-space: nowrap; /* empêche le texte de revenir à la ligne à l'intérieur du p */
-  min-width: 80px; /* largeur minimale du p */
-  max-width: 150px; /* largeur max avant de passer à la ligne suivante */
+  white-space: nowrap;
+  min-width: 80px;
+  max-width: 150px;
   overflow: hidden;
   text-overflow: ellipsis; /* met "..." si le texte est trop long */
   text-align: center;
@@ -498,7 +497,7 @@ h3 {
 .card .addcart,
 .interaction {
   display: flex;
-  flex-grow: 1; /* prend tout l’espace restant */
+  flex-grow: 1;
   align-items: center;
 }
 
@@ -568,10 +567,10 @@ h3 {
   background-color: var(--green);
   font-size: 1rem;
   padding: 8px 15px;
-  border: 3px solid transparent; /* <-- ajoute ceci */
+  border: 3px solid transparent;
   border-radius: 20px;
   margin-top: 20px;
-  transition: 0.2s ease; /* optionnel mais propre */
+  transition: 0.2s ease;
   margin-bottom: 15px;
 }
 

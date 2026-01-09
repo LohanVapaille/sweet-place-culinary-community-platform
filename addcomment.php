@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'config.php'; // doit définir $pdo (PDO) avec exceptions activées
+require_once 'config.php';
 
 // Vérifier que l'utilisateur est connecté
 if (empty($_SESSION['id'])) {
@@ -9,7 +9,7 @@ if (empty($_SESSION['id'])) {
     exit;
 }
 
-// Récupération et validation des données POST
+
 $id_donuts = isset($_POST['id_donuts']) ? (int) $_POST['id_donuts'] : 0;
 $comment_text = trim((string) ($_POST['comment_text'] ?? ''));
 $note = isset($_POST['note']) ? (int) $_POST['note'] : null;
@@ -26,7 +26,7 @@ if ($note === null || $note < 1 || $note > 5)
     $errors[] = "Note invalide.";
 
 if ($errors) {
-    // Simple affichage des erreurs ; tu peux rediriger vers la page du donut et afficher via GET si tu préfères
+
     foreach ($errors as $e) {
         echo "<p>" . htmlspecialchars($e) . "</p>";
     }
@@ -34,7 +34,7 @@ if ($errors) {
 }
 
 try {
-    // Attention : ta colonne s'appelle `text-comment` dans la table. On garde ce nom exact avec backticks.
+
     $sql = "INSERT INTO `commentaires` (`text-comment`, `note`, `date`, `id_donuts_concerné`, `id_auteur`)
             VALUES (:text, :note, :date, :id_donuts, :id_auteur)";
     $stmt = $pdo->prepare($sql);

@@ -2,7 +2,7 @@
 // like_base.php
 header('Content-Type: application/json; charset=utf-8');
 session_start();
-require 'config.php'; // $pdo
+require 'config.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// Lire JSON
+
 $input = json_decode(file_get_contents('php://input'), true);
 
 // Récupérer l'ID utilisateur depuis la session (priorité à 'id')
@@ -28,8 +28,7 @@ if (!empty($_SESSION['id'])) {
 }
 
 if (empty($userId)) {
-    // Si requête AJAX (fetch), renvoyer JSON avec instruction de redirection.
-    // Côté navigateur, ton JS devra détecter data.redirect et faire window.location.
+
     http_response_code(401);
     echo json_encode([
         'success' => false,
@@ -46,7 +45,7 @@ if ($donutId <= 0) {
 }
 
 try {
-    // Vérifier s'il existe déjà (toggle)
+
     $stmt = $pdo->prepare("SELECT id_like FROM fk_like_base WHERE id_donuts_de_base = :did AND id_users = :uid LIMIT 1");
     $stmt->execute([':did' => $donutId, ':uid' => $userId]);
     $exists = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -71,7 +70,7 @@ try {
 
 } catch (PDOException $e) {
     http_response_code(500);
-    // En prod, renvoie message générique
+
     echo json_encode(['success' => false, 'message' => 'Erreur base de données']);
     exit;
 }

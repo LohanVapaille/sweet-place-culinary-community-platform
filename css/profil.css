@@ -49,7 +49,7 @@ main {
 .infoprofil img {
   width: 200px;
   height: 200px;
-  object-fit: cover; /* évite la déformation */
+  object-fit: cover;
   border-radius: 50%;
 }
 
@@ -173,11 +173,11 @@ main {
   height: 100%;
 }
 hr {
-  border: none; /* enlève le style natif */
-  height: 2px; /* épaisseur */
-  background-color: var(--rose); /* rose (ton thème) */
-  width: 100%; /* longueur */
-  margin: 30px 0; /* espace autour */
+  border: none;
+  height: 2px;
+  background-color: var(--rose);
+  width: 100%;
+  margin: 30px 0;
 }
 
 .left {
@@ -220,19 +220,13 @@ hr {
     padding: 5px;
   }
 
-  /* --- Règle pour une seule carte --- */
-  /* Cible le conteneur avec la nouvelle classe */
   .cards-container.single-item {
-    /* Rétablit le comportement de grille par défaut (auto-fit) */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-
-    /* Annule le centrage forcé */
-    justify-items: unset; /* ou 'initial' */
+    justify-items: unset;
   }
 
-  /* Annule le positionnement forcé sur la première colonne */
   .cards-container.single-item > .onecard-container {
-    grid-column: unset; /* L'enfant reprend le comportement normal de la grille */
+    grid-column: unset;
   }
 
   .onlyphonebtnprofil .btn {

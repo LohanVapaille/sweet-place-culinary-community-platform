@@ -3,7 +3,7 @@ session_start();
 require 'config.php';
 require 'models/stats.php';
 
-// Vérifier param id
+
 if (!isset($_GET['id'])) {
     header('Location: connexion.php');
     exit();
@@ -12,7 +12,7 @@ if (!isset($_GET['id'])) {
 $creator_id = (int) $_GET['id'];
 $user_id = isset($_SESSION['id']) ? (int) $_SESSION['id'] : 0;
 
-// Récupérer les infos de l'utilisateur (UNE seule requête)
+
 $user = getInfosUser($pdo, $creator_id);
 
 $total_follow = getTotalFollowers($pdo, $creator_id);
@@ -104,18 +104,15 @@ $likedDonuts = getLikedCompositions($pdo, $creator_id);
 
 
         <?php
-        // ... (code précédent)
-        
-        $donuts = getCompoByUser($pdo, $creator_id, $user_id);
 
-        // Déterminer la classe CSS pour la grille
+
+        $donuts = getCompoByUser($pdo, $creator_id, $user_id);
         $grid_class = '';
         if (count($donuts) === 1) {
-            // Si une seule carte, on ajoute une classe spécifique
+
             $grid_class = ' single-item';
         }
 
-        // ... (code suivant)
         ?>
 
         <div class='tendances '>
@@ -215,8 +212,8 @@ $likedDonuts = getLikedCompositions($pdo, $creator_id);
                 if (!heart) return;
 
                 if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault(); // Empêche scroll avec espace
-                    heart.click(); // Déclenche ton handler de clic existant
+                    e.preventDefault();
+                    heart.click();
                 }
             });
             document.querySelectorAll('.donut-card').forEach(card => {

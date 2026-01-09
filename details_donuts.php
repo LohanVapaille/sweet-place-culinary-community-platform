@@ -1,19 +1,19 @@
 <?php
 
 session_start();
-require 'config.php'; // doit définir $pdo (PDO)
+require 'config.php';
 require 'models/detail_donuts.php';
 
 $id_donuts = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 $info = getInfoDonutsById($pdo, $id_donuts);
 
 if ($info === null) {
-    // gérer l'erreur / affichage
+
     echo "Aucun donuts trouvé pour l'id : " . htmlspecialchars($id_donuts);
     exit;
 }
 
-// Exemple : afficher certaines infos
+
 if ($info['type'] === 'composition') {
     $comp = $info['data']['composition'];
     $comments = $info['data']['comments'];
@@ -39,7 +39,6 @@ if ($info['type'] === 'composition' && $comp['composition_type'] === 'sucré') {
 } elseif ($info['type'] === 'composition' && $comp['composition_type'] === 'salé') {
     $bannerImage = 'https://www.harrisscarfe.com.au/medias/bagel-topping-recipes-ideas-1.jpg?context=bWFzdGVyfHJvb3R8NDA2MzA0fGltYWdlL2pwZWd8cm9vdC9oM2YvaGY3LzE1NTcyNDk1Nzk0MjA2L2JhZ2VsLXRvcHBpbmctcmVjaXBlcy1pZGVhcy0xLmpwZ3w4MTk5OGI0ZjFhY2U0ZjE4YzEwYzBhMGI4ZjU5ODhmMjk0YmYzMWI1NTMzYTZhN2QyOTFkMDk3NTk1Mjc0Mzk3';
 }
-
 
 
 ?>
@@ -278,14 +277,14 @@ if ($info['type'] === 'composition' && $comp['composition_type'] === 'sucré') {
     <script>const stars = document.querySelectorAll('#star-rating i');
         const noteInput = document.getElementById('note');
 
-        // Gestion clavier (Enter / Space => clic simulé)
+
         document.addEventListener('keydown', (e) => {
             const heart = e.target.closest('#star-rating i');
             if (!heart) return;
 
             if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault(); // Empêche scroll avec espace
-                heart.click(); // Déclenche ton handler de clic existant
+                e.preventDefault();
+                heart.click();
             }
         });
 
@@ -293,16 +292,16 @@ if ($info['type'] === 'composition' && $comp['composition_type'] === 'sucré') {
         stars.forEach(star => {
             star.addEventListener('click', () => {
                 const value = parseInt(star.dataset.value);
-                noteInput.value = value; // mettre à jour le input hidden
+                noteInput.value = value;
 
                 // remplir les étoiles
                 stars.forEach(s => {
                     if (parseInt(s.dataset.value) <= value) {
                         s.classList.remove('bx-star');
-                        s.classList.add('bxs-star'); // étoile pleine
+                        s.classList.add('bxs-star');
                     } else {
                         s.classList.remove('bxs-star');
-                        s.classList.add('bx-star'); // étoile vide
+                        s.classList.add('bx-star');
                     }
                 });
             });

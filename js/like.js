@@ -1,4 +1,4 @@
-// like.js (universel, gère classes bx / bxs et hover)
+
 document.addEventListener('DOMContentLoaded', () => {
 
   // Gestion clavier (Enter / Space => clic simulé)
@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!heart) return;
 
     if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault(); // Empêche scroll avec espace
-      heart.click(); // Déclenche ton handler de clic existant
+      e.preventDefault();
+      heart.click();
     }
   });
 
@@ -23,9 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heart.dataset.locked === '1') return;
     heart.dataset.locked = '1';
 
-    // Trouver le conteneur logique : priorise .onecard-container, sinon fallback sur .card
+
     const container = heart.closest('.onecard-container') || heart.closest('.card') || document;
-    const counterEl = container.querySelector('.nb_like'); // trouver le compteur dans le même conteneur
+    const counterEl = container.querySelector('.nb_like');
     const source = heart.dataset.source || 'composition';
     const endpoint = source === 'base' ? 'like_base.php' : 'like.php';
 
@@ -61,20 +61,20 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Mettre à jour compteur (si présent). On préfère utiliser data.likes retourné par le serveur.
+
       if (typeof data.likes !== 'undefined' && counterEl) {
-        // S'assurer que c'est un nombre
+
         const likesNum = Number(data.likes);
         if (!Number.isNaN(likesNum)) {
           counterEl.textContent = likesNum;
         } else {
-          // fallback: incrément local si le serveur n'envoie pas un total
+
           const current = Number(counterEl.textContent) || 0;
           counterEl.textContent = data.liked ? current + 1 : Math.max(0, current - 1);
         }
       }
 
-      // Mettre à jour état durable (dataset.liked) et classes d'icône
+
       if (data.liked) {
         heart.dataset.liked = '1';
         heart.classList.remove('bx-heart');
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Hover effect (delegated)
+
   document.addEventListener('mouseover', (e) => {
     const heart = e.target.closest('.btnlike');
     if (!heart) return;
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Sync initial state
+
   document.querySelectorAll('.btnlike').forEach(heart => {
     if (heart.dataset.liked === '1' || heart.getAttribute('data-liked') === '1') {
       heart.dataset.liked = '1';

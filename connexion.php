@@ -1,8 +1,8 @@
 <?php
 session_start();
-include 'config.php'; // connexion PDO
+include 'config.php';
 $flash = $_SESSION['flash_message'] ?? null;
-unset($_SESSION['flash_message']); // Supprime le message après affichage
+unset($_SESSION['flash_message']);
 
 $message = '';
 
@@ -13,17 +13,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($login) || empty($mdp)) {
         $message = "Merci de remplir tous les champs.";
     } else {
-        // Vérifier si le login existe
+
         $stmt = $pdo->prepare("SELECT * FROM users WHERE login = ?");
         $stmt->execute([$login]);
         $user = $stmt->fetch();
 
         if ($user && password_verify($mdp, $user['mdp'])) {
-            // Connexion réussie
+
             $_SESSION['id'] = $user['id_user'];
             $_SESSION['login'] = $user['login'];
 
-            // Redirection vers une page protégée
+
             header("Location: index.php");
             exit;
         } else {

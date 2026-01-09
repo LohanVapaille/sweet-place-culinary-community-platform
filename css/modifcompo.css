@@ -34,10 +34,10 @@ h1 {
 
 .info {
   display: flex;
-  flex-wrap: wrap; /* permet aux éléments de passer à la ligne si besoin */
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 5px; /* espace entre les ingrédients */
+  gap: 5px;
 }
 
 .info p {
@@ -46,9 +46,9 @@ h1 {
   padding: 10px;
   border-radius: 20px;
   font-weight: 800;
-  white-space: nowrap; /* empêche le texte de revenir à la ligne à l'intérieur du p */
-  min-width: 80px; /* largeur minimale du p */
-  max-width: 150px; /* largeur max avant de passer à la ligne suivante */
+  white-space: nowrap;
+  min-width: 80px;
+  max-width: 150px;
   overflow: hidden;
   text-overflow: ellipsis; /* met "..." si le texte est trop long */
   text-align: center;
@@ -63,15 +63,12 @@ main form {
   margin-top: 50px;
 }
 
-/* Labels */
 main label {
   display: block;
   margin-bottom: 6px;
   font-weight: 600;
   font-size: 0.95rem;
 }
-
-/* Inputs */
 main input[type="text"],
 main textarea {
   width: 300px;
@@ -89,13 +86,10 @@ main textarea {
   min-height: 100px;
 }
 
-/* Focus */
-
 main button[name="update"]:hover {
   transform: translateY(-2px);
 }
 
-/* Séparateur */
 main hr {
   margin: 30px 0;
   border: none;
@@ -106,7 +100,7 @@ main hr {
 .delete {
   margin-top: 0px;
 }
-/* Bouton suppression */
+
 main button[name="delete"] {
   width: fit-content;
   padding: 12px;
@@ -125,7 +119,6 @@ main button[name="delete"]:hover {
   transform: translateY(-2px);
 }
 
-/* Responsive */
 @media (max-width: 640px) {
   main {
     margin: 40px 16px;

@@ -127,9 +127,9 @@ label {
   -webkit-appearance: none;
   -moz-appearance: none;
 
-  background-color: var(--whiterose); /* ton fond blanc */
-  color: #4e3626; /* ou la couleur de ton texte */
-  padding: 10px 40px 10px 15px; /* espace pour la nouvelle flèche */
+  background-color: var(--whiterose);
+  color: #4e3626;
+  padding: 10px 40px 10px 15px;
   border-radius: 20px;
   font-family: var(--textfont);
   font-size: 1.2rem;
@@ -224,11 +224,11 @@ form p {
 }
 
 .fusion .imgbig {
-  width: 120px; /* garde la taille souhaitée */
+  width: 120px;
   height: 120px;
-  object-fit: cover; /* remplit le cadre sans déformer */
-  object-position: auto; /* zoom centré */
-  transform: scale(2); /* facteur de zoom (augmente si besoin) */
+  object-fit: cover;
+  object-position: auto;
+  transform: scale(2);
   transform-origin: center;
 }
 

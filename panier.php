@@ -2,7 +2,7 @@
 session_start();
 require 'config.php';
 
-// ---------- PROTECTION BASIQUE ----------
+
 if (!isset($_SESSION['id'])) {
   header('Location: connexion.php');
   exit;
@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 require 'models/panier_user.php';
 
-// Récupération du panier avec les images superposables
+
 $panier = getUserPanier($pdo, $user);
 // var_dump($panier);
 

@@ -3,20 +3,20 @@ session_start();
 require_once 'config.php';
 require_once 'models/detail_donuts.php';
 
-// 1️⃣ Sécurité : utilisateur connecté
+// Sécurité : utilisateur connecté
 if (!isset($_SESSION['id'])) {
     header('Location: index.php');
     exit;
 }
 
-// 2️⃣ Récupération de l'id
+// Récupération de l'id
 $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 if ($id <= 0) {
     header('Location: index.php');
     exit;
 }
 
-// 3️⃣ Récupération de la compo
+// Récupération de la compo
 $info = getInfoDonutsById($pdo, $id);
 
 // Doit exister ET être une composition
@@ -61,28 +61,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
     try {
         $pdo->beginTransaction();
 
-        // 1️⃣ Supprimer panier
+        // Supprimer panier
         $stmt = $pdo->prepare("
             DELETE FROM fk_panier
             WHERE id_compositions_donuts = :id
         ");
         $stmt->execute([':id' => $id]);
 
-        // 2️⃣ Supprimer likes
+        // Supprimer likes
         $stmt = $pdo->prepare("
             DELETE FROM fk_like
             WHERE id_compositions_donuts = :id
         ");
         $stmt->execute([':id' => $id]);
 
-        // 3️⃣ Supprimer commentaires
+        // Supprimer commentaires
         $stmt = $pdo->prepare("
             DELETE FROM commentaires
             WHERE id_donuts_concerné = :id
         ");
         $stmt->execute([':id' => $id]);
 
-        // 4️⃣ Supprimer la composition
+        // Supprimer la composition
         $stmt = $pdo->prepare("
             DELETE FROM compositions_donuts
             WHERE id_composition = :id

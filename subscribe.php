@@ -1,17 +1,17 @@
 <?php
 session_start();
-require 'config.php'; // doit définir $pdo (instance PDO)
+require 'config.php';
 
 // Forcer JSON
 header('Content-Type: application/json; charset=utf-8');
 
 
 
-// Récupérer données
+
 $user_id = $_SESSION['id'] ?? null;
 $target_id = $_POST['user_id'] ?? null;
 
-// Pas connecté -> renvoyer JSON + 401 (AJAX gérera la redirection si besoin)
+
 if (!$user_id) {
     http_response_code(401);
     echo json_encode(['status' => 'not_logged_in', 'message' => 'Utilisateur non authentifié']);
